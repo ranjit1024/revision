@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -82,6 +84,7 @@
   --success:#10B981;
   --muted: #6B7280;
   --error: #EF4444;
+  --font-mona: "Mona Sans", sans-serif;
 }
 
 .dark {
