@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="container">
       <div className="h-[90vh] relative  bg-center container  bg-cover bg-gray-50/50 bg-blend-overlay px-16 py-4   bg-no-repeat w-[100vw]  ">
-      <div className="absolute h-[80%] -z-2 w-[90%] bg-conic/decreasing from-violet-700/30 via-lime-300/30 to-blue-700/30 blur-3xl">
+      <div className="absolute h-[60%] -z-2 w-[90%] bg-conic/decreasing from-violet-700/30 via-lime-300/30 to-blue-700/30 blur-3xl">
       </div>
       <div className="z-2 flex justify-between items-center ">
         <div className="flex items-center gap-2  ">
@@ -47,6 +47,17 @@ export default function Home() {
         <Button className="bg-primary text-md font-medium px-6 hover:cursor-pointer">Start Now</Button>
         <Button className="bg-transparent border-1 text-black border-primary hover:cursor-pointer">Explore Revisly</Button>
       </div>
+      </div>
+      <div className="h-100 p-20">
+        <div className="flex justify-center items-center text-[2.8rem] flex-col mt-10 font-semibold text-input ">
+          <p className="text-transparent bg-clip-text bg-gradient-to-r from-green-900 via-primary to-blue-900 text-[2.7rem] font-semibold text-shadow-2xs text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1)">Make Revision a Habit, Not a Hassle.</p>
+          <p className="text-lg text-black font-medium mt-2">Smart Revision. Backed by Science.</p>
+        </div>
+        <div className="">
+
+
+        </div>
+        
       </div>
       
     </div>
