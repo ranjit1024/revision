@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import bard from "../public/bird.png"
 import Image from "next/image";
+import logo from "../public/revisly.png"
 export default function Home() {
   return (
     <div className="container">
@@ -12,15 +13,17 @@ export default function Home() {
        
 
           </div>
-        <div className="flex items-center">
-        {/* <Image src={back} width={30} height={100} alt="loog"/> */}
-        <p className="font-semibold text-[1.5rem]  text-input/90">Revision</p>
+        <div className="flex items-center gap-2 ">
+        <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-10 w-10">
+
+        </div>
+        <p className="font-semibold text-[1.5rem]  text-input/90">Revisly</p>
         </div>
         </div>
         <div className="flex list-none gap-10 items-center font-normal justify-center text-input ">
           <li className="hover:cursor-pointer text-lg hover:text-primary">Home </li>
-          <li  className="hover:cursor-pointer text-lg hover:text-primary">feature</li>
-          <li  className="hover:cursor-pointer text-lg hover:text-primary">about</li>
+          <li  className="hover:cursor-pointer text-lg hover:text-primary">Why us</li>
+          <li  className="hover:cursor-pointer text-lg hover:text-primary">about us</li>
         </div>
         <div className="flex items-center gap-7 ">
 
@@ -44,7 +47,7 @@ export default function Home() {
       </div>
       <div className="text-center mt-10 flex justify-center items-center  gap-4">
         <Button className="bg-primary text-md font-medium px-6 hover:cursor-pointer">Start Now</Button>
-        <Button className="bg-transparent border-1 text-black border-primary hover:cursor-pointer">Explore Revision</Button>
+        <Button className="bg-transparent border-1 text-black border-primary hover:cursor-pointer">Explore Revisly</Button>
       </div>
       </div>
       
