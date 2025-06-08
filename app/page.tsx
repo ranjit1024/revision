@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import bard from "../public/bird.png"
 import Image from "next/image";
-import logo from "../public/revisly.png"
+import first from "../public/first.png"
 export default function Home() {
   return (
     <div className="container">
@@ -53,9 +53,27 @@ export default function Home() {
           <p className="text-transparent bg-clip-text bg-gradient-to-r from-green-900 via-primary to-blue-900 text-[2.7rem] font-semibold text-shadow-2xs text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1)">Make Revision a Habit, Not a Hassle.</p>
           <p className="text-lg text-black font-medium mt-2">Smart Revision. Backed by Science.</p>
         </div>
-        <div className="">
+        <div className="grid w-[100%]  grid-cols-2 gap-10  mt-10">
 
+        <div className="bg-[#ccf0f0] h-full p-5 w-full   flex-col  flex rounded-2xl shadow-md">
+         <div className="opacity-80 size-100 bg-cover bg-center bg-[url(../public/first.png)]">
+          
+         </div> 
+         {/* <Image src={first} width={400} height={300} alt="fsdf" className="opacity-90 "/> */}
+         
+     
+        </div>
 
+        <div className="bg-[#ccf0f0] h-full p-5 w-fit flex-col flex rounded-2xl shadow-md">
+         {/* <div className="opacity-80 size-100 bg-cover bg-center bg-[url(../public/first.png)]">
+          
+         </div>  */}
+         <Image src={first} width={400} height={300} alt="fsdf"/>
+         lkj
+     
+        </div>
+
+      
         </div>
         
       </div>
