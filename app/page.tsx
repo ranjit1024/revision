@@ -121,30 +121,39 @@ export default function Home() {
       <div className="p-10 mt-10 relative">
         <div className="bg-white px-3 py-5 rounded-xl shadow-sm">
 
-         <div className=" absolute  h-[10.55rem] w-30 border-[#009498] border-r-3 border-b-3  border-t-3 rounded-tr-[1010%]  rounded-br-[1010%] right-13 top-[40%]  "></div>
+         <div className=" absolute  h-[12rem] w-30 border-[#009498] border-r-3 border-b-3  border-t-3 rounded-tr-[1010%]  rounded-br-[1010%] right-13 top-[40%]  "></div>
         <h1 className="text-[2rem] px-4 mb-5 font-medium text-black">How It Works</h1>
         <div className="p-4 flex  relative">
            {/* <>------ line -----------</> */}
             <div className=" absolute h-[3px] rounded-full bg-gradient-to-br to-green-600 from-blue-600  w-180 left-40 top-[50%] bg-blue-900">
 
             </div>
-          <div className="bg-blue-50  relative flex justify-center flex-col items-center w-fit p-4 rounded-2xl">
-            
-            <Image width="48" height="48" src="https://img.icons8.com/pulsar-color/48/alarm-clock.png" alt="alarm-clock"/>
-            <p className="pt-2 text-neutral-800 font-medium ">Set Revisoin topic</p>
-          </div>
+            {/* <Image width="48" height="48" src="https://img.icons8.com/pulsar-color/48/timer.png" alt="timer"/> */}
+         <div className="bg-green-100 z-10 hover:bg-green-200 transition-all duration-300 rounded-xl p-4 flex flex-col items-center justify-center shadow-md w-48 h-32">
+  <div className="bg-gradient-to-br from-cyan-300 to-blue-400 p-3 rounded-full shadow-sm mb-2">
+    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 8v4l3 2"></path>
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path>
+    </svg>
+  </div>
+  <p className="text-sm font-medium text-gray-800">Select Topic to Revise</p>
+</div>
 
-          <div className="bg-blue-50 ml-[21%]  relative flex justify-center flex-col items-center w-fit p-4 rounded-2xl">
-            
-            <Image width="48" height="48" src="https://img.icons8.com/pulsar-color/48/coming-soon.png" alt="coming-soon"/>
-            <p className="pt-2 text-neutral-800 font-medium ">Get Revision Reminder</p>
-          </div>
 
-          <div className="bg-blue-50 ml-[15%]  relative flex justify-center flex-col items-center w-fit p-4 rounded-2xl">
-            
-            <Image width="48" height="48" src="https://img.icons8.com/pulsar-color/48/open-book.png" alt="open-book"/>
-            <p className="pt-2 text-neutral-800 font-medium ">Revise that topic</p>
-          </div>
+             <div className="bg-green-100 ml-[20%] z-10 hover:bg-green-200 transition-all duration-300 rounded-xl p-4 flex flex-col items-center justify-center shadow-md w-48 h-32">
+  <div className="bg-gradient-to-br from-cyan-300 to-blue-400 p-3 rounded-full shadow-sm mb-2">
+   <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/FFFFFF/alarm--v2.png" alt="alarm--v2"/>
+  </div>
+  <p className="text-sm font-medium text-gray-800">Receive Study Alerts</p>
+</div>
+
+         <div className="bg-green-100 ml-[20%] z-10 hover:bg-green-200 transition-all duration-300 rounded-xl p-4 flex flex-col items-center justify-center shadow-md w-48 h-32">
+  <div className="bg-gradient-to-br from-cyan-300 to-blue-400 p-3 rounded-full shadow-sm mb-2">
+   <img width="24" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/book-and-pencil.png" alt="book-and-pencil"/>
+  </div>
+  <p className="text-sm font-medium text-gray-800">Begin Topic Revision</p>
+</div>
           {/* 1.set a reviosn topic aloong with custom time range or already given<br></br>
           2.get remider accroding to the timerange<br></br>
           3.revise that topic<br></br>
@@ -153,24 +162,25 @@ export default function Home() {
           6.get the reposrt<br></br> */}
         </div>
 
-        <div className="p-4 flex mt-5 relative">
+        <div className="p-4 flex mt-10 relative">
            {/* <>------ line -----------</> */}
-            <div className=" absolute h-[3px] rounded-full bg-gradient-to-br to-green-600 from-blue-600  w-190 left-40 top-[50%] bg-blue-900">
+            <div className=" absolute h-[3px] rounded-full bg-gradient-to-br to-green-600 from-blue-600  w-150 left-90 top-[50%] bg-blue-900">
 
             </div>
         
 
-          <div className="bg-blue-50 ml-[10%]  relative flex justify-center flex-col items-center w-fit p-4 rounded-2xl">
-            
-            <Image width="48" height="48" src="https://img.icons8.com/pulsar-color/48/coming-soon.png" alt="coming-soon"/>
-            <p className="pt-2 text-neutral-800 font-medium ">Get Test Report</p>
-          </div>
-
-          <div className="bg-blue-50 ml-[30%]  relative flex justify-center flex-col items-center w-fit p-4 rounded-2xl">
-            
-            <Image width="48" height="48" src="https://img.icons8.com/pulsar-color/48/test.png" alt="test"/>
-            <p className="pt-2 text-neutral-800 font-medium text-center ">Give Revision Test</p>
-          </div>
+          <div className="bg-green-100 ml-[20%] z-10 hover:bg-green-200 transition-all duration-300 rounded-xl p-4 flex flex-col items-center justify-center shadow-md w-48 h-32">
+  <div className="bg-gradient-to-br from-cyan-300 to-blue-400 p-3 rounded-full shadow-sm mb-2">
+   <Image width="24" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/pie-chart-report-script.png" alt="pie-chart-report-script"/>
+  </div>
+  <p className="text-sm font-medium text-gray-800">Review Test Results</p>
+</div>
+ <div className="bg-green-100 ml-[20%] z-10 hover:bg-green-200 transition-all duration-300 rounded-xl p-4 flex flex-col items-center justify-center shadow-md w-48 h-32">
+  <div className="bg-gradient-to-br from-cyan-300 to-blue-400 p-3 rounded-full shadow-sm mb-2">
+    <img width="24" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/test-passed.png" alt="test-passed"/>
+  </div>
+  <p className="text-sm font-medium text-gray-800 text-center ">Take Revision Test</p>
+</div>
           {/* 1.set a reviosn topic aloong with custom time range or already given<br></br>
           2.get remider accroding to the timerange<br></br>
           3.revise that topic<br></br>
