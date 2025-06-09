@@ -7,7 +7,7 @@ import { Inter } from 'next/font/google';
 const inter = Mona_Sans({
   subsets: ['latin'],
   display: 'swap',     // optional
-  weight: ['200', '400', '600', '700', '900'], // optional: choose specific weights
+  weight: ['200', '300', '400', '500', '600', '700', '900'], // optional: choose specific weights
   variable: '--font-inter', // optional: use as a CSS variable
 });
 export default function RootLayout({
