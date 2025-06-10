@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import bard from "../public/bird.png";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 import srs from "../public/imp.png"
 export default function Home() {
   return (
@@ -116,7 +116,7 @@ export default function Home() {
        
         </div>
         <section className=" mt-5 dark:bg-neutral-950 py-16 px-6 md:px-10">
-      <div className="max-w-6xl bg-white p-10 rounded-2xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl bg-white p-5 rounded-2xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left: Text Content */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 dark:text-white mb-4">
