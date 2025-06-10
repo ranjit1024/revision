@@ -8,8 +8,8 @@ export default function Home() {
   return (
 
     <div className=" overflow-x-hidden">
-      <div className="h-[100%] max-md:w-100 max-md:h-[100%] max-lg:static  relative  bg-center container  bg-cover bg-gray-50/50 bg-blend-overlay px-16 py-4 max-md:flex max-md:flex-col max-md:px-0 bg-no-repeat w-[100vw]   ">
-        <div className="absolute h-[60%] -z-2 w-[80%] bg-conic/decreasing from-violet-700/30 via-lime-300/30 to-blue-700/30 blur-3xl"></div>
+      <div className="h-[100%] max-md:w-100 max-md:h-[100%] max-lg:static  relative  bg-center container  bg-cover  px-16 py-4 max-md:flex max-md:flex-col max-md:px-0 bg-no-repeat w-[100vw]   ">
+        <div className="absolute h-[60%]  -z-2 w-[80%] bg-conic/decreasing from-violet-700/30 via-lime-300/30 to-blue-700/30 blur-3xl"></div>
         <div className="z-2 flex justify-between   items-center  max-md:w-95">
           <div className="flex items-center gap-2  ">
             
@@ -162,7 +162,50 @@ export default function Home() {
             <Button className="bg-white text-black hover:cursor-pointer hover:bg-blue-100"> Explore Revisly</Button>
           </div>
         </div>
-
+<footer className="w-full bg-white p-8 ">
+  <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+   <Image src={logo} height={34} width={34} alt="logo"/>
+ 
+    <ul className="flex flex-wrap items-center gap-y-2 gap-x-8 max-md:justify-center">
+      <li>
+        <a
+          href="#"
+          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm"
+        >
+          About Us
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm"
+        >
+          License
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm"
+        >
+          Contribute
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm"
+        >
+          Contact Us
+        </a>
+      </li>
+    </ul>
+  </div>
+  <p className="block mb-4 text-sm text-center text-slate-500 md:mb-0 border-t border-slate-200 mt-4 pt-4">
+    Copyright © 2024&nbsp; 
+    <a href="https://material-tailwind.com/" target="_blank" rel="noreferrer" >Revisly</a>.
+  </p>
+  </footer>
     
     </div>
 
