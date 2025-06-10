@@ -1,10 +1,14 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import bard from "../public/bird.png";
 import Image from "next/image";
 import logo from "../public/revisly.png"
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import srs from "../public/imp.png"
 export default function Home() {
+  const navigation = useRouter();
+ 
   return (
 
     <div className=" overflow-x-hidden">

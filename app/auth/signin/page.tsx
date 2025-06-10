@@ -1,7 +1,8 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-
+import { useRouter } from "next/navigation"
 export default function LoginForm() {
+    const navigation = useRouter()
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
@@ -30,6 +31,12 @@ export default function LoginForm() {
           <Button className="w-full bg-blue-700 text-white hover:bg-blue-800">
             Login
           </Button>
+           <p className="text-center text-sm text-gray-500">
+            New to Revision ?{" "}
+            <a href="/login" className="text-blue-600 hover:underline">
+              Sign up
+            </a>
+          </p>
         </div>
       </div>
     </div>
