@@ -9,8 +9,8 @@ export default function Home() {
 
     <div className=" overflow-x-hidden">
       <div className="h-[100%] max-md:w-100 max-md:h-[100%] max-lg:static  relative  bg-center container  bg-cover  px-16 py-4 max-md:flex max-md:flex-col max-md:px-0 bg-no-repeat w-[100vw]   ">
-        <div className="absolute h-[60%]  -z-2 w-[80%] bg-conic/decreasing from-violet-700/30 via-lime-300/30 to-blue-700/30 blur-3xl"></div>
-        <div className="z-2 flex justify-between   items-center  max-md:w-95">
+        <div className="absolute h-[60%]  -z-2 w-[90%] bg-conic/decreasing from-violet-700/30 via-lime-300/30 to-blue-700/30 blur-3xl"></div>
+        <div className="z-2 flex justify-between   items-center   max-md:w-95 w-[90vw]">
           <div className="flex items-center gap-2  ">
             
             <div className="flex items-center gap-2 max-md:ml-2 ">
