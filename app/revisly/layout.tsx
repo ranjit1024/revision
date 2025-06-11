@@ -16,7 +16,7 @@ export default function Home({ children }: { children: ReactNode }) {
     <div className="h-[100vh] bg-gray-200 grid grid-cols-[20%_80%]">
       <div className=" bg-gray-100 relative h-full border-r-1 border-gray-300   ">
         <div className="flex items-center gap-2 max-md:ml-2 border-b-1 border-r-1 bg-gray-100 border-gray-400 p-2 ">
-          <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
+          <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
           <p className="font-semibold text-[1.2rem]  text-input/90">Revisly</p>
         </div>
 
