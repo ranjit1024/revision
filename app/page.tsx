@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import bard from "../public/bird.png";
+
 import Image from "next/image";
 import logo from "../public/revisly.png"
 import { motion } from "framer-motion";
@@ -37,7 +37,7 @@ export default function Home() {
         {/* <--- header done.----> */}
         <div className="  max-lg:w-[100vw]  mt-22 flex justify-center items-center ">
           <div className="text-primary flex items-center bg-gray-50 border-1 shadow-md shadow-blue-100 border-secondary/30  backdrop-blur-2xl  rounded-2xl px-4 py-1 font-medium gap-3">
-            <Image width="22" height="48" src={bard} alt="bard" />
+            
             <p className="text-[#0044ff]">
               Revision Smarter. Remember Longer
             </p>{" "}
