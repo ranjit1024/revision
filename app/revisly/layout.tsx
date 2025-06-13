@@ -1,22 +1,22 @@
+'use client'
 import { ReactNode } from "react";
 import {
   LayoutDashboardIcon,
-  HandCoins,
   ChartColumnStacked,
   Settings,
   CirclePlus,
-  Sparkle
+  Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import user from "../../public/user.jpg"
 import Image from "next/image";
+import { useRouter } from "next/navigation";
  
 
 export default function Home({ children }: { children: ReactNode }) {
-  const date =  new Date();
-
+  const router = useRouter()
   return (
-    <div className="h-[100%] bg-gray-100 ">
+    <div className="h-[100%] relative bg-gray-100 ">
  
 
 
@@ -30,7 +30,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       <div className=" flex px-3 justify-between items-center">
           <div>
-            <p className="text-md font-normal">👋 Hello name</p>
+            <p className="text-md font-normal">👋 Hello Ranjit das</p>
           </div>
         
           <div className="flex gap-3 items-center  ">
@@ -43,12 +43,18 @@ export default function Home({ children }: { children: ReactNode }) {
               <div className="w-[1] h-10 border-r-1 mx-3 border-r-gray-300 bg-gray-200 ">
                 
               </div>
-            <div className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102">
+            <div className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102" onClick={()=>{
+              router.push("/revisly/profile")
+            }}>
                 <Image src={user} height={20} width={30} alt="user" className="rounded-2xl"/>
                 
 
               <p className="text-sm font-n">Ranjit das</p>
-            
+              <div className="absolute top-0 w">
+
+           
+              </div>
+                
                 
             </div>
           </div>
@@ -65,7 +71,7 @@ export default function Home({ children }: { children: ReactNode }) {
             <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
           </div>
           <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <Sparkle className="size-4 text-gray-900" />
+            <Sparkles className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">All revision</p>
           </div>
           <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">

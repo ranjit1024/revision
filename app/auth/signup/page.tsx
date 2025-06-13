@@ -20,7 +20,7 @@ export default function LoginForm() {
       <h1 className="text-3xl font-medium text-neutral-800">Revisly</h1>
       <p>Revise Smarter. Learn Faster.</p>
     </div>
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center  bg-gray-50 bg-gray-50">
       <div className="w-full max-w-xl rounded-2xl p-8 ">
         <div className="flex justify-center mb-15">
 
