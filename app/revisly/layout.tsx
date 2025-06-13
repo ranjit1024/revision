@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import {
   LayoutDashboardIcon,
-  RefreshCcwDot,
+  HandCoins,
   ChartColumnStacked,
   Settings,
   CirclePlus,
@@ -30,7 +30,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       <div className=" flex px-3 justify-between items-center">
           <div>
-            <p>Hellow, Greating</p>
+            <p className="text-md font-normal">👋 Hello name</p>
           </div>
         
           <div className="flex gap-3 items-center  ">
