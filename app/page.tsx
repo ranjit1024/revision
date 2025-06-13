@@ -35,7 +35,8 @@ export default function Home() {
           </div> 
         </div>
         {/* <--- header done.----> */}
-        <div className="  max-lg:w-[100vw]  mt-22 flex justify-center items-center ">
+        <div
+      className="  max-lg:w-[100vw]  mt-22 flex justify-center items-center ">
           <div className="text-primary flex items-center bg-gray-50 border-1 shadow-md shadow-blue-100 border-secondary/30  backdrop-blur-2xl  rounded-2xl px-4 py-1 font-medium gap-3">
             
             <p className="text-[#0044ff]">

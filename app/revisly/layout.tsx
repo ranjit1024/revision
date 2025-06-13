@@ -66,24 +66,22 @@ export default function Home({ children }: { children: ReactNode }) {
       
 
         <div className="mt-5 p-2 space-y-2    ">
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+          <div onClick={()=>{
+            router.push("/revisly/home")
+          }} className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
             <LayoutDashboardIcon className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
           </div>
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <Sparkles className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">All revision</p>
-          </div>
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+       
+          <div onClick={()=>{
+            router.push("/revisly/report")
+          }} className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
             <ChartColumnStacked className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">
               Test/quix report
             </p>
           </div>
-                <div className="flex  items-center gap-2 w-full hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <Settings className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">Settings</p>
-          </div>
+              
         </div>
 
    
