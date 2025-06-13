@@ -2,8 +2,13 @@
 import { ChartBarLabelCustom } from "@/components/ui/last5";
 import Retation from "@/components/ui/retation";
 import { Subject } from "@/components/ui/subjects";
-
+import { Calendar } from "@/components/ui/calendar"
+import { useState,useEffect } from "react";
 export default function Home() {
+  const [date, setDate] = useState<Date | undefined>(undefined)
+  useEffect(() => {
+  setDate(new Date());
+}, []);
   return (
     <div>
       <div className="w-[100%] grid grid-cols-2 gap-2">
@@ -36,12 +41,28 @@ export default function Home() {
         <div className="w-[100%] mt-5 ">
           <ChartBarLabelCustom/>
         </div>
+        <div className="w-[100%] mt-5 ">
+          <Subject/>
+        </div>
+        <div className="w-[100%] mt-5 ">
+      
+        </div>
         </div>
 
         <div className="second">
+
+          <div  >
+              <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-lg border w-[100%] mb-2"
+  />
+
+          </div>
             <Retation/>
             <div className="mt-5">
-            <Subject />
+            
             </div>
         </div>
       </div>

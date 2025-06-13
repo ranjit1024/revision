@@ -3,9 +3,10 @@ import { ReactNode } from "react";
 import {
   LayoutDashboardIcon,
   ChartColumnStacked,
-  Settings,
+  User2Icon,
+  UserCircleIcon,
   CirclePlus,
-  Sparkles
+  BellRingIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import user from "../../public/user.jpg"
@@ -40,19 +41,14 @@ export default function Home({ children }: { children: ReactNode }) {
                 <p>Set Revision</p>
               </Button>
             </div>
-              <div className="w-[1] h-10 border-r-1 mx-3 border-r-gray-300 bg-gray-200 ">
+              <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-gray-200 ">
                 
               </div>
             <div className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102" onClick={()=>{
-              router.push("/revisly/profile")
+              
             }}>
-                <Image src={user} height={20} width={30} alt="user" className="rounded-2xl"/>
-                
-
-              <p className="text-sm font-n">Ranjit das</p>
-              <div className="absolute top-0 w">
-
-           
+              <div className=" bg-blend-darken  p-1 w-fit rounded-full bg-gray-100 shadow">
+            <img width="25" height="30" src="https://img.icons8.com/pulsar-color/50/appointment-reminders.png" alt="appointment-reminders"/>
               </div>
                 
                 
@@ -79,6 +75,14 @@ export default function Home({ children }: { children: ReactNode }) {
             <ChartColumnStacked className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">
               Test/quix report
+            </p>
+          </div>
+          <div onClick={()=>{
+            router.push("/revisly/profile")
+          }} className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+            <UserCircleIcon className="size-4 text-gray-900" />
+            <p className="text-sm text-neutral-800 font-medium">
+              Profile
             </p>
           </div>
               
