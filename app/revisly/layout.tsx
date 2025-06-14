@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ReactNode } from "react";
 import {
   LayoutDashboardIcon,
@@ -6,159 +6,185 @@ import {
   GoalIcon,
   UserCircleIcon,
   CirclePlus,
-
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
- 
 
 export default function Home({ children }: { children: ReactNode }) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className="h-[100%] relative bg-gray-100 ">
- 
-
-
-    <div className=" bg-white border-b-gray-300 border-b-1 grid grid-cols-[20%_80%]">
-
-      <div className=" border-r-1 border-r-gray-300 p-2  ">
-             <div className="flex items-center gap-2 max-md:ml-2     ">
-          <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
-          <p className="font-semibold text-[1.2rem]  text-input/90">Revisly</p>
+      <motion.div
+        initial={{
+          y: -20,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.6,
+        }}
+        className=" bg-white border-b-gray-300 border-b-1 grid grid-cols-[20%_80%]"
+      >
+        <div className=" border-r-1 border-r-gray-300 p-2  ">
+          <div className="flex items-center gap-2 max-md:ml-2     ">
+            <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
+            <p className="font-semibold text-[1.2rem]  text-input/90">
+              Revisly
+            </p>
+          </div>
         </div>
-        </div>
-      <div className=" flex px-3 justify-between items-center">
+        <div className=" flex px-3 justify-between items-center">
           <div>
             <p className="text-md font-normal">👋 Hello Ranjit das</p>
           </div>
-        
+
           <div className="flex gap-3 items-center  ">
             <div className="inline-flex ">
               <Button className="inline-flex items-center gap-2 bg-primary  hover:cursor-pointer">
-                <CirclePlus className="size-4 text-gray-50"/>
+                <CirclePlus className="size-4 text-gray-50" />
                 <p>Set Revision</p>
               </Button>
             </div>
-              <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-gray-200 ">
-                
-              </div>
-            <div className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102" onClick={()=>{
-              
-            }}>
+            <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-gray-200 "></div>
+            <div
+              className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102"
+              onClick={() => {}}
+            >
               <div className=" bg-blend-darken  p-1 w-fit rounded-full bg-gray-100 shadow">
-            <img width="25" height="30" src="https://img.icons8.com/pulsar-color/50/appointment-reminders.png" alt="appointment-reminders"/>
+                <img
+                  width="25"
+                  height="30"
+                  src="https://img.icons8.com/pulsar-color/50/appointment-reminders.png"
+                  alt="appointment-reminders"
+                />
               </div>
-                
-                
             </div>
           </div>
-        
         </div>
-      </div>
+      </motion.div>
+
       <div className="h-[90%] grid grid-cols-[20%_80%]">
-          <div className=" bg-white relative h-full border-r-1 border-gray-300   ">
-      
+        <motion.div
+          initial={{
+            x: -20,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
+          className=" bg-white relative h-full border-r-1 border-gray-300   "
+        >
+          <div
+            className="mt-5 p-2 space-y-2  
+        
+        "
+          >
+            <motion.div
+              initial={{
+                x: -25,
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.6,
+              }}
+              onClick={() => {
+                router.push("/revisly/home");
+              }}
+              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+            >
+              <LayoutDashboardIcon className="size-4 text-gray-900" />
+              <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
+            </motion.div>
 
-        <div className="mt-5 p-2 space-y-2    ">
-          <div onClick={()=>{
-            router.push("/revisly/home")
-          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <LayoutDashboardIcon className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
-          </div>
+            <motion.div
+              initial={{
+                x: -25,
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.6,
+              }}
+              onClick={() => {
+                router.push("/revisly/report");
+              }}
+              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+            >
+              <GoalIcon className="size-4 text-gray-900" />
+              <p className="text-sm text-neutral-800 font-medium">
+                Set custom Revision
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{
+                x: -25,
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.4,
+                delay: 1,
+              }}
+              onClick={() => {
+                router.push("/revisly/report");
+              }}
+              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+            >
+              <ChartColumnStacked className="size-4 text-gray-900" />
+              <p className="text-sm text-neutral-800 font-medium">
+                Test/quix report
+              </p>
+            </motion.div>
+
+            <motion.div
+
+                   initial={{
+       x:-25,
+      opacity:0
+    }} 
+    animate={{
+      x:0,
+      opacity:1
+    }}
+    transition={{
+      duration:0.4,
+      delay:1.3
+    }}
        
-          <div onClick={()=>{
-            router.push("/revisly/report")
-          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <GoalIcon className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">
-              Set custom Revision
-            </p>
-          </div>
-          <div onClick={()=>{
-            router.push("/revisly/report")
-          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <ChartColumnStacked className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">
-              Test/quix report
-            </p>
-          </div>
-          <div onClick={()=>{
-            router.push("/revisly/profile")
-          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <UserCircleIcon className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">
-              Profile
-            </p>
-          </div>
-              
-        </div>
+              onClick={() => {
+                router.push("/revisly/profile");
+              }}
+              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+            >
+              <UserCircleIcon className="size-4 text-gray-900" />
+              <p className="text-sm text-neutral-800 font-medium">Profile</p>
+            </motion.div>
 
-   
-      </div>
-      <div className="p-3">
-        {children}
-      </div>
-      </div>
-      
-      {/* <div className=" bg-gray-100 relative h-full border-r-1 border-gray-300   ">
-        <div className="flex items-center gap-2 max-md:ml-2 border-b-1 border-r-1 bg-gray-100 border-gray-400 p-2 ">
-          <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
-          <p className="font-semibold text-[1.2rem]  text-input/90">Revisly</p>
-        </div>
+          </div>
+        </motion.div>
 
-        <div className="mt-5 p-2 space-y-2    ">
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <LayoutDashboardIcon className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
-          </div>
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <Sparkle className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">All revision</p>
-          </div>
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <ChartColumnStacked className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">
-              Test/quix report
-            </p>
-          </div>
-        </div>
-
-        <div className="border-t-2 relative top-88 p-2  ">
-          <div className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
-            <Settings className="size-4 text-gray-900" />
-            <p className="text-sm text-neutral-800 font-medium">Settings</p>
-          </div>
-        </div>
+        <div className="p-3">{children}</div>
       </div>
-      <div className="h-[7.5%]">
-        <div className=" bg-gray-100 relative h-full  border-b-1 flex items-center justify-between px-5  border-gray-400">
-          <div>
-            <p>Dashboard</p>
-          </div>
-          <div className="flex gap-3 items-center  ">
-            <div className="inline-flex">
-              <Button className="inline-flex items-center gap-2 bg-primary hover:cursor-pointer">
-                <CirclePlus className="size-4 text-gray-50"/>
-                <p>Set Revision</p>
-              </Button>
-              <div className="pl-4 border-r-2 border-r-gray-300"></div>
-            </div>
-            <div className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102">
-                <Image src={user} height={20} width={30} alt="user" className="rounded-2xl"/>
-                
-
-              <p className="text-sm font-n">Ranjit das</p>
-            
-                
-            </div>
-          </div>
-        </div>
-      <div>
-        {children}
-      </div>
-      </div> */}
     </div>
   );
 }
