@@ -2,13 +2,17 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
-import { div } from "framer-motion/client"
-import Image from "next/image"
-import singin from "../../../public/test.png"
+import Loader from "@/components/ui/loader"
+import Image from "next/image";
+import singin from "../../../public/test.png";
+import { useState } from "react"
 
 export default function LoginForm() {
     const navigation = useRouter()
-  return <div className="w-full grid grid-cols-[50%_50%]">
+    const [loader , setLoader] = useState<boolean>(false);
+
+  return <div className="w-full grid grid-cols-[50%_50%] relative">
+    {loader ? <Loader/> : null}
     <div className="flex  justify-center items-center bg-center bg-contain flex-col bg-green-50">
        <div className="flex absolute top-3 left-1 items-center gap-2 max-md:ml-2 ">
               <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-8 w-8"></div>
@@ -20,7 +24,7 @@ export default function LoginForm() {
       <h1 className="text-3xl font-medium text-neutral-800">Revisly</h1>
       <p>Revise Smarter. Learn Faster.</p>
     </div>
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+    <div className="flex min-h-screen items-center justify-center bg-white">
       <div className="w-full max-w-lg rounded-2xl p-8 ">
        
         <h2 className="mb-6 text-center text-2xl font-semibold">Welcome Back</h2>
@@ -32,6 +36,7 @@ export default function LoginForm() {
             </label>
             <Input id="email" type="email" placeholder="you@example.com" />
           </div>
+
 
           <div>
             <label htmlFor="password" className="mb-1 block text-sm font-medium text-gray-700">
@@ -47,8 +52,13 @@ export default function LoginForm() {
             Login with Google
           </Button>
 
-          <Button className="w-full bg-blue-700 text-white hover:bg-blue-800">
-            Login
+          <Button onClick={async ()=>{
+            setLoader(true);
+            localStorage.setItem("data", "fasljfalk")
+            await new Promise(r => setTimeout(r,3000));
+            setLoader(false)
+          }} className="w-full hover:cursor-pointer bg-blue-700 text-white hover:bg-blue-800">
+            Sign in
           </Button>
            <p className="text-center text-sm text-gray-500">
             New to Revision ?{" "}

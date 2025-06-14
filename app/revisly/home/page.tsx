@@ -5,10 +5,8 @@ import { Subject } from "@/components/ui/subjects";
 import { Calendar } from "@/components/ui/calendar"
 import { useState,useEffect } from "react";
 export default function Home() {
-  const [date, setDate] = useState<Date | undefined>(undefined)
-  useEffect(() => {
-  setDate(new Date());
-}, []);
+  const [date, setDate] = useState<Date | undefined>(new Date())
+
   return (
     <div>
       <div className="w-[100%] grid grid-cols-2 gap-2">

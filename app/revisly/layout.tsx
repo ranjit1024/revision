@@ -3,14 +3,13 @@ import { ReactNode } from "react";
 import {
   LayoutDashboardIcon,
   ChartColumnStacked,
-  User2Icon,
+  GoalIcon,
   UserCircleIcon,
   CirclePlus,
-  BellRingIcon
+
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import user from "../../public/user.jpg"
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
  
 
@@ -64,14 +63,22 @@ export default function Home({ children }: { children: ReactNode }) {
         <div className="mt-5 p-2 space-y-2    ">
           <div onClick={()=>{
             router.push("/revisly/home")
-          }} className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
             <LayoutDashboardIcon className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
           </div>
        
           <div onClick={()=>{
             router.push("/revisly/report")
-          }} className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+            <GoalIcon className="size-4 text-gray-900" />
+            <p className="text-sm text-neutral-800 font-medium">
+              Set custom Revision
+            </p>
+          </div>
+          <div onClick={()=>{
+            router.push("/revisly/report")
+          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
             <ChartColumnStacked className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">
               Test/quix report
@@ -79,7 +86,7 @@ export default function Home({ children }: { children: ReactNode }) {
           </div>
           <div onClick={()=>{
             router.push("/revisly/profile")
-          }} className="flex items-center gap-2 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
+          }} className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1">
             <UserCircleIcon className="size-4 text-gray-900" />
             <p className="text-sm text-neutral-800 font-medium">
               Profile
