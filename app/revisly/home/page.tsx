@@ -28,9 +28,9 @@ export default function Home() {
           >
             <div className="p-5">
               <p className="font-normal text-lg text-black mb-1">
-                Current Topic
+                Current Revision Topic
               </p>
-              <p className="text-sm">topic name</p>
+              <p className="text-md">topic name</p>
               <div className="my-8 bg-green-200 h-2 rounded-2xl z-0">
                 <div className="bg-green-500 w-[10%] relative rounded-2xl h-full">
                   <div className="bg-green-500 border-3 border-gray-100 -top-1 absolute left-10 w-4 h-4  rounded-full "></div>
@@ -88,6 +88,18 @@ export default function Home() {
         </div>
 
         <div className="second">
+
+  <div className="p-5 bg-white rounded-2xl mb-3">
+              <p className="font-normal text-lg text-black mb-1">
+                Upcomming Revison
+              </p>
+              <p className="text-md">topic name</p>
+            
+              <p className="mt-4 text-[1.1rem] text-gray-600">
+               Topic info
+              </p>
+            </div>
+
           <motion.div
                  initial={{
        x:-100,

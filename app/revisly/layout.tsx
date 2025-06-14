@@ -6,6 +6,7 @@ import {
   GoalIcon,
   UserCircleIcon,
   CirclePlus,
+  GalleryHorizontalEnd
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -44,7 +45,9 @@ export default function Home({ children }: { children: ReactNode }) {
 
           <div className="flex gap-3 items-center  ">
             <div className="inline-flex ">
-              <Button className="inline-flex items-center gap-2 bg-primary  hover:cursor-pointer">
+              <Button onClick={()=>{
+                router.push("/revisly/revision")
+              }} className="inline-flex items-center gap-2 bg-primary  hover:cursor-pointer">
                 <CirclePlus className="size-4 text-gray-50" />
                 <p>Set Revision</p>
               </Button>
@@ -118,11 +121,34 @@ export default function Home({ children }: { children: ReactNode }) {
                 opacity: 1,
               }}
               transition={{
-                duration: 0.6,
+                duration: 0.9,
                 delay: 0.6,
               }}
               onClick={() => {
-                router.push("/revisly/report");
+                router.push("/revisly/custom");
+              }}
+              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+            >
+              <GalleryHorizontalEnd className="size-4 text-gray-900" />
+              <p className="text-sm text-neutral-800 font-medium">
+                All Revisios
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{
+                x: -25,
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 1,
+                delay: 0.6,
+              }}
+              onClick={() => {
+                router.push("/revisly/custom");
               }}
               className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
             >
