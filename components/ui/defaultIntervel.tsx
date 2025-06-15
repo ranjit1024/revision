@@ -76,7 +76,7 @@ export function SelectForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="bg-secondary hover:cursor-pointer">Submit</Button>
       </form>
     </Form>
   )

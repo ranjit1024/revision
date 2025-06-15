@@ -52,7 +52,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 <p>Set Revision</p>
               </Button>
             </div>
-            <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-gray-200 "></div>
+            <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-secondary-foreground "></div>
             <div
               className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102"
               onClick={() => {}}
