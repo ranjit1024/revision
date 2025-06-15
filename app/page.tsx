@@ -6,8 +6,7 @@ import logo from "../public/revisly.png";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Sparkles } from "lucide-react";
-import srs from "../public/imp.png";
-import { tr } from "framer-motion/client";
+import srs from "../public/space.png";
 export default function Home() {
   const navigation = useRouter();
 
@@ -285,7 +284,7 @@ export default function Home() {
             {/* Right: Image Placeholder */}
             <div className="relative w-full h-64 md:h-80 bg-gradient-to-br rounded-2xl flex items-center justify-center">
               {/* Replace below div with your image */}
-              <div className="text-center w-[90%] text-orange-600  text-xl font-semibold">
+              <div className="text-center w-[95%] text-orange-600 rounded-2xl p-2 bg-[#f9f0e3]  text-xl font-semibold">
                 <Image src={srs} width={0} height={0} alt="s"></Image>
               </div>
             </div>
