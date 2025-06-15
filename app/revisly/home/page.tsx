@@ -89,7 +89,20 @@ export default function Home() {
 
         <div className="second">
 
-  <div className="p-5 bg-white rounded-2xl mb-3">
+  <motion.div 
+  initial={{
+    y:-20,
+    opacity:0
+  }}
+  animate={{
+    y:0,
+    opacity:1
+  }}
+    transition={{
+      duration:0.6,
+      delay:0.3
+    }}
+  className="p-5 bg-white rounded-2xl mb-3">
               <p className="font-normal text-lg text-black mb-1">
                 Upcomming Revison
               </p>
@@ -98,7 +111,7 @@ export default function Home() {
               <p className="mt-4 text-[1.1rem] text-gray-600">
                Topic info
               </p>
-            </div>
+            </motion.div>
 
           <motion.div
                  initial={{

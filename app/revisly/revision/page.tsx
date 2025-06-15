@@ -1,9 +1,6 @@
-import { Button } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
-import { DrawerDemo } from "@/components/ui/intervel";
 import { Label } from "@/components/ui/label";
-import {DateRangePicker} from "@/components/ui/range";
-import { Switch } from "@/components/ui/switch"
 export default function Home(){
     return <div className="h-[90vh] ">
         <div className="bg-white shadow p-5 rounded-md ">
