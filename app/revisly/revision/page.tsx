@@ -1,7 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SelectForm } from "@/components/ui/defaultIntervel";
+import { SelectScrollable } from "@/components/ui/defaultIntervel";
 export default function Home(){
     return <div className="h-[90vh] ">
         <div className="bg-white shadow p-5 rounded-md ">
@@ -15,9 +15,9 @@ export default function Home(){
                     </div>
              
                 </div>
-                <div className="mt-5">
+                <div className="mt-6">
 
-                <SelectForm/>
+                <SelectScrollable/>
                 </div>
 
                 <div>

@@ -80,6 +80,9 @@ export default function Home() {
       duration:0.6,
 
     }}
+    viewport={{
+      once:true
+    }}
        
           className="w-[100%] mt-5 ">
             <Subject />

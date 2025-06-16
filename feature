@@ -74,3 +74,16 @@ Friendly competition in closed groups.
 
 Filter by school/college.
 
+| Review # | Days After Last Review | Cumulative Days             |
+| -------- | ---------------------- | --------------------------- |
+| 1        | 1                      | Day 1                       |
+| 2        | 2                      | Day 3                       |
+| 3        | 4                      | Day 7                       |
+| 4        | 7                      | Day 14                      |
+| 5        | 16                     | Day 30                      |
+| 6        | 30                     | Day 60                      |
+| 7        | 60                     | Day 120                     |
+| 8        | 90                     | Day 210                     |
+| 9        | 120                    | Day 330                     |
+| 10       | 180                    | Day 510                     |
+| 11       | 365                    | Day 875 (\~2.4 years total) | create image in way which can be use to expain to user how this wokts so that i can put in website

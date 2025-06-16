@@ -26,7 +26,7 @@ export default function Home(){
                 <DrawerDemo/>
                 
                 </div>
-                <div className="mt-8 text-end">
+                <div className="mt-10 text-start">
                     <Button className="bg-secondary hover:cursor-pointer">Set Revision Reminder</Button>
                 </div>
         </div>
