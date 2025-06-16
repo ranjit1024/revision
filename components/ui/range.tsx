@@ -48,13 +48,18 @@ export function DateRangePicker({
 
         <PopoverContent className="w-auto p-0 ">
           <Calendar
-            
+            disabled={{before:new Date()}}
             mode="range"
             defaultMonth={date?.from}
             selected={date}
             onSelect={(selelectData) =>{
-              setDate(selelectData);
               setOpen(false)
+              setDate(selelectData);
+              const diff = (selelectData ?Number(selelectData?.to) - Number(selelectData?.from) : null);
+            
+              console.log(diff ? Math.ceil(diff / (1000 * 60 *60*24)):null)
+              
+              
             }}
             numberOfMonths={2}
             />
@@ -64,3 +69,8 @@ export function DateRangePicker({
     </div>
   )
 }
+
+
+
+
+
