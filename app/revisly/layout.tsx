@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-
+import { NumberProvider } from "../context/DateContext";
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
   return (
@@ -209,7 +209,13 @@ export default function Home({ children }: { children: ReactNode }) {
           </div>
         </motion.div>
 
-        <div className="p-3">{children}</div>
+        <div className="p-3">
+          <NumberProvider>
+
+          {children}
+    
+          </NumberProvider>
+          </div>
       </div>
     </div>
   );

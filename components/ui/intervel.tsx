@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Minus, Plus } from "lucide-react"
 import { Bar, BarChart, ResponsiveContainer } from "recharts"
-
+import { useNumber } from "@/app/context/DateContext"
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -59,10 +59,10 @@ const data = [
 ]
 
 export function DrawerDemo() {
-  const [goal, setGoal] = React.useState(350)
-
+  const { number, setNumber } = useNumber();
+  const [goal, setGoal] = React.useState(1)
   function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)))
+    setGoal(Math.max(1, Math.min(number, goal + adjustment)))
   }
 
   return (
@@ -84,8 +84,8 @@ export function DrawerDemo() {
                 variant="outline"
                 size="icon"
                 className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(-10)}
-                disabled={goal <= 200}
+                onClick={() => onClick(-1)}
+                disabled={goal <= 1}
               >
                 <Minus />
                 <span className="sr-only">Decrease</span>
@@ -100,12 +100,16 @@ export function DrawerDemo() {
                 variant="outline"
                 size="icon"
                 className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(10)}
+                onClick={() => onClick(1)}
                 disabled={goal >= 400}
               >
                 <Plus />
                 <span className="sr-only">Increase</span>
               </Button>
+            </div>
+            <div className="flex justify-center text-sm text-muted">
+
+              <p className=" ">{ Math.ceil (number / goal)} revision reminder</p>
             </div>
             <div className="mt-3 h-[120px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -125,7 +129,9 @@ export function DrawerDemo() {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-            <Button>Submit</Button>
+            <Button onClick={()=>{
+              console.log(goal)
+            }}>Submit</Button>
               
             </DrawerClose>
             <DrawerClose asChild>
