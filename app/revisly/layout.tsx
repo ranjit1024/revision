@@ -15,10 +15,12 @@ import { useRouter } from "next/navigation";
 import { NumberProvider } from "../context/DateContext";
 import Image from "next/image";
 import { pre } from "framer-motion/client";
+import Notification from "@/components/ui/notification";
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [profile,setProfile] = useState<boolean>(false)
   const drpodownRef = useRef<HTMLDivElement>(null);
+  const[notification, setNotification] = useState(false)
 
   useEffect(()=>{
     const handleClick = (e: MouseEvent)=>{
@@ -71,9 +73,22 @@ export default function Home({ children }: { children: ReactNode }) {
               </Button>
             </div>
             <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-secondary-foreground "></div>
+            {
+              notification ?<div className="absolute bg-white  overflow-scroll h-[60vh] rounded-lg p-5 w-100 shadow top-11 right-2 ">
+      <h1 className="text-muted font-semibold">Notification</h1>
+      <Notification/>
+      <Notification/>
+      <Notification/>
+      <Notification/>
+      <Notification/>
+      </div>:null
+            }
+
             <div
               className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102"
-              onClick={() => {}}
+              onClick={() => {
+                setNotification(prev => !prev)
+              }}
             >
               <div className=" bg-blend-darken  p-1 w-fit rounded-full bg-gray-100 shadow">
                 <img
@@ -104,7 +119,7 @@ export default function Home({ children }: { children: ReactNode }) {
           className=" bg-white    h-[93vh] top-10 sticky z-2  border-r-1  border-gray-300   "
         >
           <div
-            className="  p-3 pt-5  space-y-2  
+            className="  p-3 pt-8  space-y-2  
         
         "
           >

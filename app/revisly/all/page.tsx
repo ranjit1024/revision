@@ -16,11 +16,12 @@ export default function Home(){
     const ref = useRef(null)
     const inView = useInView(ref, { once:true})
     return <motion.div 
+
     ref={ref}
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show":"hidden"}
-    className="flex  w-full flex-wrap gap-5 ">
+    className="flex  w-[100%] flex-wrap gap-5 h-[90%] ">
         <Card></Card>
         <Card></Card>
         <Card></Card>
