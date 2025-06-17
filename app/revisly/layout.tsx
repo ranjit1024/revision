@@ -1,5 +1,6 @@
 "use client";
 import { ReactNode } from "react";
+import User from "../../public/user.jpg"
 import {
   LayoutDashboardIcon,
   ChartColumnStacked,
@@ -12,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { NumberProvider } from "../context/DateContext";
+import Image from "next/image";
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
   return (
@@ -70,7 +72,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </motion.div>
 
-      <div className="h-[100%] w-[99vw] relative  grid grid-cols-[20%_80%]">
+      <div className="h-[100%] w-[98.9vw] relative  grid grid-cols-[20%_80%]">
         <motion.div
           initial={{
             x: -20,
@@ -83,7 +85,7 @@ export default function Home({ children }: { children: ReactNode }) {
           transition={{
             duration: 0.6,
           }}
-          className=" bg-white sticky top-0   h-[97.5vh]  z-2 pt-10 border-r-1  border-gray-300   "
+          className=" bg-white sticky top-0   h-[99vh]  z-2 pt-10 border-r-1  border-gray-300   "
         >
           <div
             className="mt-5 p-3 space-y-2  
@@ -131,7 +133,7 @@ export default function Home({ children }: { children: ReactNode }) {
             >
               <GalleryHorizontalEnd className="size-4 text-gray-900" />
               <p className="text-sm text-neutral-800 font-medium">
-                All Revisios
+                All Revision Sessions
               </p>
             </motion.div>
             <motion.div
@@ -178,18 +180,22 @@ export default function Home({ children }: { children: ReactNode }) {
             >
               <ChartColumnStacked className="size-4 text-gray-900" />
               <p className="text-sm text-neutral-800 font-medium">
-                Test/quix report
+                Test report
               </p>
             </motion.div>
 
-            <motion.div
+    
+
+          
+          <div className={`flex items-end hover:cursor-pointer h-[64vh] relative bottom-1`} >
+                    <motion.div
 
                    initial={{
-       x:-25,
+       y:25,
       opacity:0
     }} 
     animate={{
-      x:0,
+      y:0,
       opacity:1
     }}
     transition={{
@@ -197,14 +203,23 @@ export default function Home({ children }: { children: ReactNode }) {
       delay:1.3
     }}
        
-              onClick={() => {
-                router.push("/revisly/profile");
-              }}
-              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+              
+              className="flex items-center w-full relative  gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
             >
-              <UserCircleIcon className="size-4 text-gray-900" />
-              <p className="text-sm text-neutral-800 font-medium">Profile</p>
+              <div>
+              <Image src={User} width={35} height={20} alt="user" className="rounded-full"/>
+              </div>
+              <div>
+              <p className="text-[0.8rem] text-neutral-900  font-medium">Ranjit Das</p>
+              <p className="text-sm text-neutral-800 font-medium">ranjitdas@gmail.com</p>
+              </div>
             </motion.div>
+
+          </div>
+            
+
+            
+   
 
           </div>
         </motion.div>
