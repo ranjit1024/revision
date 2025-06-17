@@ -1,21 +1,34 @@
 "use client";
-import { ReactNode } from "react";
-import User from "../../public/user.jpg"
+import { ReactNode, useEffect, useRef, useState } from "react";
+import User from "../../public/user.jpg";
 import {
   LayoutDashboardIcon,
   ChartColumnStacked,
   GoalIcon,
-  UserCircleIcon,
   CirclePlus,
-  GalleryHorizontalEnd
+  GalleryHorizontalEnd,
 } from "lucide-react";
+import Profile from "@/components/ui/Profile";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { NumberProvider } from "../context/DateContext";
 import Image from "next/image";
+import { pre } from "framer-motion/client";
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
+  const [profile,setProfile] = useState<boolean>(false)
+  const drpodownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(()=>{
+    const handleClick = (e: MouseEvent)=>{
+      if(drpodownRef.current && !drpodownRef.current?.contains(e.target as Node)){
+        setProfile(false)
+    }}
+    document.addEventListener("click", handleClick);
+
+    return () => document.removeEventListener("click", handleClick)
+  },[])
   return (
     <div className="h-[100%] relative bg-gray-100 ">
       <motion.div
@@ -47,9 +60,12 @@ export default function Home({ children }: { children: ReactNode }) {
 
           <div className="flex gap-3 items-center  ">
             <div className="inline-flex ">
-              <Button onClick={()=>{
-                router.push("/revisly/revision")
-              }} className="inline-flex items-center gap-2 bg-primary  hover:cursor-pointer">
+              <Button
+                onClick={() => {
+                  router.push("/revisly/revision");
+                }}
+                className="inline-flex items-center gap-2 bg-primary  hover:cursor-pointer"
+              >
                 <CirclePlus className="size-4 text-gray-50" />
                 <p>Set Revision</p>
               </Button>
@@ -72,7 +88,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </motion.div>
 
-      <div className="h-[100%] w-[98.9vw] relative  grid grid-cols-[20%_80%]">
+      <div className="h-[99%] w-[98.9vw] relative  grid grid-cols-[20%_80%]">
         <motion.div
           initial={{
             x: -20,
@@ -85,10 +101,10 @@ export default function Home({ children }: { children: ReactNode }) {
           transition={{
             duration: 0.6,
           }}
-          className=" bg-white sticky top-0   h-[99vh]  z-2 pt-10 border-r-1  border-gray-300   "
+          className=" bg-white    h-[93vh] top-10 sticky z-2  border-r-1  border-gray-300   "
         >
           <div
-            className="mt-5 p-3 space-y-2  
+            className="  p-3 pt-5  space-y-2  
         
         "
           >
@@ -107,10 +123,10 @@ export default function Home({ children }: { children: ReactNode }) {
               onClick={() => {
                 router.push("/revisly/home");
               }}
-              className="flex items-center gap-3 hover:bg-primary/10  rounded-md hover:cursor-pointer py-2 px-1"
+              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
             >
               <LayoutDashboardIcon className="size-4 text-gray-900" />
-              <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
+              <p className="text-sm text-neutral-800 font-medium ">Dashboard</p>
             </motion.div>
 
             <motion.div
@@ -184,53 +200,58 @@ export default function Home({ children }: { children: ReactNode }) {
               </p>
             </motion.div>
 
-    
-
-          
-          <div className={`flex items-end hover:cursor-pointer h-[64vh] relative bottom-1`} >
-                    <motion.div
-
-                   initial={{
-       y:25,
-      opacity:0
-    }} 
-    animate={{
-      y:0,
-      opacity:1
-    }}
-    transition={{
-      duration:0.4,
-      delay:1.3
-    }}
-       
-              
-              className="flex items-center w-full relative  gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+            <div
+              className={`flex items-end hover:cursor-pointer h-[63vh] relative `}
             >
-              <div>
-              <Image src={User} width={35} height={20} alt="user" className="rounded-full"/>
-              </div>
-              <div>
-              <p className="text-[0.8rem] text-neutral-900  font-medium">Ranjit Das</p>
-              <p className="text-sm text-neutral-800 font-medium">ranjitdas@gmail.com</p>
-              </div>
-            </motion.div>
-
-          </div>
-            
-
-            
-   
-
+              
+              <motion.div
+                ref={drpodownRef}
+                initial={{
+                  y: 25,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  duration: 0.4,
+                  delay: 1.3,
+                }}
+                className="flex items-center w-full relative  gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+                onClick={()=>{
+                  setProfile(prev => !prev)
+                }}
+              >
+                {
+                  profile ?<Profile ></Profile>:null
+                }
+                <div>
+                  <Image
+                    src={User}
+                    width={35}
+                    height={20}
+                    alt="user"
+                    className="rounded-full"
+                  />
+                </div>
+                <div >
+                  
+                  <p className="text-[0.8rem] text-neutral-900  font-medium">
+                    Ranjit Das
+                  </p>
+                  <p className="text-sm text-neutral-800 font-medium">
+                    ranjitdas@gmail.com
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
 
-        <div className="p-3 w-[98%]   pt-15 ">
-          <NumberProvider>
-
-          {children}
-    
-          </NumberProvider>
-          </div>
+        <div className="p-3 w-[99%]   pt-15 ">
+          <NumberProvider>{children}</NumberProvider>
+        </div>
       </div>
     </div>
   );
