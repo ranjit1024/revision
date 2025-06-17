@@ -1,9 +1,16 @@
 'use client'
 import Image from "next/image";
 import { Button } from "./button";
+import { motion } from "framer-motion";
+const cardVariant = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
 export default function Card() {
   return (
-    <div className="max-w-[45%] mb-4 hover:cursor-pointer p-5 bg-card rounded-xl shadow">
+    <motion.div 
+    variants={cardVariant}
+    className="max-w-[45%] mb-4 hover:cursor-pointer p-5 bg-card rounded-xl shadow">
      
         <div className="flex items-center justify-between">
           <div className="flex gap-2 items-center flex-col ">
@@ -44,6 +51,6 @@ export default function Card() {
         </div>
      
      
-    </div>
+    </motion.div>
   );
 }
