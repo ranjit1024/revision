@@ -70,7 +70,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </motion.div>
 
-      <div className="h-[90%] grid grid-cols-[20%_80%]">
+      <div className="h-[90vh] grid grid-cols-[20%_80%]">
         <motion.div
           initial={{
             x: -20,
@@ -125,7 +125,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 delay: 0.6,
               }}
               onClick={() => {
-                router.push("/revisly/custom");
+                router.push("/revisly/all");
               }}
               className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
             >
