@@ -28,7 +28,7 @@ export default function Home({ children }: { children: ReactNode }) {
         transition={{
           duration: 0.6,
         }}
-        className=" bg-white border-b-gray-300 border-b-1 grid grid-cols-[20%_80%]"
+        className=" bg-white border-b-gray-300 z-10 border-b-1 grid grid-cols-[20%_80%] fixed w-full"
       >
         <div className=" border-r-1 border-r-gray-300 p-2  ">
           <div className="flex items-center gap-2 max-md:ml-2     ">
@@ -70,7 +70,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </motion.div>
 
-      <div className="h-[90vh] grid grid-cols-[20%_80%]">
+      <div className="h-[100%] w-[99vw] relative  grid grid-cols-[20%_80%]">
         <motion.div
           initial={{
             x: -20,
@@ -83,10 +83,10 @@ export default function Home({ children }: { children: ReactNode }) {
           transition={{
             duration: 0.6,
           }}
-          className=" bg-white relative h-full border-r-1 border-gray-300   "
+          className=" bg-white sticky top-0   h-[97.5vh]  z-2 pt-10 border-r-1  border-gray-300   "
         >
           <div
-            className="mt-5 p-2 space-y-2  
+            className="mt-5 p-3 space-y-2  
         
         "
           >
@@ -105,7 +105,7 @@ export default function Home({ children }: { children: ReactNode }) {
               onClick={() => {
                 router.push("/revisly/home");
               }}
-              className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+              className="flex items-center gap-3 hover:bg-primary/10  rounded-md hover:cursor-pointer py-2 px-1"
             >
               <LayoutDashboardIcon className="size-4 text-gray-900" />
               <p className="text-sm text-neutral-800 font-medium">Dashboard</p>
@@ -209,7 +209,7 @@ export default function Home({ children }: { children: ReactNode }) {
           </div>
         </motion.div>
 
-        <div className="p-3">
+        <div className="p-3 w-[98%]   pt-15 ">
           <NumberProvider>
 
           {children}

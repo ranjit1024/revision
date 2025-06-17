@@ -20,7 +20,7 @@ export default function Home(){
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show":"hidden"}
-    className="flex  w-full flex-wrap justify-evenly items-start ">
+    className="flex  w-full flex-wrap gap-5 items-start ">
         <Card></Card>
         <Card></Card>
         <Card></Card>
