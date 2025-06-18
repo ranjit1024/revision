@@ -14,7 +14,6 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { NumberProvider } from "../context/DateContext";
 import Image from "next/image";
-import { pre } from "framer-motion/client";
 import Notification from "@/components/ui/notification";
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -72,15 +71,16 @@ export default function Home({ children }: { children: ReactNode }) {
                 <p>Set Revision</p>
               </Button>
             </div>
-            <div className="w-[1] h-10 border-r-1  border-r-gray-300 bg-secondary-foreground "></div>
+            <div className="w-[1] shadow-2xs h-10 border-r-1 border-chart  border-r-gray-300 bg-secondary-foreground "></div>
             {
-              notification ?<div className="absolute bg-white  overflow-scroll h-[60vh] rounded-lg p-5 w-100 shadow top-11 right-2 ">
+              notification ?<div className="absolute bg-white space-y-4 border-1 border-gray-300 overflow-scroll h-[60vh] rounded-lg p-7 shadow top-11 right-2 scroll-smooth   ">
       <h1 className="text-muted font-semibold">Notification</h1>
       <Notification/>
       <Notification/>
       <Notification/>
       <Notification/>
-      <Notification/>
+     
+     
       </div>:null
             }
 

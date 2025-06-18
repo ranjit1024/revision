@@ -1,29 +1,24 @@
-import { AlarmCheckIcon } from "lucide-react";
+
+import { BellIcon } from "lucide-react";
+
 export default function Notification() {
-    const date = new Date();
   return (
-    
-      <div className="flex mt-4 gap-2 h-fit  justify-center flex-col px-4 py-2  bg-blue-300/10 rounded-sm">
-        <div className="flex justify-between mb-4 items-center">
-        <div className="flex items-center gap-3">
-          <div className="p-1 bg-accent rounded-full text-chart-5">
-            <AlarmCheckIcon className="size-5"/>
-          </div>
-          <p className="text-orange-500 font-medium">Reminder</p>
+    <div className="w-80 p-5 rounded-2xl bg-white shadow-lg border border-gray-200 space-y-3">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-2 text-orange-500 font-medium text-sm">
+          <BellIcon className="w-4 h-4 " />
+          <span>Reminder</span>
         </div>
-        <div>
-            <p className="text-[0.8rem] font-medium text-muted-foreground">{date.toLocaleDateString()}</p>
-        </div>
-        </div>
-        <div>
-          <p className="w-[100%] text-center"></p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, ab
-          suscipit
-        </div>
-        <div className="text-end mt-3 font-medium text-sm  text-blue-500">
-            <a className="hover:cursor-pointer text-[1rem] hover:underline underline-offset-2">Revise</a>
-        </div>
+        <span className="text-xs text-gray-400">18/06/2025</span>
       </div>
-    
+
+      <p className="text-gray-700 text-sm leading-relaxed">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, ab suscipit.
+      </p>
+
+      <button className="text-blue-600 hover:text-blue-700 transition text-sm font-semibold hover:underline underline-offset-2 hover:cursor-pointer">
+        Revise
+      </button>
+    </div>
   );
 }
