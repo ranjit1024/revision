@@ -7,11 +7,11 @@ export default function Home(){
             <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores suscipit id possimus non eveniet fuga eius, illo odit impedit praesentium! Accusamus quisquam quam iusto libero id optio molestiae quasi eum.</h1>
             </div>
 
-            <div className="mt-10 ml-1">
+            <div className="mt-10  ml-1 mb-4">
                 <p className="text-sm font-medium text-accent-foreground">Revion / Upcomming revison</p>
             </div>
 
-            <div className="mt-1 flex gap-5 flex-wrap">
+            <div className=" flex gap-5 flex-wrap">
                 <Score/>
                 <Score/>
                 <Score/>

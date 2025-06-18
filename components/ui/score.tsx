@@ -30,7 +30,7 @@ export function Score({ progress = 12, revision = 1, total = 10 }) {
       </div>
 
       {/* Button */}
-      <Button className="bg-indigo-700 hover:cursor-pointer hover:bg-indigo-800 text-white w-full mt-4">
+      <Button className="bg-secondary hover:cursor-pointer hover:bg-secondary/80 text-white w-full mt-4">
         View Report
       </Button>
     </div>
