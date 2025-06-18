@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="w-[100%] grid grid-cols-2 gap-2">
+      <div className="w-[100%] grid grid-cols-2 gap-2 h-[90%]">
         <div className="first">
           <motion.div
             initial={{

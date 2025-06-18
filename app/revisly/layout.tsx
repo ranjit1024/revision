@@ -103,7 +103,8 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </motion.div>
 
-      <div className="h-[99%] w-[98.9vw] relative  grid grid-cols-[20%_80%]">
+      <div className="h-[100vh] w-[100%] relative   grid grid-cols-[20%_80%]">
+        <div className="relative">
         <motion.div
           initial={{
             x: -20,
@@ -116,10 +117,10 @@ export default function Home({ children }: { children: ReactNode }) {
           transition={{
             duration: 0.6,
           }}
-          className=" bg-white    h-[93vh] top-10 sticky z-2  border-r-1  border-gray-300   "
+          className=" bg-white    h-[100vh] w-[20%]   left-0 fixed z-2  border-r-1  border-gray-300   "
         >
           <div
-            className="  p-3 pt-8  space-y-2  
+            className=" p-4  pt-15 space-y-2  
         
         "
           >
@@ -263,6 +264,7 @@ export default function Home({ children }: { children: ReactNode }) {
             </div>
           </div>
         </motion.div>
+        </div>
 
         <div className="p-3 w-[99%]   pt-15 ">
           <NumberProvider>{children}</NumberProvider>

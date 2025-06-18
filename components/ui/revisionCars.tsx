@@ -5,12 +5,15 @@ import { motion } from "framer-motion";
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
+  
 };
+import { useRouter } from "next/navigation";
 export default function Card() {
+  const router = useRouter()
   return (
     <motion.div 
     variants={cardVariant}
-    className="max-w-[49%]  hover:cursor-pointer p-5 bg-card rounded-xl shadow">
+    className="max-w-[49%] max-h-[80%] hover:cursor-pointer p-5 bg-card rounded-xl shadow">
      
         <div className="flex items-center justify-between">
           <div className="flex gap-2 items-center flex-col ">
@@ -47,7 +50,10 @@ export default function Card() {
           </p>
         </div>
         <div className="text-end mt-10">
-            <Button className="bg-chart-3 hover:cursor-pointer"> Get Result</Button>
+            <Button className="bg-chart-3 hover:cursor-pointer" onClick={()=>{
+              let random = Math.floor(Math.random()*100000).toString();
+              router.push(`/revisly/revison/${random}`)
+            }} > Get Details</Button>
         </div>
      
      

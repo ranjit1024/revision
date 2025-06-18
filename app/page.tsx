@@ -44,7 +44,7 @@ export default function Home() {
         </div>
         <motion.div
           initial={{
-            y: 50,
+            y: 20,
             opacity: 0,
           }}
           animate={{
@@ -52,7 +52,8 @@ export default function Home() {
             opacity: 1,
           }}
           transition={{
-            duration: 0.4,
+            duration: 0.7,
+           
           }}
           className="mt-6 max-md:text-center flex  items-center  justify-center flex-col max-lg:w-[100vw] "
         >
@@ -73,7 +74,7 @@ export default function Home() {
             opacity: 1,
           }}
           transition={{
-            duration: 0.4,
+            duration: 0.7,
           }}
           className="flex mt-2 text-input items-center justify-center text-[1.22rem] "
         >
@@ -93,7 +94,7 @@ export default function Home() {
             opacity: 1,
           }}
           transition={{
-            duration: 0.4,
+            duration: 0.7,
           }}
           className="text-center mt-10 flex justify-center items-center  gap-4"
         >
@@ -129,12 +130,12 @@ export default function Home() {
                 scale:1
               }}
               transition={{
-                duration: 0.4,
+                duration: 0.7,
               
               }}
               viewport={{
                 once:true,
-                amount:0.5,
+                amount:0.6,
                 
               }}
               className="bg-gradient-to-br w-[100%] h-fit justify-center flex flex-col from-sky-100 to-blue-100  rounded-2xl p-6"
@@ -164,11 +165,11 @@ export default function Home() {
               }}
               transition={{
                 
-                duration: 0.4,
+                duration: 0.6,
               }}
               viewport={{
                 once:true,
-                amount:0.4
+                amount:0.6
               }}
                className="bg-gradient-to-br w-[100%] h-fit justify-center flex flex-col from-emerald-100 to-green-100  rounded-2xl p-6">
               <div className="flex items-center justify-center flex-col space-x-4 p-10">
@@ -199,11 +200,11 @@ export default function Home() {
               }}
               transition={{
                 
-                duration: 0.4,
+                duration: 0.6,
               }}
               viewport={{
                 once:true,
-                amount:0.4
+                amount:0.6
               }} className="bg-gradient-to-b h-fi from-[#cbeef3] to-[#c4f1f7] w-[100%] justify-center flex flex-col   rounded-2xl p-6">
               <div className="flex items-center flex-col space-x-4 p-10">
                 <div className="p-3 bg-[url(../public/srs.jpg)] max-md:size-61 bg-center bg-contain bg-no size-81 rounded-3xl "></div>
@@ -230,11 +231,11 @@ export default function Home() {
               }}
               transition={{
                 
-                duration: 0.4,
+                duration: 0.6,
               }}
               viewport={{
                 once:true,
-                amount:0.4
+                amount:0.6
               }}
             className="bg-gradient-to-br w-[100%] justify-center flex flex-col from-[#b2d6f1] to-[#cbd8e2]  rounded-2xl p-6">
               <div className="flex items-center justify-center flex-col space-x-4 p-10">
