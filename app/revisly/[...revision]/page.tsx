@@ -1,26 +1,24 @@
-import {Score} from "@/components/ui/score"
-export default function Home(){
-    return <div className="h-[90vh]">
-        <div className="space-y-5 bg-white p-5 rounded-2xl shadow">
-            <div>
-            <h1 className="text-[1.5rem] text-gray-700 font-semibold mb-2">Topic Name</h1>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores suscipit id possimus non eveniet fuga eius, illo odit impedit praesentium! Accusamus quisquam quam iusto libero id optio molestiae quasi eum.</h1>
-            </div>
 
-            <div className="mt-10  ml-1 mb-4">
-                <p className="text-sm font-medium text-accent-foreground">Revion / Upcomming revison</p>
-            </div>
+import RevisionCard from '@/components/ui/score'
 
-            <div className=" flex gap-5 flex-wrap">
-                <Score/>
-                <Score/>
-                <Score/>
-                <Score/>
-                <Score/>
-                <Score/>
-                <Score/>
-            </div>
+export default function Page() {
+    const date = new Date()
+  return (
+    <div className="px-6 py-8 bg-white rounded-xl">
+      <h1 className="text-2xl font-bold text-gray-900">Topic Name</h1>
+      <p className="text-gray-600 mt-1 max-w-[90%]">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, numquam eum voluptatibus totam dolore culpa rem sed mollitia quo exercitationem sint ut impedit illo velit odio ducimus saepe atque voluptatum.
+      </p>
+      <p className="text-sm text-gray-400 mt-6">Revision / Upcoming revision</p>
 
-        </div>
+      <div  className="mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <RevisionCard revision="Revision 1/10" date={date.toLocaleDateString()} progress={12} />
+        <RevisionCard revision="Revision 1/10" date={date.toLocaleDateString()} progress={12} />
+        <RevisionCard revision="Revision 1/10" date={date.toLocaleDateString()} progress={12} />
+        <RevisionCard revision="Revision 1/10" date={date.toLocaleDateString()} progress={12} />
+        <RevisionCard revision="Revision 1/10" date={date.toLocaleDateString()} progress={12} />
+       
+      </div>
     </div>
+  )
 }

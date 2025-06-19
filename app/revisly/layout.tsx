@@ -19,7 +19,8 @@ export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [profile,setProfile] = useState<boolean>(false)
   const drpodownRef = useRef<HTMLDivElement>(null);
-  const[notification, setNotification] = useState(false)
+  const[notification, setNotification] = useState(false);
+  const notificationRef = useRef<HTMLDivElement>(null)
 
   useEffect(()=>{
     const handleClick = (e: MouseEvent)=>{
@@ -30,6 +31,19 @@ export default function Home({ children }: { children: ReactNode }) {
 
     return () => document.removeEventListener("click", handleClick)
   },[])
+
+  useEffect(()=>{
+    const handleClick = (e: MouseEvent)=>{
+      if(notificationRef.current && !notificationRef.current?.contains(e.target as Node)){
+        setNotification(false);
+      }
+    }
+    document.addEventListener("click", handleClick);
+
+    return ()=> document.removeEventListener("click", handleClick)
+  },[])
+
+
   return (
     <div className="h-[100%] relative bg-gray-100 ">
       <motion.div
@@ -71,9 +85,9 @@ export default function Home({ children }: { children: ReactNode }) {
                 <p>Set Revision</p>
               </Button>
             </div>
-            <div className="w-[1] shadow-2xs h-10 border-r-1 border-chart  border-r-gray-300 bg-secondary-foreground "></div>
+            <div  className="w-[1] shadow-2xs h-10 border-r-1 border-chart  border-r-gray-300 bg-secondary-foreground "></div>
             {
-              notification ?<div className="absolute bg-white space-y-4 border-1 border-gray-300 overflow-scroll h-[60vh] rounded-lg p-7 shadow top-11 right-2 scroll-smooth   ">
+              notification ?<div  className="absolute bg-white space-y-4 border-1 border-gray-300 overflow-scroll h-[60vh] rounded-lg p-7 shadow top-11 right-2 scroll-smooth   ">
       <h1 className="text-muted font-semibold">Notification</h1>
       <Notification/>
       <Notification/>
@@ -85,6 +99,7 @@ export default function Home({ children }: { children: ReactNode }) {
             }
 
             <div
+              ref={notificationRef}
               className="prifile flex items-center gap-2 hover:cursor-pointer hover:scale-102"
               onClick={() => {
                 setNotification(prev => !prev)
@@ -212,7 +227,7 @@ export default function Home({ children }: { children: ReactNode }) {
             >
               <ChartColumnStacked className="size-4 text-gray-900" />
               <p className="text-sm text-neutral-800 font-medium">
-                Test report
+                Revsion report
               </p>
             </motion.div>
 

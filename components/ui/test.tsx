@@ -1,8 +1,17 @@
+"use client"
 import { CalendarDays } from "lucide-react";
+import { motion } from "framer-motion";
+const cardVariant = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+  
+};
 
 export default function Test() {
   return (
-    <div className="flex justify-between items-center p-5 w-[100%] rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition  ">
+    <motion.div
+    variants={cardVariant}
+    className="flex justify-between items-center p-5 w-[100%] rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-md   ">
       {/* Left side */}
       <div className="space-y-1">
         <div className="flex items-center gap-2 font-semibold text-gray-800">
@@ -24,6 +33,6 @@ export default function Test() {
           Full report
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,38 +1,41 @@
 "use client"
-import React from "react"
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
-import "react-circular-progressbar/dist/styles.css"
-import { Button } from "@/components/ui/button"
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css';
+import { motion } from "framer-motion"
 
-export function Score({ progress = 12, revision = 1, total = 10 }) {
+type Props = {
+  revision: string
+  date: string
+  progress: number
+}
+
+export default function RevisionCard({ revision, date, progress }: Props) {
   return (
-    <div className="w-[230px] h-[306px] rounded-2xl shadow-sm border-1 border-gray-100 p-4 flex flex-col justify-between bg-white">
-      {/* Header */}
-      <div className="text-sm font-medium text-indigo-800">
-        Revision {revision}/{total}
-      </div>
+    <div
+       
+    className="bg-white rounded-2xl shadow-md p-5 w-full max-w-xs hover:shadow-xl transition-shadow">
+      <div className="text-sm text-blue-600 font-semibold">{revision}</div>
+      <div className="text-green-500 text-sm font-medium mt-1">Completed</div>
+      <div className="text-xs text-gray-500">{date}</div>
 
-      {/* Circular Progress */}
-      <div className="flex justify-center items-center flex-1">
-        <div className="w-30 h-30">
+      <div className="my-4 flex justify-center">
+        <div className="w-20 h-20">
           <CircularProgressbar
             value={progress}
             text={`${progress}%`}
-            strokeWidth={10}
             styles={buildStyles({
-              textColor: "#111",
-              pathColor: "#6366f1", // Indigo-500
-              trailColor: "#e5e7eb", // Gray-200
-              textSize: "16px",
+              textSize: '16px',
+              pathColor: '#6366f1',
+              textColor: '#111',
+              trailColor: '#e5e7eb',
             })}
           />
         </div>
       </div>
 
-      {/* Button */}
-      <Button className="bg-secondary hover:cursor-pointer hover:bg-secondary/80 text-white w-full mt-4">
+      <button className="bg-blue-600 hover:cursor-pointer hover:bg-blue-700 text-white w-full py-2 rounded-xl text-sm font-medium transition-colors">
         View Report
-      </Button>
+      </button>
     </div>
   )
 }
