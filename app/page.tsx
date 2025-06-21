@@ -10,6 +10,7 @@ import srs from "../public/space.png";
 import Test from "@/components/ui/test";
 import { Mail, } from "lucide-react"
 import { Clock, CalendarDays, PencilLine, Bell } from "lucide-react";
+
 import {
   Accordion,
   AccordionContent,
@@ -25,7 +26,7 @@ const colorMap: Record<string, string> = {
 };
 
 export default function Home() {
-  const navigation = useRouter();
+  const router = useRouter();
 
   return (
     <div>
@@ -236,8 +237,11 @@ export default function Home() {
      
       <li>
         <a
-          href="#"
-          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm"
+          onClick={()=>{
+            router.push("/contact")
+          }}
+          
+          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm hover:cursor-pointer"
         >
           Contact Us
         </a>
