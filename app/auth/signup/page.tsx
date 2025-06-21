@@ -2,9 +2,7 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
-import { div } from "framer-motion/client"
-import Image from "next/image"
-import singin from "../../../public/test.png"
+
 
 export default function LoginForm() {
     const navigation = useRouter()

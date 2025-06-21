@@ -5,7 +5,23 @@ import Logo from "../public/revisly.png";
 import Image from "next/image";
 import users from "../public/Group 1.png";
 import second from "../public/info.png"
-import side from "../public/side2.png"
+import Retation from "@/components/ui/LandginGraph";
+import srs from "../public/space.png";
+import Test from "@/components/ui/test";
+import { Mail, Table } from "lucide-react"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+const colorMap: Record<string, string> = {
+  red: "bg-indigo-600/50",
+  blue: "bg-blue-600/50",
+  green: "bg-purple-600/50",
+  yellow: "bg-yellow-600/50",
+  // Add other colors as needed
+};
 
 export default function Home() {
   const navigation = useRouter();
@@ -63,14 +79,14 @@ export default function Home() {
               <div className="flex items-start gap-4">
                 <Image
                   src={users}
-                  height={200}
+                  height={20}
                   quality={34}
-                  width={120}
+                  width={100}
                   alt="user"
                   className="mt-3"
                 />
                 <div className="felx">
-                  <p className="text-[2rem] font-light">Trusted by users</p>
+                  <p className="text-[2rem] font-light">Trusted by  users</p>
                   <p className="text-sm w-[80%] ml-2 text-[0.9rem] font-normal  text-muted">
                     Revisly transforms how you study. Backed by science and
                     powered by an intelligent spaced repetition system.{" "}
@@ -125,12 +141,171 @@ export default function Home() {
 
               </div>
 
-              <div className="bg-white p-10 rounded-2xl shadow ">
-                fsdf
+              <div className="bg-white p-5 rounded-2xl shadow ">
+                <div>
+                  <p className="text-sm ml-1 font-medium mb-2">Revision 1</p>
+                  <div className="w-[100%] h-100%">
+                    <Retation/>
+                  </div>
+                </div>
+                <div className="mt-5">
+                  <p className="font-medium text-xl">Most Frequent subjects</p>
+                </div>
+                <div className="mt-4 flex flex-col gap-2">
+                  <Subjects prop="red" topic="Maths" precent="70"/>
+                  <Subjects prop="yellow" topic="Economics" precent="50"/>
+                  <Subjects prop="blue" topic="science" precent="60"/>
+                  <Subjects prop="green" topic="History" precent="40"/>
+                  
+                </div>
               </div>
+            </div>
+            <div className="mt-4 flex justify-center gap-3 items-center">
+              <div className="bg-white p-5 shadow w-[100%] rounded-xl">
+                <p className="text-lg font-medium">AI generated test/result </p>
+                <div className="h-full mt-1 flex flex-col gap-3">
+                  <Test/>
+                  <Test/>
+                </div>
+                <p className="mt-5 text-md font-medium text-neutral-900">set a time, and Revisly will handle the test and results for you — no effort needed.</p>
+              </div>
+              <div className="bg-white p-5 shadow w-[100%]  rounded-xl  ">
+                <div className="h-fit">
+                <p className="text-lg font-medium">Email Reminder </p>
+                  <div className="h-full mt-5 flex flex-col gap-1">
+                  <EmailReminderCard/>
+                  <EmailReminderCard/>
+                  
+              
+                </div >
+                <p className="mt-4 font-medium text-neutral-900">Revisly sends timely email reminders based on your schedule, so you never miss a revision session. </p>
+                
+                </div>
+              </div>
+            
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-20">
+        <p className="text-[3rem] font-medium w-[60%]">Revise smartly with Spaced repetition system </p>
+        <div className="mt-5 grid grid-cols-[60%_40%] gap-10">
+          <div className="w-[100%] ">
+          <AccordionDemo/>
+          </div>
+          <div className="w-[100%] h-full ">
+            <Image src={srs} height={1000} width={1000} className="rounded-2xl shadow" alt="dsf"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Subjects({prop,topic, precent}:{
+  prop:string,
+  topic:string,
+  precent:string
+}){
+  const bgClass = colorMap[prop] || "bg-gray-100"
+  return <div className={`${bgClass} py-3 px-4 rounded-md flex justify-between`}>
+    <p className="font-normal  text-gray-950">{topic}</p>
+    <p className="text-bold font-medium">{precent}%</p>
+    </div>
+}
+
+
+
+
+
+function EmailReminderCard() {
+  
+  return (
+    <div className="bg-white rounded-2xl shadow p-6 flex items-start gap-4 w-full max-w-md border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+      <div className="bg-blue-500/10 text-blue-600 p-3 rounded-xl">
+        <Mail className="w-6 h-6" />
+      </div>
+      <div className="flex flex-col justify-center">
+        <h3 className="text-base font-semibold text-gray-900">Upcoming Email Reminder</h3>
+        <p className="text-sm text-gray-600 mt-1">
+          We'll notify you at <span className="font-medium text-gray-800">5:00 PM</span> today to revise your topics.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+
+
+export function AccordionDemo() {
+  return (
+    <Accordion
+      type="single"
+      collapsible
+      className="w-full"
+      defaultValue="item-1"
+    >
+      <AccordionItem value="item-1"  >
+        <AccordionTrigger className="cursor-pointer text-md">What is Spaced repetition system </AccordionTrigger>
+        <AccordionContent className="flex flex-col gap-4 text-balance">
+          <p className="text-[1rem]">
+          Spaced Repetition is a scientifically proven learning method that helps you remember information more effectively and for a longer time by reviewing it at increasing intervals.
+          </p>
+         
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger className="cursor-pointer text-md">How It Works</AccordionTrigger>
+        <AccordionContent className="flex flex-col gap-4 text-balance">
+          <div>
+           <p className="text-[1rem]">Instead of cramming all at once, you review information just before you're about to forget it. The better you remember it, the less often you need to review it.</p>
+           
+           <SpacedRepetitionTable/>
+          </div>
+          
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger className="cursor-pointer text-md">Why paced repetition system? </AccordionTrigger>
+        <AccordionContent className="flex flex-col gap-4 text-balance">
+         <ol className="flex flex-col gap-3 text-[1rem] font-normal">
+          <li className="flex items-center gap-2 text-primary"><span className="p-1  bg-blue-500/50 rounded-3xl "></span>Cuts down on wasted repetition</li>
+          <li  className="flex items-center gap-2 "><span className="p-1  bg-blue-500/50 rounded-3xl "></span>Improves long-term memory</li>
+          <li  className="flex items-center gap-2"><span className="p-1  bg-blue-500/50 rounded-3xl "></span>Adapts to your performance: harder info gets reviewed more often, easier info less</li>
+         </ol>
+          
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+
+
+ function SpacedRepetitionTable() {
+  const schedule = [
+    { day: "Day 1", activity: "Learn it" },
+    { day: "Day 2", activity: "First Review" },
+    { day: "Day 4", activity: "Second Review" },
+    { day: "Day 7", activity: "Third Review" },
+    { day: "Day 14", activity: "Final Review" },
+  ];
+
+  return (
+    <div className="max-w-md mx-auto mt-6 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+      <div className="bg-gray-50 p-4 border-b text-center text-lg font-semibold text-gray-800">
+        Spaced Repetition Schedule
+      </div>
+      <div className="divide-y divide-gray-200">
+        {schedule.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex justify-between items-center px-6 py-4 text-sm text-gray-700 hover:bg-gray-50 transition"
+          >
+            <span className="font-medium text-gray-900">{item.day}</span>
+            <span>{item.activity}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
