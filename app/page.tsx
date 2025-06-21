@@ -8,7 +8,7 @@ export default function Home() {
   const navigation = useRouter();
 
   return (
-   <div className="px-10 py-4 bg-gray-50 h-[100%]">
+   <div className="px-15 py-4 bg-gray-50 h-[100%]">
     <div className="">
     <header>
       <div className="flex items-center justify-between gap-2 rounded-full bg-white px-4 py-2 shadow-blue-200 shadow">
@@ -34,7 +34,7 @@ export default function Home() {
         Automatic reminders are sent to your registered email and phone based on the date and time you set.
       </div>
       <div className="mt-15 flex items-center">
-        <Button className=" bg-accent-foreground hover:cursor-pointer">Get access</Button>
+        <Button className=" bg-accent-foreground hover:cursor-pointer">Get started</Button>
         <Button className="ml-3 bg-gray-50 flex items-center text-primary hover:cursor-pointer  hover:bg-white hover:shadow">
           <img width="20" height="48" src="https://img.icons8.com/fluency/48/google-play.png" alt="google-play"/>
           Download app</Button>

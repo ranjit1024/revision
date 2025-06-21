@@ -11,8 +11,8 @@ export default function LoginForm() {
   return <div className="w-full grid grid-cols-[50%_50%]">
     <div className="flex relative justify-center items-center bg-center bg-contain flex-col bg-green-50">
       <div className="flex absolute top-3 left-1 items-center gap-2 max-md:ml-2 ">
-              <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-8 w-8"></div>
-              <p className="font-semibold text-[1.2rem]  text-input/90">
+              <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
+              <p className="font-semibold text-[1rem]  text-input/90">
                 Revisly
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function LoginForm() {
             Sign up with Google
           </Button>
 
-          <Button className="w-full bg-blue-700 text-white hover:bg-blue-800 hover:cursor-pointer">
+          <Button className="w-full bg-primary text-white  hover:cursor-pointer">
             Sign Up
           </Button>
            <p className="text-center text-sm text-gray-500">
