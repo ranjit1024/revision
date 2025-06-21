@@ -50,7 +50,7 @@ export default function Card() {
           </p>
         </div>
         <div className="text-end mt-10">
-            <Button className="bg-chart-3 hover:cursor-pointer" onClick={()=>{
+            <Button className="bg-gray-950 hover:cursor-pointer" onClick={()=>{
               let random = Math.floor(Math.random()*100000).toString();
               router.push(`/revisly/revison/${random}`)
             }} > Get Details</Button>

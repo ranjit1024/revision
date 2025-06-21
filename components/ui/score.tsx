@@ -33,7 +33,7 @@ export default function RevisionCard({ revision, date, progress }: Props) {
         </div>
       </div>
 
-      <button className="bg-blue-600 hover:cursor-pointer hover:bg-blue-700 text-white w-full py-2 rounded-xl text-sm font-medium transition-colors">
+      <button className="bg-[#021526] hover:cursor-pointer hover:bg-[#021526]/90 text-white w-full py-2 rounded-xl text-sm font-medium transition-colors">
         View Report
       </button>
     </div>

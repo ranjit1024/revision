@@ -9,16 +9,15 @@ import singin from "../../../public/test.png"
 export default function LoginForm() {
     const navigation = useRouter()
   return <div className="w-full grid grid-cols-[50%_50%]">
-    <div className="flex relative justify-center items-center bg-center bg-contain flex-col bg-green-50">
-      <div className="flex absolute top-3 left-1 items-center gap-2 max-md:ml-2 ">
+    <div className="flex relative justify-center items-center bg-center bg-contain flex-col l bg-[url(../public/info.png)] bg-no-repeat bg-white">
+      <div className="flex absolute top-13 bg-white  left-53 items-center items-center gap-2 max-md:ml-2 ">
               <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
               <p className="font-semibold text-[1rem]  text-input/90">
                 Revisly
               </p>
             </div>
-      <Image src={singin} height={40} width={400} alt="image"/> 
-      <h1 className="text-3xl font-medium text-neutral-800">Revisly</h1>
-      <p>Revise Smarter. Learn Faster.</p>
+     
+    
     </div>
     <div className="flex min-h-screen items-center justify-center  bg-white">
       <div className="w-full max-w-xl rounded-2xl p-8 ">

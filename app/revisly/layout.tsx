@@ -58,9 +58,9 @@ export default function Home({ children }: { children: ReactNode }) {
         transition={{
           duration: 0.6,
         }}
-        className=" bg-white border-b-gray-300 z-10 border-b-1 grid grid-cols-[20%_80%] fixed w-full"
+        className=" bg-white border-b-gray-200 z-10 border-b-1 grid grid-cols-[20%_80%] fixed w-full"
       >
-        <div className=" border-r-1 border-r-gray-300 p-2  ">
+        <div className=" border-r-1 border-r-gray-100 p-2  ">
           <div className="flex items-center gap-2 max-md:ml-2     ">
             <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
             <p className="font-semibold text-[1.2rem]  text-input/90">
@@ -132,7 +132,7 @@ export default function Home({ children }: { children: ReactNode }) {
           transition={{
             duration: 0.6,
           }}
-          className=" bg-white    h-[100vh] w-[20%]   left-0 fixed z-2  border-r-1  border-gray-300   "
+          className=" bg-white    h-[100vh] w-[20%]   left-0 fixed z-2  border-r-1  border-gray-200/90   "
         >
           <div
             className=" p-4  pt-15 space-y-2  
