@@ -8,7 +8,8 @@ import second from "../public/info.png"
 import Retation from "@/components/ui/LandginGraph";
 import srs from "../public/space.png";
 import Test from "@/components/ui/test";
-import { Mail, Table } from "lucide-react"
+import { Mail, } from "lucide-react"
+import { Clock, CalendarDays, PencilLine, Bell } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -27,6 +28,9 @@ export default function Home() {
   const navigation = useRouter();
 
   return (
+    <div>
+
+    
     <div className="px-15 py-4 bg-gray-50 h-[100%]">
       <div className="bg-gradient-to-r to-pink-50 from-gray-50  ">
         <header>
@@ -190,15 +194,62 @@ export default function Home() {
 
       <div className="mt-20">
         <p className="text-[3rem] font-medium w-[60%]">Revise smartly with Spaced repetition system </p>
-        <div className="mt-5 grid grid-cols-[60%_40%] gap-10">
-          <div className="w-[100%] ">
+        <div className="mt-5 grid grid-cols-[60%_40%] gap-">
+          <div className="w-[100%] pr-15 ">
           <AccordionDemo/>
           </div>
           <div className="w-[100%] h-full ">
             <Image src={srs} height={1000} width={1000} className="rounded-2xl shadow" alt="dsf"/>
           </div>
         </div>
+
+        <div className="mt-20">
+          <div className="p-10 bg-gray-200 rounded-xl  grid grid-cols-[60%_40%] w-full items-center">
+            <div>
+              
+              <Image width="50" height="50" src="https://img.icons8.com/ios/50/settings--v1.png" 
+              className="p-2 rounded-full bg-amber-400"
+              alt="settings--v1"/>
+
+              <p className="mt-9  font-medium text-[2.4rem] w-[80%] ">Set up custom revision sessions on your schedule.</p>
+
+              <p className="mt-7 w-[80%] text-[1.1rem] font-medium text-gray-600">With Revisly, you can create fully customized revision sessions that align with your daily routine, helping you stay consistent and retain more.</p>
+
+              <Button className="mt-10 hover:cursor-pointer">Explore Revisly</Button>
+            </div>
+            <div className="w-full  flex  justify-center items-center pt-10 ">
+              <CustomRevisionSessionCard/>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+
+      <footer className="mt-20">
+        <footer className="w-full bg-white p-8">
+  <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+  <Image src={Logo} height={100} width={50} alt="logo"/>
+ 
+    <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+
+  
+     
+      <li>
+        <a
+          href="#"
+          className="text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm"
+        >
+          Contact Us
+        </a>
+      </li>
+    </ul>
+  </div>
+  <p className="block mb-4 text-sm text-center text-slate-500 md:mb-0 border-t border-slate-200 mt-4 pt-4">
+    Copyright © 2024&nbsp; 
+    <a href="https://material-tailwind.com/" target="_blank" rel="noreferrer">Material Tailwind</a>.
+  </p>
+  </footer>
+      </footer>
     </div>
   );
 }
@@ -232,6 +283,7 @@ function EmailReminderCard() {
           We'll notify you at <span className="font-medium text-gray-800">5:00 PM</span> today to revise your topics.
         </p>
       </div>
+    
     </div>
   );
 }
@@ -307,6 +359,50 @@ export function AccordionDemo() {
           </div>
         ))}
       </div>
+    
     </div>
   );
 }
+
+
+
+
+function CustomRevisionSessionCard() {
+  return (
+    <div className=" mx-auto max-h-fit w-full bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-4 ">
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-gray-800">
+          Custom Revision Session
+        </h2>
+        <button className="flex items-center gap-1 text-blue-600 text-sm hover:underline">
+          <PencilLine className="w-4 h-4" />
+          Edit
+        </button>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center gap-3 text-sm text-gray-700">
+          <CalendarDays className="w-4 h-4 text-gray-500" />
+          <span>Today</span>
+        </div>
+        <div className="flex items-center gap-3 text-sm text-gray-700">
+          <Clock className="w-4 h-4 text-gray-500" />
+          <span>5:00 PM – 5:30 PM</span>
+        </div>
+        <div className="flex items-center gap-3 text-sm text-gray-700">
+          <Bell className="w-4 h-4 text-gray-500" />
+          <span>Reminder Set</span>
+        </div>
+        <div className="text-sm text-gray-700 pl-7">
+          Subject: <span className="font-medium">Mathematics</span>
+        </div>
+      </div>
+
+      <button disabled className="w-full bg-ring  text-white py-2 rounded-xl text-sm font-medium ">
+        Save Session
+      </button>
+    </div>
+  );
+}
+
+
