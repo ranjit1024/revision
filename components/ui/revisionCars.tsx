@@ -49,7 +49,7 @@ export default function Card() {
             animi sed doloribus corporis consequatur?
           </p>
         </div>
-        <div className="text-end mt-10">
+        <div className="text-end mt-8">
             <Button className="bg-gray-950 hover:cursor-pointer" onClick={()=>{
               let random = Math.floor(Math.random()*100000).toString();
               router.push(`/revisly/revison/${random}`)

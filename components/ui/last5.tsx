@@ -32,11 +32,11 @@ const chartData = [
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-2)",
+    color: "red",
   },
   mobile: {
     label: "Mobile",
-    color: "var(--chart-2)",
+    color: "red",
   },
   label: {
     color: "var(--background)",
@@ -78,7 +78,7 @@ export function ChartBarLabelCustom() {
             <Bar
               dataKey="desktop"
               layout="vertical"
-              fill="#1E90FF"
+              fill="#1A1110"
               radius={4}
             >
               <LabelList
