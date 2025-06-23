@@ -17,7 +17,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { tr } from "date-fns/locale";
 const colorMap: Record<string, string> = {
   red: "bg-indigo-600/50",
   blue: "bg-blue-600/50",
@@ -420,7 +419,7 @@ function EmailReminderCard() {
   );
 }
 
-export function AccordionDemo() {
+function AccordionDemo() {
   return (
     <Accordion
       type="single"
