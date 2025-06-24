@@ -27,7 +27,9 @@ const colorMap: Record<string, string> = {
 
 export default function Home() {
   const router = useRouter();
-
+  function signInPage(){
+    router.push("/auth/signin")
+  };
   return (
     <div>
       <div className="px-15 py-4 bg-gray-50 h-[100%]">
@@ -45,10 +47,10 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-2 items-center">
-                <Button className="bg-white text-primary hover:cursor-pointer hover:bg-white">
+                <Button onClick={signInPage} className="bg-white text-primary hover:cursor-pointer hover:bg-white">
                   Login
                 </Button>
-                <Button className="hover:cursor-pointer ">Join</Button>
+                <Button className="hover:cursor-pointer " onClick={signInPage}>Join</Button>
               </div>
             </div>
           </motion.header>
@@ -73,7 +75,7 @@ export default function Home() {
                 based on the date and time you set.
               </div>
               <div className="mt-12 flex items-center">
-                <Button className=" bg-accent-foreground hover:cursor-pointer">
+                <Button onClick={signInPage} className=" bg-accent-foreground hover:cursor-pointer">
                   Get started
                 </Button>
                 <Button className="ml-3 bg-gray-50 flex items-center text-primary hover:cursor-pointer  hover:bg-white hover:shadow">
@@ -328,7 +330,7 @@ transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                   consistent and retain more.
                 </p>
 
-                <Button className="mt-10 hover:cursor-pointer">
+                <Button onClick={signInPage} className="mt-10 hover:cursor-pointer">
                   Explore Revisly
                 </Button>
               </motion.div>

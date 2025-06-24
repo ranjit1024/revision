@@ -1,16 +1,21 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// schema.prisma
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql" // You can change this to your database, e.g., "mysql", "sqlite", "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid()) // Unique ID for your application's user
+  email         String    @unique
+  name          String?   // User's full name, optional
+  image         String?   // URL to user's profile picture, optional
+  emailVerified DateTime? // When the email was verified, useful for some auth flows
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime?  @updatedAt
 }
 

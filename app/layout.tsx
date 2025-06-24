@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import {  Mona_Sans } from "next/font/google";
 import "./globals.css";
-
+import { Providers } from "../lib//provider";
 import { Inter } from 'next/font/google';
 
 const inter = Mona_Sans({
@@ -20,7 +20,9 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${inter.variable} font-mona antialiased text-black`}
       >
+        <Providers>
         {children}
+        </Providers>
       </body>
     </html>
   );
