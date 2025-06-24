@@ -10,7 +10,7 @@ export default function Profile(){
     const { data: session } = useSession()
     return <div className=" absolute bottom-20 w-[100%] rounded-xl shadow-2xl p-4   bg-accent">
         <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-gray-200 p-2 rounded-xl" onClick={()=>{
-            router.push("/revisly/profile")
+           
         }}>
             <Image
                     src={User}

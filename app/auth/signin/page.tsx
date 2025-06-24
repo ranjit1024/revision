@@ -43,7 +43,7 @@ export default function LoginForm() {
           
 
           <Button
-          onClick={()=>signIn("google", {callbackUrl: "/auth/signin"})}
+          onClick={()=>signIn("google", {callbackUrl: "/revisly/home"})}
           variant="outline" className="w-full flex items-center justify-center gap-2 hover:cursor-pointer">
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="h-5 w-5" />
             Login with Google

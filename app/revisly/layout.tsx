@@ -8,30 +8,39 @@ import {
   CirclePlus,
   GalleryHorizontalEnd,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Profile from "@/components/ui/Profile";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { NumberProvider } from "../context/DateContext";
 import Image from "next/image";
 import Notification from "@/components/ui/notification";
+import Loader from "@/components/ui/loader";
+import { se } from "date-fns/locale";
 export default function Home({ children }: { children: ReactNode }) {
+  const { data: session,status} =  useSession()
   const router = useRouter();
   const [profile,setProfile] = useState<boolean>(false)
   const drpodownRef = useRef<HTMLDivElement>(null);
   const[notification, setNotification] = useState(false);
-  const notificationRef = useRef<HTMLDivElement>(null)
-
+  const notificationRef = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(status !== "authenticated"){
+      return router.push("/auth/signin");
+      
+    }
+  },[session,router]);
   useEffect(()=>{
     const handleClick = (e: MouseEvent)=>{
       if(drpodownRef.current && !drpodownRef.current?.contains(e.target as Node)){
         setProfile(false)
     }}
     document.addEventListener("click", handleClick);
-
+    
     return () => document.removeEventListener("click", handleClick)
   },[])
-
+  
   useEffect(()=>{
     const handleClick = (e: MouseEvent)=>{
       if(notificationRef.current && !notificationRef.current?.contains(e.target as Node)){
@@ -39,13 +48,19 @@ export default function Home({ children }: { children: ReactNode }) {
       }
     }
     document.addEventListener("click", handleClick);
-
+    
     return ()=> document.removeEventListener("click", handleClick)
   },[])
-
+  
+  
+  if(status === "loading") {
+    return <Loader/>
+  }
+  
 
   return (
     <div className="h-[100%] relative bg-gray-100 ">
+      
       <motion.div
         initial={{
           y: -20,
@@ -60,6 +75,7 @@ export default function Home({ children }: { children: ReactNode }) {
         }}
         className=" bg-white border-b-gray-200 z-10 border-b-1 grid grid-cols-[20%_80%] fixed w-full"
       >
+      
         <div className=" border-r-1 border-r-gray-100 p-2  ">
           <div className="flex items-center gap-2 max-md:ml-2     ">
             <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
@@ -70,7 +86,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
         <div className=" flex px-3 justify-between items-center">
           <div>
-            <p className="text-md font-normal">👋 Hello Ranjit das</p>
+            <p className="text-md font-normal">👋 Hello {session?.user?.name}</p>
           </div>
 
           <div className="flex gap-3 items-center  ">
@@ -268,11 +284,9 @@ export default function Home({ children }: { children: ReactNode }) {
                 </div>
                 <div >
                   
-                  <p className="text-[0.8rem] text-neutral-900  font-medium">
-                    Ranjit Das
-                  </p>
-                  <p className="text-sm text-neutral-800 font-medium">
-                    ranjitdas@gmail.com
+              
+                  <p className="text-md text-neutral-800 font-medium">
+                    usernane
                   </p>
                 </div>
               </motion.div>
