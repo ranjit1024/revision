@@ -30,7 +30,7 @@ export default function Home({ children }: { children: ReactNode }) {
       return router.push("/auth/signin");
       
     }
-  },[session,router]);
+  },[session]);
   useEffect(()=>{
     const handleClick = (e: MouseEvent)=>{
       if(drpodownRef.current && !drpodownRef.current?.contains(e.target as Node)){

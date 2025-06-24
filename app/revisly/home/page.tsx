@@ -1,6 +1,6 @@
 "use client";
 import { ChartBarLabelCustom } from "@/components/ui/last5";
-import Retation from "@/components/ui/retation";
+import {Retation} from "@/components/ui/retation";
 
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";

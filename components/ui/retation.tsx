@@ -1,7 +1,8 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+
 import {
   Card,
   CardContent,
@@ -17,15 +18,15 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-export const description = "A compact line chart with dots"
+export const description = "An area chart with gradient fill"
 
 const chartData = [
-  { month: "January", desktop: 16, mobile: 80 },
-  { month: "February", desktop: 35, mobile: 20 },
-  { month: "March", desktop: 27, mobile: 12 },
-  { month: "April", desktop: 73, mobile: 19 },
-  { month: "May", desktop: 20, mobile: 13 },
-  { month: "June", desktop: 24, mobile: 14 },
+  { month: "January", desktop: 18,  },
+  { month: "February", desktop: 30,  },
+  { month: "March", desktop: 23, },
+  { month: "April", desktop: 73, },
+  { month: "May", desktop: 20,  },
+
 ]
 
 const chartConfig = {
@@ -39,50 +40,73 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export default function Retation() {
+export function Retation() {
   return (
-    <Card className="p-3 ">
-      <CardHeader className="pb-1">
-        <CardTitle className="text-base">Visitors Trend</CardTitle>
-        <CardDescription className="text-xs">Jan - Jun 2024</CardDescription>
+    <Card className="h-[300px]">
+      <CardHeader>
+        <CardTitle>Last 5 Revison Session</CardTitle>
+        <CardDescription>
+          Showing total score in last 5 revison session
+        </CardDescription>
       </CardHeader>
-      <CardContent className="h-[160px] pt-1">
-        <ChartContainer config={chartConfig} className="w-[100%] h-50">
-          <LineChart
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <AreaChart
+            accessibilityLayer
             data={chartData}
-            height={140}
-            margin={{ left: 8, right: 8, top: 0, bottom: 0 }}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
           >
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
               tickLine={false}
               axisLine={false}
-              tickMargin={4}
+              height={400}
+              tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Line
-
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <defs>
+              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+      
+            </defs>
+      
+            <Area
               dataKey="desktop"
               type="natural"
+              fill="url(#fillDesktop)"
+              fillOpacity={0.4}
               stroke="var(--color-desktop)"
-              strokeWidth={2}
-              dot={{ fill: "var(--color-desktop)", r: 3 }}
-              activeDot={{ r: 5 }}
+              stackId="a"
             />
-          </LineChart>
+          </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-1 text-xs pt-1">
-        <div className="flex items-center gap-1 font-medium">
-          <span>Trending up by 5.2%</span>
-          <TrendingUp className="h-3 w-3" />
+      <CardFooter>
+        <div className="flex w-full items-start gap-2 text-sm">
+          <div className="grid gap-2">
+            <div className="flex items-center gap-2 leading-none font-medium">
+              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="text-muted-foreground flex items-center gap-2 leading-none">
+              January - June 2024
+            </div>
+          </div>
         </div>
-        <div className="text-muted-foreground">Last 6 months data</div>
       </CardFooter>
     </Card>
   )
