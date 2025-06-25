@@ -13,7 +13,7 @@ export default function Card() {
   return (
     <motion.div 
     variants={cardVariant}
-    className="max-w-[49%] max-h-[80%] hover:cursor-pointer p-5 bg-card rounded-xl shadow">
+    className="max-w-[32%] max-h-fit hover:cursor-pointer p-5 bg-card rounded-xl shadow">
      
         <div className="flex items-center justify-between">
           <div className="flex gap-2 items-center flex-col ">

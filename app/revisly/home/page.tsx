@@ -3,12 +3,15 @@ import { ChartBarLabelCustom } from "@/components/ui/last5";
 import {Retation} from "@/components/ui/retation";
 
 import { Calendar } from "@/components/ui/calendar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
+import newUser from "@/lib/actions/newUser";
+import { da } from "date-fns/locale";
 export default function Home() {
   const [date, setDate] = useState<Date | undefined>(new Date());
-
+  useEffect(()=>{
+    newUser().then(data => console.log(data))
+  },[])
   return (
     <div>
       <div className="w-[100%] ">

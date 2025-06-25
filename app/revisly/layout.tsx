@@ -136,8 +136,10 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </motion.div>
 
-      <div className="h-[100vh] w-[100%] relative   grid grid-cols-[20%_80%]">
-        <div className="relative">
+      <div className="h-[100%] w-[100%] relative   grid grid-cols-[20%_80%]">
+       
+        <div className="">
+       
         <motion.div
           initial={{
             x: -20,
@@ -248,9 +250,8 @@ export default function Home({ children }: { children: ReactNode }) {
                 Revsion report
               </p>
             </motion.div>
-
-            <div
-              className={`flex items-end hover:cursor-pointer h-[63vh] relative `}
+             <div
+              className={`flex items-end hover:cursor-pointer h-90 `}
             >
               
               <motion.div
@@ -277,7 +278,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 }
                 <div>
                   <Image
-                    src={User}
+                    src={String(session.user?.image)}
                     width={35}
                     height={20}
                     alt="user"
@@ -293,8 +294,11 @@ export default function Home({ children }: { children: ReactNode }) {
                 </div>
               </motion.div>
             </div>
+          
           </div>
+                
         </motion.div>
+        
         </div>
 
         <div className="p-3 w-[99%]   pt-15 ">

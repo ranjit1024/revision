@@ -21,7 +21,7 @@ export default function Home(){
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show":"hidden"}
-    className="flex  w-[100%] flex-wrap gap-5 h-[80%] ">
+    className="flex justify-start items-center w-[100%] flex-wrap gap-5 h-[80%] ">
         <Card></Card>
         <Card></Card>
         <Card></Card>

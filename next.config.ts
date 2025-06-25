@@ -7,8 +7,9 @@ const nextConfig: NextConfig = {
       {
         protocol:'https',
         hostname: 'img.icons8.com',
-      }
-    ]
+      },
+    ],
+    domains:['lh3.googleusercontent.com']
   }
 };
 
