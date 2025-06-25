@@ -1,11 +1,12 @@
 'use client'
-import { Input } from "@/components/ui/input"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import Loader from "@/components/ui/loader"
 import { useEffect, useState } from "react"
 import { signIn } from "next-auth/react"
 import { useSession } from "next-auth/react"
+import side from "../../../public/info.png"
 
 export default function LoginForm() {
     const router = useRouter();
@@ -19,15 +20,13 @@ export default function LoginForm() {
       }
     },[session,router,status])
     if (status === "loading") return <Loader/>
-    if(!session) return null
-  return <div className="w-full grid grid-cols-[50%_50%] relative">
+    if(!session) return  <div className="w-full grid grid-cols-[50%_50%] relative">
     
-    <div className="flex  justify-center items-center bg-center bg-contain flex-col bg-[url(../public/info.png)] bg-no-repeat bg-white">
+    <div className="flex w-[100%] h-[100%] relative justify-center items-center bg-center bg-contain flex-col  bg-no-repeat bg-white">
+      <Image src={side}  alt="images" fill  className="object-contain" />
        <div className="flex absolute top-13 bg-white  left-53 items-center gap-2 max-md:ml-2 ">
-              <div className="bg-[url(../public/revisly.png)] bg-center bg-cover bg-no-repeat rounded-full h-5 w-5"></div>
-              <p className="font-semibold text-[1rem] text-input/90">
-                Revisly
-              </p>
+              
+             
             </div>
 
       

@@ -10,6 +10,7 @@ import srs from "../public/space.png";
 import Test from "@/components/ui/test";
 import { Mail } from "lucide-react";
 import { Clock, CalendarDays, PencilLine, Bell } from "lucide-react";
+import side2 from "../public/side2.png"
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -54,7 +55,7 @@ export default function Home() {
               </div>
             </div>
           </motion.header>
-          <div className="grid grid-cols-2 mt-20 h-[100vh]   ">
+          <div className="grid grid-cols-2 mt-20   ">
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -79,7 +80,7 @@ export default function Home() {
                   Get started
                 </Button>
                 <Button className="ml-3 bg-gray-50 flex items-center text-primary hover:cursor-pointer  hover:bg-white hover:shadow">
-                  <img
+                  <Image
                     width="20"
                     height="48"
                     src="https://img.icons8.com/fluency/48/google-play.png"
@@ -113,15 +114,31 @@ export default function Home() {
               initial={{ x: 30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-              className="flex justify-end items-end text-end h-[100%] w-[100%]"
+              className="flex justify-end items-center relative w-full  h-[100%] "
             >
-              <div className="bg-[url(../public/side2.png)] w-[80%]  h-[100%]  rounded-2xl bg-center bg-cover bg-no-repeat"></div>
-              {/* <Image src={side} height={400} width={400} alt="secind"/> */}
+            
+
+      
+              
+  <div>
+
+  
+  <Image
+    src={side2}
+    alt="Hero"
+    width={500}
+    height={800}
+    className="object-cover p-2 rounded-2xl"
+  />
+  </div>
+
+
+             
             </motion.div>
           </div>
         </div>
 
-        <div className="mt-25">
+        <div className="mt-25  flex">
           <div className="flex justify-center items-center flex-col">
             <p className="text-[2.2rem] font-normal">Revise, Review, Done</p>
 
