@@ -10,7 +10,7 @@ export default function Profile(){
     const { data: session } = useSession()
     return <div className=" absolute bottom-20 w-[100%] rounded-xl shadow-2xl p-4   bg-accent">
         <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-gray-200 p-2 rounded-xl" onClick={()=>{
-           
+          
         }}>
             <Image
                     src={User}
@@ -19,7 +19,7 @@ export default function Profile(){
                     alt="user"
                     className="rounded-full"
                   />
-                  <p className="text-[1rem] font-medium text-gray-900 mt-1 ">{session?.user?.name}</p>
+                  <p className="text-[1rem] font-medium text-gray-900 mt-1 ">Username</p>
         </div>
     <Button className="w-[100%] mt-4 bg-red-600 hover:bg-red-700 hover:cursor-pointer" onClick={()=>{
         signOut({callbackUrl:"/"})

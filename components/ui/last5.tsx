@@ -1,6 +1,6 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
+import { GoalIcon, LucideTarget, ScrollText, TargetIcon, TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from "recharts"
 
 import {
@@ -47,8 +47,8 @@ export function ChartBarLabelCustom() {
   return (
     <Card className="h-[95%]">
       <CardHeader>
-        <CardTitle>Bar Chart - Custom Label</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Last 5 revision score</CardTitle>
+        <CardDescription>Total score of last 5 revision</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -100,11 +100,11 @@ export function ChartBarLabelCustom() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+        <div className="flex gap-2 leading-none font-medium items-center">
+          last 5 revison score <GoalIcon className="size-5"/>
         </div>
         <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
+          Showing total score in last 5 revison
         </div>
       </CardFooter>
     </Card>
