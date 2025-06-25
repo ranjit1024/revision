@@ -12,11 +12,14 @@ export default function LoginForm() {
     const { data:session, status} = useSession();
     const [loader , setLoader] = useState<boolean>(false);
     useEffect(()=>{
-      if(status === "authenticated"){
+      if(status === "loading") return;
+
+      if(session){
         router.push("/revisly/home")
       }
-    },[session,router])
+    },[session,router,status])
     if (status === "loading") return <Loader/>
+    if(!session) return null
   return <div className="w-full grid grid-cols-[50%_50%] relative">
     
     <div className="flex  justify-center items-center bg-center bg-contain flex-col bg-[url(../public/info.png)] bg-no-repeat bg-white">

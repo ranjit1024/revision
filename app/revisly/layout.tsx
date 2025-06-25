@@ -26,11 +26,14 @@ export default function Home({ children }: { children: ReactNode }) {
   const[notification, setNotification] = useState(false);
   const notificationRef = useRef<HTMLDivElement>(null);
   useEffect(()=>{
-    if(status !== "authenticated"){
-      return router.push("/auth/signin");
+    if(status === "loading") return
+    if(!session){
+      router.replace("/auth/signin");
       
     }
-  },[session]);
+
+    
+  },[router,session,status]);
   useEffect(()=>{
     const handleClick = (e: MouseEvent)=>{
       if(drpodownRef.current && !drpodownRef.current?.contains(e.target as Node)){
@@ -53,11 +56,10 @@ export default function Home({ children }: { children: ReactNode }) {
   },[])
   
   
-  if(status === "loading") {
-    return <Loader/>
-  }
-  
 
+  
+  if (status === "loading") return <Loader/>;
+  if (!session) return null;
   return (
     <div className="h-[100%] relative bg-gray-100 ">
       
