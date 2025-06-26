@@ -1,5 +1,5 @@
 'use client'
-import Card from "@/components/ui/revisionCars"
+import Card from "@/components/ui/revisionCard"
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 const containerVariant = {
@@ -21,10 +21,11 @@ export default function Home(){
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show":"hidden"}
-    className="flex justify-start items-center w-[100%] flex-wrap gap-5 h-[80%] ">
+    className="grid grid-cols-3 justify-center gap-4  w-[100%] flex-wrap  h-[100%] ">
         <Card></Card>
         <Card></Card>
         <Card></Card>
+    
   
        
       

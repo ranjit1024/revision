@@ -67,7 +67,7 @@ export function SelectScrollable() {
        {
         showDetails ? <p className="text-sm font-medium mt-2 text-muted">you have shedule for {value ? value.revision+1 : null} Revision session which will take {value?.days} days to complete</p>:null
        }
-       <Button className="mt-8 bg-secondary hover:cursor-pointer">Set Revision Reminder</Button>
+       
     </Select>
   )
 }

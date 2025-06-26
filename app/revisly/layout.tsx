@@ -7,6 +7,7 @@ import {
   GoalIcon,
   CirclePlus,
   GalleryHorizontalEnd,
+  NotebookIcon
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Profile from "@/components/ui/Profile";
@@ -198,9 +199,9 @@ export default function Home({ children }: { children: ReactNode }) {
               }}
               className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
             >
-              <GalleryHorizontalEnd className="size-4 text-gray-900" />
+              <NotebookIcon className="size-4 text-gray-900" />
               <p className="text-sm text-neutral-800 font-medium">
-                All Revision Sessions
+                All Revision Notes
               </p>
             </motion.div>
             <motion.div
@@ -301,7 +302,7 @@ export default function Home({ children }: { children: ReactNode }) {
         
         </div>
 
-        <div className="p-3 w-[99%]   pt-15 ">
+        <div className="p-3 w-[99%]   pt-15 h-[100vh] ">
           <NumberProvider>{children}</NumberProvider>
         </div>
       </div>
