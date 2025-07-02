@@ -38,12 +38,6 @@ export default function LoginForm() {
        
 
         <div className="space-y-4">
-       
-
-
-      
-
-          
 
           <Button
           onClick={()=>signIn("google", {callbackUrl: "/revisly/home"})}

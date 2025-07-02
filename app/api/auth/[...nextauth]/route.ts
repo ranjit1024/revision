@@ -1,8 +1,8 @@
-// app/api/auth/[...nextauth]/route.ts
+"use server"
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
-import { PrismaClient } from "@prisma/client"
+
 
 export const handler = NextAuth({
 
