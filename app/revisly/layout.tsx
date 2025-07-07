@@ -252,7 +252,7 @@ export default function Home({ children }: { children: ReactNode }) {
               </p>
             </motion.div>
              <div
-              className={`flex items-end hover:cursor-pointer h-90 `}
+              className={`flex items-end hover:cursor-pointer h-[60vh] `}
             >
               
               <motion.div
