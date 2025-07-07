@@ -54,7 +54,7 @@ export default function Home() {
   return (
     <div>
       <div className="px-15 max-md:px-5  py-4 bg-gray-50 h-[100%] ">
-        <div className="bg-gradient-to-r to-pink-50 from-gray-50 max-md:w-[100vw]  ">
+        <div className="bg-gradient-to-r to-pink-50 from-gray-50 max-md:w-[90vw]  ">
           <motion.header
 
           className="bg-white backdrop:backdrop-blur-3xl  w-[100%]">
@@ -62,7 +62,7 @@ export default function Home() {
                        initial={{ y: 0 }}
         animate={{ y: show ? 0 : -100 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="flex  fixed top-5 w-[91%] max-md:w-[92%]    z-10  items-center justify-between gap-2 rounded-full bg-white/50 px-4 py-2 shadow-blue-200 shadow backdrop-blur-md">
+            className="flex  fixed top-5 w-[91%] max-md:w-[90%]    z-10  items-center justify-between gap-2 rounded-full bg-white/50 px-4 py-2 shadow-blue-200 shadow backdrop-blur-md">
               <div className="flex items-center gap-2">
                 <Image src={Logo} width={25} height={10} alt="logo"></Image>
                 <p className="text-[1rem] font-semibold text-neutral-900">
@@ -83,7 +83,7 @@ export default function Home() {
             </motion.div>
           </motion.header>
 
-          <div className="grid grid-cols-2 mt-20 max-md:grid-cols-1  ">
+          <div className="grid grid-cols-2 pt-30 max-md:grid-cols-1 ">
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -185,7 +185,7 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="flex justify-center mt-13 h-100 w-full relative">
-                    <div className="absolute bottom-10  right-30 rounded-full bg-indigo-600/20">
+                    <div className="absolute bottom-10  right-30 max-md:-right-2 rounded-full bg-indigo-600/20">
                       <Image
                         width="55"
                         height="64"
@@ -193,7 +193,7 @@ export default function Home() {
                         alt="external-maths-data-science-becris-lineal-color-becris"
                       />
                     </div>
-                    <div className="absolute bottom-10 p-3 left-30 rounded-full bg-lime-600/20">
+                    <div className="absolute bottom-10 p-3 left-30 max-md:-left-4 rounded-full bg-lime-600/20">
                       <img
                         width="40"
                         height="64"
@@ -201,7 +201,7 @@ export default function Home() {
                         alt="external-science-literary-genres-becris-lineal-color-becris"
                       />
                     </div>
-                    <div className="absolute bg-purple-600/50 top-10 right-40 rounded-full p-3">
+                    <div className="absolute bg-purple-600/50 top-10 right-40 max-md:-right-2 rounded-full p-3">
                       <Image
                         width="40"
                         height="64"
@@ -209,7 +209,7 @@ export default function Home() {
                         alt="external-economics-university-courses-wanicon-lineal-color-wanicon"
                       />
                     </div>
-                    <div className="absolute top-10 left-40 p-3 rounded-full bg-accent/50">
+                    <div className="absolute top-10 left-40 p-3 rounded-full max-md:-left-2 bg-accent/50">
                       <Image
                         width="40"
                         height="64"

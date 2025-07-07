@@ -22,7 +22,7 @@ export default function LoginForm() {
   if (status === "loading") return <Loader />;
   if (!session)
     return (
-      <div className="w-full grid grid-cols-[50%_50%]  relative">
+      <div className="w-full grid grid-cols-[50%_50%] relative">
         <div className="flex w-[100%] h-[100%] relative justify-center items-center bg-center bg-contain flex-col  bg-no-repeat bg-white">
           <Image src={side} alt="images" fill className="object-contain" />
           <div className="flex absolute top-13 bg-white  left-53 items-center gap-2 max-md:ml-2 "></div>
