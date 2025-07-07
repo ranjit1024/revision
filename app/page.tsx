@@ -303,10 +303,10 @@ export default function Home() {
         </div>
 
         <div className="mt-20">
-          <p className="text-[3rem] font-medium w-[60%] max-md:w-[100%]">
+          <p className="text-[3rem]  font-medium w-[60%] max-md:w-[90vw]">
             Revise smartly with Spaced repetition system{" "}
           </p>
-          <div className="mt-5 grid grid-cols-[60%_40%] max-md:grid-cols-1">
+          <div className="mt-5 grid grid-cols-[60%_40%] max-md:grid-cols-1 max-md:w-[94vw] ">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -315,7 +315,7 @@ export default function Home() {
                 once: true,
                 amount: 0.3,
               }}
-              className="w-[100%] pr-15 "
+              className="w-[100%] max-md:w-[90vw] pr-15 max-md:mt-5 flex max-md:pr-4 "
             >
               <AccordionDemo />
             </motion.div>
@@ -358,11 +358,11 @@ export default function Home() {
                   alt="settings--v1"
                 />
 
-                <p className="mt-9  font-medium text-[2.4rem] w-[80%] max-md:w-[100%] ">
+                <p className="mt-9  font-medium text-[2.4rem] w-[80%] max-md:w-[80vw] ">
                   Set up custom revision sessions on your schedule.
                 </p>
 
-                <p className="mt-7 w-[80%] text-[1.1rem] font-medium text-gray-600">
+                <p className="mt-7 w-[80%] max-md:w-[100%] text-[1.1rem] font-medium text-gray-600">
                   With Revisly, you can create fully customized revision
                   sessions that align with your daily routine, helping you stay
                   consistent and retain more.
