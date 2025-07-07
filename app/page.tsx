@@ -12,7 +12,7 @@ import { Mail } from "lucide-react";
 import { Clock, CalendarDays, PencilLine, Bell } from "lucide-react";
 import side2 from "../public/side2.png";
 import { motion } from "framer-motion";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -28,6 +28,8 @@ const colorMap: Record<string, string> = {
 };
 
 export default function Home() {
+
+
   const [show, setShow] = useState<Boolean>(true);
   const [lastScrollY, setLastScollY] = useState<number>(0);
   useEffect(() => {
@@ -55,14 +57,13 @@ export default function Home() {
     <div>
       <div className="px-15 max-md:px-5  py-4 bg-gray-50 h-[100%] ">
         <div className="bg-gradient-to-r to-pink-50 from-gray-50 max-md:w-[90vw]  ">
-          <motion.header
-
-          className="bg-white backdrop:backdrop-blur-3xl  w-[100%]">
+          <motion.header className="bg-white backdrop:backdrop-blur-3xl  w-[100%]">
             <motion.div
-                       initial={{ y: 0 }}
-        animate={{ y: show ? 0 : -100 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="flex  fixed top-5 w-[91%] max-md:w-[90%]    z-10  items-center justify-between gap-2 rounded-full bg-white/50 px-4 py-2 shadow-blue-200 shadow backdrop-blur-md">
+              initial={{ y: 0 }}
+              animate={{ y: show ? 0 : -100 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="flex  fixed top-5 w-[91%] max-md:w-[90%]    z-10  items-center justify-between gap-2 rounded-full bg-white/50 px-4 py-2 shadow-blue-200 shadow backdrop-blur-md"
+            >
               <div className="flex items-center gap-2">
                 <Image src={Logo} width={25} height={10} alt="logo"></Image>
                 <p className="text-[1rem] font-semibold text-neutral-900">
@@ -71,6 +72,7 @@ export default function Home() {
               </div>
               <div className="flex gap-2 items-center">
                 <Button
+                  
                   onClick={signInPage}
                   className="bg-white text-primary hover:cursor-pointer hover:bg-white"
                 >

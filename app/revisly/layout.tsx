@@ -252,7 +252,7 @@ export default function Home({ children }: { children: ReactNode }) {
               </p>
             </motion.div>
              <div
-              className={`flex items-end hover:cursor-pointer h-[60vh] `}
+              className={`flex items-end hover:cursor-pointer relative   `}
             >
               
               <motion.div
@@ -269,7 +269,7 @@ export default function Home({ children }: { children: ReactNode }) {
                   duration: 0.4,
                   delay: 1.3,
                 }}
-                className="flex items-center w-full relative  gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+                className="flex items-center w-[18%] fixed bottom-3  gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
                 onClick={()=>{
                   setProfile(prev => !prev)
                 }}
