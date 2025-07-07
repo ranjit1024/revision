@@ -10,8 +10,9 @@ import srs from "../public/space.png";
 import Test from "@/components/ui/test";
 import { Mail } from "lucide-react";
 import { Clock, CalendarDays, PencilLine, Bell } from "lucide-react";
-import side2 from "../public/side2.png"
+import side2 from "../public/side2.png";
 import { motion } from "framer-motion";
+import { useEffect,useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -27,20 +28,41 @@ const colorMap: Record<string, string> = {
 };
 
 export default function Home() {
+  const [show, setShow] = useState<Boolean>(true);
+  const [lastScrollY, setLastScollY] = useState<number>(0);
+  useEffect(() => {
+    const handelScrollY = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setShow(false); // Scrolling down — hide
+      } else {
+        setShow(true); // Scrolling up — show
+      }
+      setLastScollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handelScrollY);
+    return () => window.removeEventListener("scroll", handelScrollY);
+  }, [lastScrollY]);
+
   const router = useRouter();
-  function signInPage(){
-    router.push("/auth/signin")
-  };
+  function signInPage() {
+    router.push("/auth/signin");
+  }
+
   return (
     <div>
-      <div className="px-15 py-4 bg-gray-50 h-[100%]">
-        <div className="bg-gradient-to-r to-pink-50 from-gray-50  ">
+      <div className="px-15 max-md:px-5  py-4 bg-gray-50 h-[100%] ">
+        <div className="bg-gradient-to-r to-pink-50 from-gray-50 max-md:w-[100vw]  ">
           <motion.header
-            initial={{ y: -10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, damping: 15 }}
-          >
-            <div className="flex items-center justify-between gap-2 rounded-full bg-white px-4 py-2 shadow-blue-200 shadow">
+
+          className="bg-white backdrop:backdrop-blur-3xl  w-[100%]">
+            <motion.div
+                       initial={{ y: 0 }}
+        animate={{ y: show ? 0 : -100 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="flex  fixed top-5 w-[91%] max-md:w-[92%]    z-10  items-center justify-between gap-2 rounded-full bg-white/50 px-4 py-2 shadow-blue-200 shadow backdrop-blur-md">
               <div className="flex items-center gap-2">
                 <Image src={Logo} width={25} height={10} alt="logo"></Image>
                 <p className="text-[1rem] font-semibold text-neutral-900">
@@ -48,14 +70,20 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-2 items-center">
-                <Button onClick={signInPage} className="bg-white text-primary hover:cursor-pointer hover:bg-white">
+                <Button
+                  onClick={signInPage}
+                  className="bg-white text-primary hover:cursor-pointer hover:bg-white"
+                >
                   Login
                 </Button>
-                <Button className="hover:cursor-pointer " onClick={signInPage}>Join</Button>
+                <Button className="hover:cursor-pointer " onClick={signInPage}>
+                  Join
+                </Button>
               </div>
-            </div>
+            </motion.div>
           </motion.header>
-          <div className="grid grid-cols-2 mt-20   ">
+
+          <div className="grid grid-cols-2 mt-20 max-md:grid-cols-1  ">
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -76,7 +104,10 @@ export default function Home() {
                 based on the date and time you set.
               </div>
               <div className="mt-12 flex items-center">
-                <Button onClick={signInPage} className=" bg-accent-foreground hover:cursor-pointer">
+                <Button
+                  onClick={signInPage}
+                  className=" bg-accent-foreground hover:cursor-pointer"
+                >
                   Get started
                 </Button>
                 <Button className="ml-3 bg-gray-50 flex items-center text-primary hover:cursor-pointer  hover:bg-white hover:shadow">
@@ -116,24 +147,15 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
               className="flex justify-end items-center relative w-full  h-[100%] "
             >
-            
-
-      
-              
-  <div>
-
-  
-  <Image
-    src={side2}
-    alt="Hero"
-    width={500}
-    height={800}
-    className="object-cover p-2 rounded-2xl"
-  />
-  </div>
-
-
-             
+              <div>
+                <Image
+                  src={side2}
+                  alt="Hero"
+                  width={500}
+                  height={800}
+                  className="object-cover p-2 rounded-2xl"
+                />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -143,7 +165,7 @@ export default function Home() {
             <p className="text-[2.2rem] font-normal">Revise, Review, Done</p>
 
             <div className="mt-7 bg-gray-200 rounded-xl p-4 w-[100%]">
-              <div className="grid grid-cols-[70%_30%] gap-2">
+              <div className="grid grid-cols-[70%_30%] max-md:grid-cols-1 gap-2">
                 <motion.div
                   initial={{ x: -20, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
@@ -229,7 +251,7 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              <motion.div className="mt-4 flex justify-center gap-3 items-center">
+              <motion.div className="mt-4 flex justify-center gap-3 items-center max-md:flex-wrap">
                 <motion.div
                   initial={{ scale: 0.95, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -281,10 +303,10 @@ export default function Home() {
         </div>
 
         <div className="mt-20">
-          <p className="text-[3rem] font-medium w-[60%]">
+          <p className="text-[3rem] font-medium w-[60%] max-md:w-[100%]">
             Revise smartly with Spaced repetition system{" "}
           </p>
-          <div className="mt-5 grid grid-cols-[60%_40%] gap-">
+          <div className="mt-5 grid grid-cols-[60%_40%] max-md:grid-cols-1">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -305,7 +327,7 @@ export default function Home() {
                 once: true,
                 amount: 0.3,
               }}
-              className="w-[100%] h-full "
+              className="w-[100%] h-full max-md:hidden "
             >
               <Image
                 src={srs}
@@ -318,12 +340,11 @@ export default function Home() {
           </div>
 
           <div className="mt-20">
-            <div className="p-10 bg-gray-200 rounded-xl  grid grid-cols-[60%_40%] w-full items-center">
+            <div className="p-10 bg-gray-200 rounded-xl max-md:grid-cols-1  grid grid-cols-[60%_40%] w-full items-center">
               <motion.div
-       initial={{ y: 20, opacity: 0 }}
-whileInView={{ y: 0, opacity: 1 }}
-transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                 viewport={{
                   once: true,
                   amount: 0.3,
@@ -333,11 +354,11 @@ transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                   width="50"
                   height="50"
                   src="https://img.icons8.com/ios/50/settings--v1.png"
-                  className="p-2 rounded-full bg-amber-400"
+                  className="p-2 rounded-full bg-amber-400 animate-spin duration-1000"
                   alt="settings--v1"
                 />
 
-                <p className="mt-9  font-medium text-[2.4rem] w-[80%] ">
+                <p className="mt-9  font-medium text-[2.4rem] w-[80%] max-md:w-[100%] ">
                   Set up custom revision sessions on your schedule.
                 </p>
 
@@ -347,21 +368,24 @@ transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                   consistent and retain more.
                 </p>
 
-                <Button onClick={signInPage} className="mt-10 hover:cursor-pointer">
+                <Button
+                  onClick={signInPage}
+                  className="mt-10 hover:cursor-pointer"
+                >
                   Explore Revisly
                 </Button>
               </motion.div>
 
-              <motion.div 
-                  initial={{ y: 20, opacity: 0 }}
-whileInView={{ y: 0, opacity: 1 }}
-transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                 viewport={{
                   once: true,
                   amount: 0.3,
                 }}
-              className="w-full  flex  justify-center items-center pt-10 ">
+                className="w-full  flex  justify-center items-center pt-10 "
+              >
                 <CustomRevisionSessionCard />
               </motion.div>
             </div>
