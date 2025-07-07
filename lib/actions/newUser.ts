@@ -2,7 +2,7 @@
 import { getServerSession } from "next-auth";
 import { PrismaClient } from "@prisma/client";
 const client = new PrismaClient();
-import { handler } from "@/app/api/auth/[...nextauth]/route";
+import { authOption } from "@/lib/auth";
 interface userType {
     user:{
         name:string,
@@ -12,7 +12,7 @@ interface userType {
 };
 
 export default async function newUser(){
-    const session : userType | null  = await getServerSession(handler);
+    const session : userType | null  = await getServerSession(authOption);
     console.log(session?.user.email)
     if(session){
         const existingUser = await client.user.findFirst({
