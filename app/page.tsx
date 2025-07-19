@@ -356,7 +356,7 @@ export default function Home() {
                   width="50"
                   height="50"
                   src="https://img.icons8.com/ios/50/settings--v1.png"
-                  className="p-2 rounded-full bg-amber-400 animate-spin duration-1000"
+                  className="p-2 rounded-full bg-amber-400 animate-new duration-1000"
                   alt="settings--v1"
                 />
 
