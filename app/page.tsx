@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <div>
       <div className="px-15 max-md:px-5  py-4 bg-gray-50 h-[100%] ">
-        <div className="bg-gradient-to-r to-pink-50 from-gray-50 max-md:w-[90vw]  ">
+        <div className="bg-gradient-to-r  from-gray-50 max-md:w-[90vw]  ">
           <motion.header className="bg-white backdrop:backdrop-blur-3xl  w-[100%]">
             <motion.div
               initial={{ y: 0 }}
