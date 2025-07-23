@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useRef, useState } from "react";
-import User from "../../public/user.jpg";
+
+import { BellIcon } from "lucide-react";
 import {
   LayoutDashboardIcon,
   ChartColumnStacked,
@@ -17,7 +18,6 @@ import { NumberProvider } from "../context/DateContext";
 import Image from "next/image";
 import Notification from "@/components/ui/notification";
 import Loader from "@/components/ui/loader";
-import { se } from "date-fns/locale";
 export default function Home({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -122,14 +122,9 @@ export default function Home({ children }: { children: ReactNode }) {
                 setNotification((prev) => !prev);
               }}
             >
-              <div className=" bg-blend-darken relative  p-1 w-fit rounded-full bg-gray-100 shadow">
-                <p className="absolute right-0 animate-pulse top-0  text-[13px] font-bold bg-[#FF7900] rounded-full text-teal-50 w-2 text-center h-2"></p>
-                <img
-                  width="25"
-                  height="30"
-                  src="https://img.icons8.com/pulsar-color/50/appointment-reminders.png"
-                  alt="appointment-reminders"
-                />
+              <div className=" bg-blend-darken relative  p-1 w-fit rounded-full bg-white ">
+                <p className="absolute right-0  -top-0  text-[13px] font-bold bg-red-500  rounded-full text-teal-50 w-2 text-center h-2 p-[2px]"></p>
+             <BellIcon className="text-orange-600 "/>
               </div>
             </div>
           </div>
