@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useRef, useState } from "react";
 
-import { BellDotIcon } from "lucide-react";
+import { Coins,CoinsIcon } from "lucide-react";
 import {
   LayoutDashboardIcon,
   ChartColumnStacked,
@@ -93,6 +93,7 @@ export default function Home({ children }: { children: ReactNode }) {
           </div>
 
           <div className="flex gap-3 items-center  ">
+           
             <div className="inline-flex ">
               <Button
                 onClick={() => {
@@ -104,6 +105,12 @@ export default function Home({ children }: { children: ReactNode }) {
                 <p>Set Revision</p>
               </Button>
             </div>
+  
+              <div className="bg-purple-50 border-1 border-purple-300 hover:border-purple-500  px-3 py-1 flex rounded-full shadow-purple-200 shadow-sm gap-3 hover:cursor-pointer ">
+            <img width="20" height="50" src="https://img.icons8.com/parakeet-line/50/coins--v2.png" alt="coins--v2"/>
+              <p className="text-sm font-bold text-gray-700">0</p>
+              </div>
+            
             <div className="w-[1] shadow-2xs h-10 border-r-1 border-chart  border-r-gray-300 bg-secondary-foreground "></div>
             {notification ? (
               <div className="absolute bg-white space-y-4 border-1 border-gray-300 overflow-scroll h-[60vh] rounded-lg p-7 shadow top-11 right-2 scroll-smooth   ">
@@ -122,9 +129,9 @@ export default function Home({ children }: { children: ReactNode }) {
                 setNotification((prev) => !prev);
               }}
             >
-              <div className=" bg-blend-darken relative  p-1 w-fit rounded-full bg-white ">
-                
-             <BellDotIcon className="text-neutral-950 size-6"/>
+              <div className="  relative  p-1 w-fit rounded-full bg-white ">
+                <div className="absolute bg-white rounded-2xl p-[2.5px] right-[0.5rem] top-[0.2rem] border-[0.13rem] border-gray-500"></div>
+             <img width="24" height="50" src="https://img.icons8.com/pulsar-line/50/appointment-reminders.png" alt="appointment-reminders"/>
               </div>
             </div>
           </div>
