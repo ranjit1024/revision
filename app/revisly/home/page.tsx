@@ -6,7 +6,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import newUser from "@/lib/actions/newUser";
-import { da } from "date-fns/locale";
 export default function Home() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   useEffect(()=>{

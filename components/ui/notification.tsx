@@ -3,7 +3,7 @@ import { BellIcon } from "lucide-react";
 
 export default function Notification() {
   return (
-    <div className="w-80 p-5 rounded-2xl bg-white shadow-lg border border-gray-200 space-y-3">
+    <div className="w-80 p-5 rounded-2xl bg-white  border border-gray-100 space-y-3">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2 text-orange-500 font-medium text-sm">
           <BellIcon className="w-4 h-4 " />
