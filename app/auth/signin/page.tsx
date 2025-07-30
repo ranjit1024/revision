@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import side from "../../../public/info.png";
+import newUser from "@/lib/actions/newUser";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -35,8 +36,9 @@ export default function LoginForm() {
 
             <div className="space-y-4">
               <Button
-                onClick={() =>
+                onClick={async () =>
                   signIn("google", { callbackUrl: "/revisly/home" })
+                  
                 }
                 variant="outline"
                 className="w-full flex items-center justify-center gap-2 hover:cursor-pointer"

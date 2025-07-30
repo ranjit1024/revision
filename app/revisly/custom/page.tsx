@@ -8,12 +8,15 @@ import { Sparkles } from "lucide-react";
 export default function Home() {
   return (
     <div className="h-[90vh] relative">
-      <div className="flex absolute h-full bg-gray-50 rounded-2xl w-[79vw] opacity-100">
+      <div className="flex  absolute h-full bg-gray-50 rounded-2xl w-[79vw] opacity-100">
         <div className=" h-full w-full flex items-center ">
           <div className=" p-5 rounded-xl w-full ">
             <div className=" text-gray-950 rounded-2xl  p-8 w-full flex flex-col justify-between h-auto space-y-3 ">
               <div>
                 {/* Header section with Icon and Title */}
+          <div className="absolute right-20 bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">
+                Per token 1 session
+            </div>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="bg-blue-600/20 p-3 rounded-full">
                     <Sparkles className="w-6 h-6 text-blue-400" />
@@ -25,10 +28,13 @@ export default function Home() {
 
                 {/* Description */}
                 <p className="text-neutral-900 mb-6 ml-2">
-                  Hi, I would like to make this feture free,But i need pay for server so kindly pay...
+                  Hi, I would like to make this feature free,But i need pay for server so kindly pay...
                 </p>
+               
+                
               </div>
 
+              
               {/* Purchase Section */}
               <div className="mt-auto">
                 {/* Price Display */}

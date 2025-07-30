@@ -10,7 +10,7 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid()) // Unique ID for your application's user
+  id            String    @id @default(cuid())  // Unique ID for your application's user
   email         String    @unique
   name          String?   // User's full name, optional
   image         String?   // URL to user's profile picture, optional

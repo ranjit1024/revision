@@ -1,7 +1,7 @@
 "use server"
 import { getServerSession } from "next-auth";
-import { PrismaClient } from "@prisma/client";
-const client = new PrismaClient();
+import  prisma  from "../prisma";
+
 import { authOption } from "@/lib/auth";
 interface userType {
     user:{
@@ -15,7 +15,7 @@ export default async function newUser(){
     const session : userType | null  = await getServerSession(authOption);
     console.log(session?.user.email)
     if(session){
-        const existingUser = await client.user.findFirst({
+        const existingUser = await prisma.user.findFirst({
             where:{
                 email:session?.user.email
             }
@@ -24,7 +24,7 @@ export default async function newUser(){
             console.log("User exist")
             return "you are alredy loged in"
         }
-        const createUser  = await client.user.create({
+        const createUser  = await prisma.user.create({
             data:{
                 email:session?.user.email,
                 name:session?.user.name,
