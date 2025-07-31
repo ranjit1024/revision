@@ -46,9 +46,9 @@ export default function Card() {
         <p className="mt-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum consectetur, voluptatem nostrum earum quibusdam atque perspiciatis repellendus fuga quo distinctio!</p>
       </div>
 
-        <Button className="mt-6 bg-sidebar-ring hover:cursor-pointer" onClick={()=>{
+        <Button className="mt-8 text-gray-800 font-medium  border border-gray-600 bg-gray-100 hover:cursor-pointer hover:bg-primary hover:shadow hover:text-gray-50 " onClick={()=>{
           router.push("/revisly/revision/all")
-        }}>View full detail</Button>
+        }}>view full detail</Button>
      </div>
      
     </motion.div>

@@ -13,7 +13,7 @@ export default function RevisionCard({ revision, date, progress }: Props) {
   return (
     <div
        
-    className="bg-white rounded-2xl shadow-md p-5 w-full max-w-xs hover:shadow-xl transition-shadow">
+    className="bg-white rounded-2xl shadow-md p-5 w-full max-w-xs hover:shadow transition-shadow">
       <div className="text-sm text-blue-600 font-semibold">{revision}</div>
       <div className="text-green-500 text-sm font-medium mt-1">Completed</div>
       <div className="text-xs text-gray-500">{date}</div>
@@ -33,7 +33,7 @@ export default function RevisionCard({ revision, date, progress }: Props) {
         </div>
       </div>
 
-      <button className="bg-[#021526] hover:cursor-pointer hover:bg-[#021526]/90 text-white w-full py-2 rounded-xl text-sm font-medium transition-colors">
+      <button className="bg-[#021526] hover:cursor-pointer hover:bg-[#021526]/90 text-white w-full py-2 rounded-md text-sm font-medium transition-colors">
         View Report
       </button>
     </div>
