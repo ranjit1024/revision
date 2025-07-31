@@ -82,7 +82,9 @@ export default function Home({ children }: { children: ReactNode }) {
         className=" bg-white border-b-gray-200 z-10 border-b-1 grid grid-cols-[20%_80%] fixed w-full"
       >
         <div className=" border-r-1 border-r-gray-100 p-2  ">
-          <div className="flex items-center gap-2 max-md:ml-2     ">
+          <div onClick={()=>{
+            router.push("/revisly/home")
+          }} className="flex items-center gap-2 max-md:ml-2     ">
             <div className="bg-[url(../public/slogo.png)] bg-center bg-cover bg-no-repeat rounded-full h-6 w-6"></div>
             <p className="font-semibold text-[1.2rem]  text-input/90">
               Revisly
@@ -109,7 +111,7 @@ export default function Home({ children }: { children: ReactNode }) {
               </Button>
             </div>
 
-            <div className="bg-purple-50 border-1 border-purple-300 hover:border-purple-500  px-3 py-1 flex rounded-full shadow-purple-200 shadow-sm gap-3 hover:cursor-pointer ">
+            <div className="bg-gradient-to-r to-purple-50 from-fuchsia-100 border-1 border-pink-50  hover:border-pink-100  px-3 py-[5px] flex rounded-lg gap-3 hover:cursor-pointer ">
               <img
                 width="20"
                 height="50"
