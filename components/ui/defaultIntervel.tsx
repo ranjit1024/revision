@@ -24,8 +24,9 @@ export function SelectScrollable() {
        totalDays:number
   } | null>(null);
   useEffect(()=>{
-   
-    console.log(intervel.filter((item)=>(item <= value!.days)))
+    if(value?.days){
+      console.log(intervel.filter((item)=>(item <= value?.days)))
+    }
     },[value])
   return (
 
@@ -57,7 +58,7 @@ export function SelectScrollable() {
                 
                 return <SelectItem  value={JSON.stringify({
                   revision:index,
-                  days:intervel[index],
+                  dayskjh:intervel[index],
                   totldays: totalDays[index]
                   
                 })}  key={index} className="flex justify-between items-center gap-10 w-[90%]" >
@@ -75,7 +76,7 @@ export function SelectScrollable() {
         </SelectGroup>
       </SelectContent>
        {
-        showDetails ? <p className="text-sm font-medium mt-2 text-muted">you have shedule for {value ? value.revision+1 : null} Revision session which will take {value?.days} days to complete</p>:null
+        showDetails ? <p className="text-sm font-medium mt-2 text-muted">you have shedule for {value ? value.revision+1 : null} Revision session which will take {} days to complete</p>:null
        }
        
     </Select>

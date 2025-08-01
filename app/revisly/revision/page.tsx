@@ -4,8 +4,7 @@ import { Label } from "@/components/ui/label";
 import { SelectScrollable } from "@/components/ui/defaultIntervel";
 import { Button } from "@/components/ui/button";
 import TimePicker from "@/components/ui/time";
-import Lottie from "lottie-react";
-import animaiton from "../../../public/Animation-2.json";
+
 import { ChangeEvent, useEffect, useState } from "react";
 import { revisionSchemaType } from "@/app/api/revision/route";
 export default function Home() {
