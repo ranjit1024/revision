@@ -11,11 +11,12 @@ export default function TimePicker({
 }: {
   onChange?: (value: string) => void;
 }) {
-  const [selectedTime, setSelectedTime] = useState("");
+  const [selectedTime, setSelectedTime] = useState("10:30:00");
 
   const handleChange = (value: string) => {
     setSelectedTime(value);
     if (onChange) onChange(value);
+    console.log(selectedTime)
   };
 
   return (   <div className="flex flex-col gap-3 w-100">
@@ -26,8 +27,12 @@ export default function TimePicker({
           type="time"
           id="time-picker"
           step="1"
-          defaultValue="10:30:00"
+          value={selectedTime}
+      
+
           className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          onChange={e => handleChange(e.target.value)}
+          
         />
       </div>
   );

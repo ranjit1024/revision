@@ -1,6 +1,6 @@
 'use client'
 import * as React from "react"
-
+import { useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -11,32 +11,38 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import { Button } from "./button";
-import { number } from "framer-motion";
+
 
 
 export function SelectScrollable() {
-  const data =  [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
-  const cummativeData = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875];
+  const intervel  =  [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
+  const totalDays = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875];
   const [showDetails, setShowdetails] = React.useState(false);
   const [value, setValue] = React.useState<{
        revision:number,
-       days:string
+       days:number,
+       totalDays:number
   } | null>(null);
+  useEffect(()=>{
+   
+    console.log(intervel.filter((item)=>(item <= value!.days)))
+    },[value])
   return (
 
     <Select onValueChange={(e)=>{
       setShowdetails(true);
       const item = JSON.parse(e);
       setValue(item)
-      
+     
     }}>
       <p className="text-sm font-medium mb-1">Selet Revison Intervel</p>
       <SelectTrigger className="w-full flex" >
         
         <SelectValue placeholder="Select a Intervel" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent onChange={()=>{
+        console.log("done")
+      }}>
         <SelectGroup>
 
           <SelectLabel className=""><div className="flex justify-between w-[100%]">
@@ -46,17 +52,21 @@ export function SelectScrollable() {
             </div></SelectLabel>
      
           {
-            data.map((item,index)=>{
+            intervel.map((item,index)=>{
             
                 
-                return <SelectItem value={JSON.stringify({
+                return <SelectItem  value={JSON.stringify({
                   revision:index,
-                  days:cummativeData[index]
+                  days:intervel[index],
+                  totldays: totalDays[index]
+                  
                 })}  key={index} className="flex justify-between items-center gap-10 w-[90%]" >
             
-                <div className=" w-100 flex justify-center">{index+1}</div>
+                <div onChange={()=>{
+                   console.log("change")
+                }} className=" w-100 flex justify-center">{index+1}</div>
                 <div className="  flex justify-center w-100">{item  }</div>
-                <div className="  w-100 flex  justify-center ">{cummativeData[index]  }</div>
+                <div className="  w-100 flex  justify-center ">{totalDays[index]  }</div>
                 </SelectItem>
              
               
