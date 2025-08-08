@@ -189,7 +189,7 @@ export default function Home() {
                   <div className="flex justify-center mt-13 h-100 w-full relative">
                     <div className="absolute bottom-10  right-30 max-md:-right-2 rounded-full bg-indigo-600/20">
                       <Image
-                        width="55"
+                        width="50"
                         height="64"
                         src="https://img.icons8.com/external-becris-lineal-color-becris/64/external-maths-data-science-becris-lineal-color-becris.png"
                         alt="external-maths-data-science-becris-lineal-color-becris"
@@ -219,7 +219,7 @@ export default function Home() {
                         alt="external-history-literary-genres-becris-lineal-color-becris"
                       />
                     </div>
-                    <Image src={second} height={100} width={280} alt="secon" />
+                    <Image src={second} height={10} width={270} alt="secon" />
                   </div>
                 </motion.div>
 
