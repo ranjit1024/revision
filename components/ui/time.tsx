@@ -45,14 +45,14 @@ export default function TimePicker() {
       <div className="flex space-x-2">
         {/* Hours Select */}
         <Select value={selectedHour} onValueChange={setSelectedHour}>
-          <SelectTrigger className="w-[80px]">
-            <SelectValue placeholder="Hour" />
+          <SelectTrigger className="w-[90px]">
+            <SelectValue placeholder="Hours" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Hours</SelectLabel>
               {hours.map((hour) => (
-                <SelectItem key={hour} value={hour}>
+                <SelectItem className="p-2" key={hour} value={hour}>
                   {hour}
                 </SelectItem>
               ))}
@@ -66,10 +66,10 @@ export default function TimePicker() {
             <SelectValue placeholder="Min" />
           </SelectTrigger>
           <SelectContent>
-            <SelectGroup>
+            <SelectGroup  >
               <SelectLabel>Minutes</SelectLabel>
               {minutes.map((minute) => (
-                <SelectItem key={minute} value={minute}>
+                <SelectItem className="p-2" key={minute} value={minute}>
                   {minute}
                 </SelectItem>
               ))}
@@ -79,14 +79,14 @@ export default function TimePicker() {
 
         {/* AM/PM Select */}
         <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
-          <SelectTrigger className="w-[70px]">
+          <SelectTrigger className="w-[100px]">
             <SelectValue placeholder="AM/PM" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Period</SelectLabel>
               {periods.map((period) => (
-                <SelectItem key={period} value={period}>
+                <SelectItem className="p-2" key={period} value={period}>
                   {period}
                 </SelectItem>
               ))}

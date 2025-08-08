@@ -123,8 +123,8 @@ export default function Home({ children }: { children: ReactNode }) {
 
             <div className="w-[1] shadow-2xs h-10 border-r-1 border-chart  border-r-gray-300 bg-secondary-foreground "></div>
             {notification ? (
-              <div className="absolute bg-white space-y-4 border-1 border-gray-300 overflow-scroll h-[60vh] rounded-lg p-7 shadow top-11 right-2 scroll-smooth   ">
-                <h1 className="text-muted font-semibold ml-2">Notification</h1>
+              <div className="absolute bg-white space-y-1 border-1 border-gray-300 overflow-scroll h-[90vh] rounded-lg p-2 shadow top-11 right-2 scroll-smooth   ">
+                
                 <Notification />
                 <Notification />
                 <Notification />
@@ -139,7 +139,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 setNotification((prev) => !prev);
               }}
             >
-              <div className="  relative  p-1 w-fit rounded-full bg-white ">
+              <div className="  relative  p-1 w-fit rounded-full  bg-white border border-gray-100 hover:bg-accent/10 ">
                 <div className="absolute bg-white rounded-2xl p-[2.5px] right-[0.5rem] top-[0.2rem] border-[0.13rem] border-gray-500"></div>
                 <img
                   width="24"
