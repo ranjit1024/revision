@@ -8,7 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils"
 import { CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
-import { useNumber } from "../../app/context/DateContext"
+
 export function DateRangePicker({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -16,7 +16,7 @@ export function DateRangePicker({
     from: new Date(),
     to: new Date(),
   })
-  const { number, setNumber } = useNumber();
+
   const [open,setOpen] = React.useState(false)
   return (
     <div className={cn("grid gap-2", className)}>
@@ -58,7 +58,7 @@ export function DateRangePicker({
               const diff = (selelectData ?Number(selelectData?.to) - Number(selelectData?.from) : null);
             
               let result =  Math.ceil(diff ? diff / (1000 * 60 *60*24): 0);
-              setNumber(result)              
+                        
               
             }}
             numberOfMonths={2}

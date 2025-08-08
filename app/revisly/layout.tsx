@@ -14,7 +14,7 @@ import Profile from "@/components/ui/Profile";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { NumberProvider } from "../context/DateContext";
+
 import Image from "next/image";
 import Notification from "@/components/ui/notification";
 import Loader from "@/components/ui/loader";
@@ -311,7 +311,7 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
 
         <div className="p-3 w-[99%]   pt-15 h-[100vh] ">
-          <NumberProvider>{children}</NumberProvider>
+          {children}
         </div>
       </div>
     </div>

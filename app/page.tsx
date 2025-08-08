@@ -446,7 +446,7 @@ function Subjects({
 
 function EmailReminderCard() {
   return (
-    <div className="bg-white rounded-2xl shadow p-6 flex items-start gap-4 w-full max-w-md border border-gray-100 hover:shadow-xl  duration-300">
+    <div className="bg-white rounded-md shadow-xs p-6 flex items-start gap-4 mb-2 border border-gray-100 hover:shadow-xl  duration-300">
       <div className="bg-blue-500/10 text-blue-600 p-3 rounded-xl">
         <Mail className="w-6 h-6" />
       </div>

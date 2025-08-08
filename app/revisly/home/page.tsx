@@ -3,7 +3,7 @@ import { ChartBarLabelCustom } from "@/components/ui/last5";
 import {Retation} from "@/components/ui/retation";
 
 import { Calendar } from "@/components/ui/calendar";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {

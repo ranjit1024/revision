@@ -45,7 +45,7 @@ const chartConfig = {
 
 export function ChartBarLabelCustom() {
   return (
-    <Card className="h-[95%]">
+    <Card className="h-fit">
       <CardHeader>
         <CardTitle>Last 5 revision score</CardTitle>
         <CardDescription>Total score of last 5 revision</CardDescription>
@@ -78,7 +78,7 @@ export function ChartBarLabelCustom() {
             <Bar
               dataKey="desktop"
               layout="vertical"
-              fill="#1A1110"
+              fill="#505BDA"
               radius={4}
             >
               <LabelList

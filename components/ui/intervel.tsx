@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Minus, Plus } from "lucide-react"
 import { Bar, BarChart, ResponsiveContainer } from "recharts"
-import { useNumber } from "@/app/context/DateContext"
+
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -59,10 +59,10 @@ const data = [
 ]
 
 export function DrawerDemo() {
-  const { number, setNumber } = useNumber();
+  
   const [goal, setGoal] = React.useState(1)
   function onClick(adjustment: number) {
-    setGoal(Math.max(1, Math.min(number, goal + adjustment)))
+    setGoal(Math.max(1, Math.min(12, goal + adjustment)))
   }
 
   return (
@@ -109,7 +109,7 @@ export function DrawerDemo() {
             </div>
             <div className="flex justify-center text-sm text-muted">
 
-              <p className=" ">{ Math.ceil (number / goal)} revision reminder</p>
+              <p className=" ">{ Math.ceil (12 / goal)} revision reminder</p>
             </div>
             <div className="mt-3 h-[120px]">
               <ResponsiveContainer width="100%" height="100%">

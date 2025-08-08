@@ -29,7 +29,7 @@ const Test = ({  }) => {
   return (
     <motion.div
     variants={cardVariant}
-    className=" mx-auto  bg-white p-5 rounded-xl shadow-sm font-sans">
+    className=" bg-white p-5 rounded-xl shadow-sm font-sans">
       <div className="flex justify-between items-center">
         
         {/* Left Section: Topic and Date */}
