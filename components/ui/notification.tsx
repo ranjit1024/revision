@@ -1,24 +1,29 @@
 
-import { BellIcon } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function Notification() {
   return (
-    <div className="w-80 p-5 rounded-2xl bg-white  border border-gray-100 space-y-3">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-2 text-orange-500 font-medium text-sm">
-          <BellIcon className="w-4 h-4 " />
-          <span>Reminder</span>
-        </div>
-        <span className="text-xs text-gray-400">18/06/2025</span>
+   
+
+  
+    <div className="bg-white relative pb-8  p-6  flex items-start gap-4 border border-gray-100 rounded-xl">
+      <div className="bg-blue-500/10 text-blue-600 p-3 rounded-xl">
+        <Mail className="w-6 h-6" />
       </div>
-
-      <p className="text-gray-700 text-sm leading-relaxed">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, ab suscipit.
-      </p>
-
-      <button className="text-blue-600 hover:text-blue-700 transition text-sm font-semibold hover:underline underline-offset-2 hover:cursor-pointer">
-        Revise
-      </button>
+      <div className="flex flex-col justify-center">
+        <h3 className="text-base font-semibold text-gray-900">
+          Upcoming Email Reminder
+        </h3>
+        <p className="text-sm text-gray-600 mt-1">
+          We'll notify you at{" "}
+          <span className="font-medium text-gray-800">5:00 PM</span> today to
+          revise your topics.
+        </p>
+        <p className="mt-1 absolute bottom-[3px] right-2 text-orange-500/80 hover:text-orange-700 hover:cursor-pointer  hover:underline  h-fit text-sm ">revise</p>
+      </div>
+     
     </div>
+    
+    
   );
 }
