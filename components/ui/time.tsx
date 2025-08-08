@@ -1,102 +1,68 @@
-"use client"
-import * as React from "react"
-import { useState } from "react"
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import React, { ButtonHTMLAttributes, ChangeEvent, useState } from 'react'
+import { Input } from './input'
+import { se } from 'date-fns/locale';
+
 
 export default function TimePicker() {
-  const [selectedHour, setSelectedHour] = useState("")
-  const [selectedMinute, setSelectedMinute] = useState("")
-  const [selectedPeriod, setSelectedPeriod] = useState("")
+  
+  const hours = [1,2,3,4,5,6,7,8,9,10,11,12];
+  const minutes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
 
-  // Generate hours (01-12 for 12-hour format)
-  const hours = Array.from({ length: 12 }, (_, i) => 
-    String(i + 1).padStart(2, '0')
-  )
+  const [setTime, setSetTime] = useState<boolean>(false);
+  const [selectedHours, setSelectedHours] = useState<string>("");
+  const [selectedMinutes, setSelectedMinutes] = useState<string>("");
+  const [timeZone, setTimezone] = useState<string>("");
+  const [selectdTime, setSelectdTime] = useState<string | undefined>("");
+  return <div className='relative'>
+    <Input  placeholder='select Time'   onClick={()=>{
+      setSetTime(prev => !prev) 
+    }}></Input>
+    {
+      setTime ? <div className='absolute p-4 h-[25vh]  top-10   bg-white shadow w-100 mt-1 border rounded-md '>
+        <div className='grid grid-cols-[40%_40%_20%] justify-center items-center-safe'>
+          <div className='h-[20vh]   overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
+            <p className='text-center text-xs mb-1 font-medium text-muted'>Hours</p>
+            {
+              hours.map((item) => {
+                return <div key={item} className='w-[100%] flex justify-center '>
+                  <button onClick={(e:React.MouseEvent<HTMLButtonElement>)=>{
+                      setSelectedHours(e?.currentTarget?.value);
+                      console.log(e?.currentTarget?.value)
+                  }} value={item} className={` ${selectedHours === String(item) ? 'bg-primary text-white': null} hover:bg-amber-300 focus:bg-primary focus:text-white rounded-4xl hover:cursor-pointer  flex justify-center items-center px-4 py-2 mb-1`}>{item}</button>
+                  </div>
+              })
+            }
+            </div>
+          <div className='h-[20vh] overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
+            <p className='text-center text-xs font-medium text-muted mb-1'>Minutes</p>
+            {
+              minutes.map((item) => {
+                return <div key={item} className='w-[100%] flex justify-center '>
+                  <button onClick={(e:React.MouseEvent<HTMLButtonElement>)=>{
+                     
+                    setSelectedMinutes(e.currentTarget.value);
 
-  // Generate minutes (00-59)
-  const minutes = Array.from({ length: 60 }, (_, i) => 
-    String(i).padStart(2, '0')
-  )
-
-  const periods = ["AM", "PM"]
-
-  const displayTime = () => {
-    if (selectedHour && selectedMinute && selectedPeriod) {
-      return `${selectedHour}:${selectedMinute} ${selectedPeriod}`
+                  }} className={` ${selectedMinutes === String(item) ? 'bg-primary text-white':null} hover:bg-amber-300 focus:bg-primary focus:text-white rounded-4xl hover:cursor-pointer  flex justify-center items-center px-4 py-2 mb-1 `} value={item}>{item}</button>
+                  </div>
+              })
+            }
+            </div>
+          <div className='overflow-auto'>
+            <button onClick={(e)=>{
+              setSetTime(false)
+               setTimezone(e.currentTarget.value)
+              
+            }} value={'AM'} className='hover:bg-amber-300 w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900'>AM</button>
+            <button onClick={(e)=>{
+              setSetTime(false)
+              setTimezone(e.currentTarget.value)
+            }} value={'PM'} className='hover:bg-amber-300 w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900'>PM</button>
+            
+            
+            </div>
+          </div>
+        </div>:null
     }
-    
-  }
-
-  return (
-    <div className="flex flex-col ">
-      {/* Display selected time */}
-    
-      
-      {/* Three Select components side by side */}
-      <div className="flex space-x-2">
-        {/* Hours Select */}
-        <Select value={selectedHour} onValueChange={setSelectedHour}>
-          <SelectTrigger className="w-[90px]">
-            <SelectValue placeholder="Hours" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Hours</SelectLabel>
-              {hours.map((hour) => (
-                <SelectItem className="p-2" key={hour} value={hour}>
-                  {hour}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
-        {/* Minutes Select */}
-        <Select value={selectedMinute} onValueChange={setSelectedMinute}>
-          <SelectTrigger className="w-[80px]">
-            <SelectValue placeholder="Min" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup  >
-              <SelectLabel>Minutes</SelectLabel>
-              {minutes.map((minute) => (
-                <SelectItem className="p-2" key={minute} value={minute}>
-                  {minute}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
-        {/* AM/PM Select */}
-        <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
-          <SelectTrigger className="w-[100px]">
-            <SelectValue placeholder="AM/PM" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Period</SelectLabel>
-              {periods.map((period) => (
-                <SelectItem className="p-2" key={period} value={period}>
-                  {period}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="text-sm font-medium mt-2 text-muted" >
-      your session shedule at <span className="text-muted-foreground ">{displayTime()}</span>
-      </div>
-    </div>
-  )
+  </div>
 }
