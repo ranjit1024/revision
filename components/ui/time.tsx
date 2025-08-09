@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
-import { trace } from "console";
+import { time, trace } from "console";
+
 
 export default function TimePicker() {
   const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -22,9 +23,9 @@ export default function TimePicker() {
   const DEFAULT_MINUTE = "04";
 
   const [setTime, setSetTime] = useState<boolean>(false);
-  const [selectedHours, setSelectedHours] = useState<string>("");
-  const [selectedMinutes, setSelectedMinutes] = useState<string>("");
-  const [timeZone, setTimezone] = useState<string>("");
+  const [selectedHours, setSelectedHours] = useState<string>("5");
+  const [selectedMinutes, setSelectedMinutes] = useState<string>("00");
+  const [timeZone, setTimezone] = useState<string>("AM");
   const [selectdTime, setSelectdTime] = useState<string | undefined>("");
   const minButtonRef = useRef<Record<string, HTMLButtonElement | null>>({});
   const hourButtonRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -59,9 +60,11 @@ export default function TimePicker() {
     return () => document.removeEventListener("click",hide)
   },[setTime])
   return (
-    <div className="relative z-10 " ref={dropdownRef}>
+    <div className="relative z-10"  ref={dropdownRef}>
       <Input
+        readOnly
         placeholder="select A time when you want to revise "
+        value={`${selectedHours}:${selectedMinutes} ${timeZone}`}
         onClick={() => {
           setSetTime((prev) => !prev);
         }}
@@ -131,7 +134,7 @@ export default function TimePicker() {
                   setTimezone(e.currentTarget.value);
                 }}
                 value={"AM"}
-                className=" hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900"
+                className={` hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${timeZone === "AM" ? 'bg-primary text-white':null}`}
               >
                 AM
               </button>
@@ -141,7 +144,7 @@ export default function TimePicker() {
                   setTimezone(e.currentTarget.value);
                 }}
                 value={"PM"}
-                className="hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 hover:caret-rose-700"
+                className={`hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${timeZone === "PM" ? 'bg-primary text-white':null}`}
               >
                 PM
               </button>
