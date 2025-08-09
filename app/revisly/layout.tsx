@@ -123,8 +123,12 @@ export default function Home({ children }: { children: ReactNode }) {
 
             <div className="w-[1] shadow-2xs h-10 border-r-1 border-chart  border-r-gray-300 bg-secondary-foreground "></div>
             {notification ? (
-              <div className="absolute bg-white space-y-1 border-1 border-gray-300 overflow-scroll h-[90vh] rounded-lg p-2 shadow top-11 right-2 scroll-smooth   ">
+              <div className="absolute [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]' bg-white space-y-1 border-1 border-gray-300 overflow-scroll h-[90vh] rounded-lg p-2 shadow top-11 right-2 scroll-smooth   ">
                 
+                <Notification />
+                <Notification />
+                <Notification />
+                <Notification />
                 <Notification />
                 <Notification />
                 <Notification />

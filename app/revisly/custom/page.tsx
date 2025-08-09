@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { DrawerDemo } from "@/components/ui/intervel";
 import { Label } from "@/components/ui/label";
 import { DateRangePicker } from "@/components/ui/range";
-import TimePicker from "@/components/ui/time";
+
 import { Sparkles } from "lucide-react";
 export default function Home() {
   return (
@@ -71,7 +71,7 @@ export default function Home() {
         </div>
         <div className="w-100 mt-7 hover:cursor-pointer  ">
           <Label className="pb-2">Select Time</Label>
-          <TimePicker />
+      
         </div>
 
         <div className="mt-8 hover:cursor-pointer  ">

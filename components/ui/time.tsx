@@ -1,7 +1,7 @@
-
+"use client"
 import React, { ButtonHTMLAttributes, ChangeEvent, useState } from 'react'
 import { Input } from './input'
-import { se } from 'date-fns/locale';
+
 
 
 export default function TimePicker() {
@@ -19,9 +19,9 @@ export default function TimePicker() {
       setSetTime(prev => !prev) 
     }}></Input>
     {
-      setTime ? <div className='absolute p-4 h-[25vh]  top-10   bg-white shadow w-100 mt-1 border rounded-md '>
+      setTime ? <div className='absolute p-4 h-[30vh]  top-10   bg-white shadow w-100 mt-1 border rounded-md '>
         <div className='grid grid-cols-[40%_40%_20%] justify-center items-center-safe'>
-          <div className='h-[20vh]   overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
+          <div className='h-[25vh]   overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
             <p className='text-center text-xs mb-1 font-medium text-muted'>Hours</p>
             {
               hours.map((item) => {
@@ -34,7 +34,7 @@ export default function TimePicker() {
               })
             }
             </div>
-          <div className='h-[20vh] overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
+          <div className='h-[25vh] overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
             <p className='text-center text-xs font-medium text-muted mb-1'>Minutes</p>
             {
               minutes.map((item) => {
