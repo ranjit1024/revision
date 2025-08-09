@@ -26,7 +26,7 @@ export default function Home() {
   }, [data]);
 
   return (
-    <div className="h-[90vh] ">
+    <div className="h-[10vh] ">
       <div className="bg-white shadow p-5 rounded-md ">
         <p className="font-bold text-2xl text-neutral-800">
           Set Revision Reminder
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
 
           <div className="w-100 mt-7 hover:cursor-pointer  ">
-            <Label className="pb-2">Select Time</Label>
+            <Label className="pb-2">Select Revsion Time</Label>
             <TimePicker />
           </div>
 
@@ -61,10 +61,11 @@ export default function Home() {
           </div>
 
           <Button
+            disabled
             onClick={() => {
               console.log("data");
             }}
-            className="mt-8 bg-secondary hover:cursor-pointer"
+            className="mt-8 bg-secondary -z-10 hover:cursor-pointer"
           >
             Set Revision Reminder
           </Button>

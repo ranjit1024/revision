@@ -19,7 +19,7 @@ export default  function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${inter.variable} font-mona antialiased text-black`}
+        className={`${inter.className} ${inter.variable}  font-mona antialiased text-black`}
       >
         <Providers>
         {children}

@@ -28,7 +28,7 @@ export default function Home() {
 
                 {/* Description */}
                 <p className="text-neutral-900 mb-6 ml-2">
-                  Hi, I would like to make this feature free,But i need pay for server so kindly pay...
+                  Hi, I would like to make this feature free, But i need pay for servers...
                 </p>
                
                 
