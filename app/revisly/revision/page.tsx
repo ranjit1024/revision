@@ -14,6 +14,9 @@ export default function Home() {
   const sessionData = useSelector((state: RootState) => {
     const data = {
       topic: state.revision.topic,
+      sessionInteve: state.revision.sessionIntervel,
+      sessions: state.revision.sessions,
+      time: state.revision.time
     };
     return data;
   });

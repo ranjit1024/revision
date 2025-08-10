@@ -31,8 +31,17 @@ export function SelectScrollable() {
     <Select
       onValueChange={(e) => {
         setShowdetails(true);
-        const item = JSON.parse(e);
-
+        const item : {
+          days:number
+        } = JSON.parse(e);
+        
+        dispatch(actions.addSessionInterl({
+          sessionIntervel : intervel.filter(data =>  data < item.days),
+          
+        }))
+        dispatch(actions.addSessions({
+          sessions:intervel.filter(data =>  data < item.days).length
+        }))
       }}
     >
       <p className="text-sm font-medium mb-1">Selet Revison Intervel</p>

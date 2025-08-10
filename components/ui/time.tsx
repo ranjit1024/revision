@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
-import { time, trace } from "console";
+import { useDispatch } from "react-redux";
+import { actions } from "@/store/slices/revison";
 
 
 export default function TimePicker() {
+  const dispatch = useDispatch();
   const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const minutes: string[] = [
     "00",
@@ -26,7 +28,6 @@ export default function TimePicker() {
   const [selectedHours, setSelectedHours] = useState<string>("5");
   const [selectedMinutes, setSelectedMinutes] = useState<string>("00");
   const [timeZone, setTimezone] = useState<string>("AM");
-  const [selectdTime, setSelectdTime] = useState<string | undefined>("");
   const minButtonRef = useRef<Record<string, HTMLButtonElement | null>>({});
   const hourButtonRef = useRef<Record<string, HTMLButtonElement | null>>({});
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -132,6 +133,9 @@ export default function TimePicker() {
                 onClick={(e) => {
                   setSetTime(false);
                   setTimezone(e.currentTarget.value);
+                  dispatch(actions.addTime({
+                    time:`${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`
+                  }))
                 }}
                 value={"AM"}
                 className={` hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${timeZone === "AM" ? 'bg-primary text-white':null}`}
@@ -142,6 +146,9 @@ export default function TimePicker() {
                 onClick={(e) => {
                   setSetTime(false);
                   setTimezone(e.currentTarget.value);
+                   dispatch(actions.addTime({
+                    time:`${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`
+                  }))
                 }}
                 value={"PM"}
                 className={`hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${timeZone === "PM" ? 'bg-primary text-white':null}`}
