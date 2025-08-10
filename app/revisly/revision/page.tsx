@@ -5,32 +5,19 @@ import { SelectScrollable } from "@/components/ui/defaultIntervel";
 import { Button } from "@/components/ui/button";
 import { useSelector, UseSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
-import { ChangeEvent, useEffect, useState } from "react";
-import { revisionSchemaType } from "@/app/api/revision/route";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { AppDispatch, RootState } from "@/store/store";
 export default function Home() {
   const dispatch = useDispatch();
-  const sessionData = useSelector((state:RootState)=>{
-    return  state.revision.topic
-  })
-  const [data, setData] = useState<revisionSchemaType>({
-    sessionTopic: "",
-    sessionIntervel: "",
-    sessionTime: "",
+  const sessionData = useSelector((state: RootState) => {
+    const data = {
+      topic: state.revision.topic,
+    };
+    return data;
   });
 
-  const handleChnage = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-
-  
   return (
     <div className="h-[10vh] ">
       <div className="bg-white shadow p-5 rounded-md ">
@@ -46,9 +33,12 @@ export default function Home() {
             <div className="w-[100%] ">
               <Label className="mb-2 ">Topic Name</Label>
               <Input
-                name="sessionTopic"
-                value={data.sessionTopic}
-                onChange={handleChnage}
+                onBlur={(e) => {
+                  console.log(e.currentTarget.value);
+                  dispatch(actions.addTopic({
+                    topic:e.currentTarget.value
+                  }))
+                }}
                 placeholder="Enter Topic Name"
               ></Input>
             </div>
@@ -67,12 +57,8 @@ export default function Home() {
           </div>
 
           <Button
-            
             onClick={() => {
-              dispatch(actions.addSession({
-                  topic:data.sessionTopic
-              }))
-              console.log(sessionData)
+              console.log(sessionData);
             }}
             className="mt-8 bg-secondary -z-10 hover:cursor-pointer"
           >

@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   Select,
   SelectContent,
@@ -10,26 +10,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { actions } from "@/store/slices/revison";
 
 export function SelectScrollable() {
+  const dispatch = useDispatch();
   const intervel = [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
   const totalDays = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875];
   const [showDetails, setShowdetails] = React.useState(false);
+  const [selectedIntervel, setSelectdIntervel] = React.useState<
+    number[] | undefined
+  >([]);
+  const [selectdSession, setSelectedSession] = React.useState<number[] | null>([]);
   const [value, setValue] = React.useState<{
     revision: number;
     days: number;
     totalDays: number;
   } | null>(null);
- 
+
   return (
     <Select
       onValueChange={(e) => {
         setShowdetails(true);
         const item = JSON.parse(e);
-        console.log(e)
-        setValue(item);
-        console.log(item)
+
       }}
     >
       <p className="text-sm font-medium mb-1">Selet Revison Intervel</p>
@@ -38,6 +41,7 @@ export function SelectScrollable() {
       </SelectTrigger>
       <SelectContent
         onChange={() => {
+          
           console.log("done");
         }}
       >
@@ -59,7 +63,6 @@ export function SelectScrollable() {
           {intervel.map((item, index) => {
             return (
               <SelectItem
-              
                 value={JSON.stringify({
                   revision: index,
                   days: intervel[index],
