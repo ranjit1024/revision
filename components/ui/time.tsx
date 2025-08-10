@@ -4,7 +4,6 @@ import { Input } from "./input";
 import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
 
-
 export default function TimePicker() {
   const dispatch = useDispatch();
   const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -30,7 +29,7 @@ export default function TimePicker() {
   const [timeZone, setTimezone] = useState<string>("AM");
   const minButtonRef = useRef<Record<string, HTMLButtonElement | null>>({});
   const hourButtonRef = useRef<Record<string, HTMLButtonElement | null>>({});
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (minButtonRef.current[selectedMinutes]) {
       minButtonRef.current[selectedMinutes]?.scrollIntoView({
@@ -49,19 +48,20 @@ export default function TimePicker() {
     }
   }, [setTime]);
 
-
-  useEffect(()=>{
-    function hide(e:MouseEvent){
-      if(dropdownRef.current && !dropdownRef.current.contains(e.target as Node)){
+  useEffect(() => {
+    function hide(e: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setSetTime(false);
-
       }
     }
-    document.addEventListener("click",hide)
-    return () => document.removeEventListener("click",hide)
-  },[setTime])
+    document.addEventListener("click", hide);
+    return () => document.removeEventListener("click", hide);
+  }, [setTime]);
   return (
-    <div className="relative z-10"  ref={dropdownRef}>
+    <div className="relative z-10" ref={dropdownRef}>
       <Input
         readOnly
         placeholder="select A time when you want to revise "
@@ -133,12 +133,16 @@ export default function TimePicker() {
                 onClick={(e) => {
                   setSetTime(false);
                   setTimezone(e.currentTarget.value);
-                  dispatch(actions.addTime({
-                    time:`${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`
-                  }))
+                  dispatch(
+                    actions.addTime({
+                      time: `${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`,
+                    })
+                  );
                 }}
                 value={"AM"}
-                className={` hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${timeZone === "AM" ? 'bg-primary text-white':null}`}
+                className={` hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${
+                  timeZone === "AM" ? "bg-primary text-white" : null
+                }`}
               >
                 AM
               </button>
@@ -146,12 +150,16 @@ export default function TimePicker() {
                 onClick={(e) => {
                   setSetTime(false);
                   setTimezone(e.currentTarget.value);
-                   dispatch(actions.addTime({
-                    time:`${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`
-                  }))
+                  dispatch(
+                    actions.addTime({
+                      time: `${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`,
+                    })
+                  );
                 }}
                 value={"PM"}
-                className={`hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${timeZone === "PM" ? 'bg-primary text-white':null}`}
+                className={`hover:bg-amber-300 hover:cursor-pointer w-[100%] mb-2 rounded-md text-center text-sm py-1  font-medium text-gray-900 ${
+                  timeZone === "PM" ? "bg-primary text-white" : null
+                }`}
               >
                 PM
               </button>
