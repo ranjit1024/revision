@@ -3,16 +3,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SelectScrollable } from "@/components/ui/defaultIntervel";
 import { Button } from "@/components/ui/button";
+import { useSelector, UseSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
-
+import { useDispatch } from 'react-redux';
+import { actions } from "@/store/slices/revison";
 import { ChangeEvent, useEffect, useState } from "react";
 import { revisionSchemaType } from "@/app/api/revision/route";
+import { AppDispatch, RootState } from "@/store/store";
 export default function Home() {
+  const dispatch = useDispatch();
+  const sessionDate = useSelector((state:RootState)=>{
+    return  state.revision.session
+  })
   const [data, setData] = useState<revisionSchemaType>({
     sessionTopic: "",
     sessionIntervel: "",
     sessionTime: "",
   });
+
   const handleChnage = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData((prev) => ({
@@ -21,10 +29,8 @@ export default function Home() {
     }));
   };
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
+  
   return (
     <div className="h-[10vh] ">
       <div className="bg-white shadow p-5 rounded-md ">
@@ -61,9 +67,12 @@ export default function Home() {
           </div>
 
           <Button
-            disabled
+            
             onClick={() => {
-              console.log("data");
+              dispatch(actions.addSession({
+                session:data.sessionTopic
+              }))
+              console.log(sessionDate)
             }}
             className="mt-8 bg-secondary -z-10 hover:cursor-pointer"
           >

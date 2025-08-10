@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ExpandIcon } from "lucide-react";
 interface sesionType{
-    topic:string,
-    session:string,
-    time:string
+    topic?:string,
+    session?:string,
+    time?:string
 }
 const initialState : sesionType ={
     topic:"",
@@ -12,7 +12,7 @@ const initialState : sesionType ={
 }
 
 export const sessionSlice = createSlice({
-    name:"session",
+    name:"revision",
     initialState,
     reducers:{
       addSession(state, action:PayloadAction<sesionType>){

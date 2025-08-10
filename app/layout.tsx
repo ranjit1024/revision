@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {  Mona_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../lib//provider";
-
+import { Provider } from "react-redux";
 
 const inter = Mona_Sans({
   subsets: ['latin'],
@@ -21,9 +21,14 @@ export default  function RootLayout({
       <body
         className={`${inter.className} ${inter.variable}  font-mona antialiased text-black`}
       >
+        
+
+     
         <Providers>
         {children}
+        
         </Providers>
+
       </body>
     </html>
   );

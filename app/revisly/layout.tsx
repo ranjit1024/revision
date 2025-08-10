@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useRef, useState } from "react";
-
+import { store } from "@/store/store";
+import { Provider } from "react-redux";
 import newUser from "@/lib/actions/newUser";
 import {
   LayoutDashboardIcon,
@@ -25,6 +26,7 @@ export default function Home({ children }: { children: ReactNode }) {
   const drpodownRef = useRef<HTMLDivElement>(null);
   const [notification, setNotification] = useState(false);
   const notificationRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (status === "loading") return;
     if (!session) {
@@ -66,6 +68,9 @@ export default function Home({ children }: { children: ReactNode }) {
   if (status === "loading") return <Loader />;
   if (!session) return null;
   return (
+    <Provider store={store}>
+
+   
     <div className="h-[100%] relative bg-gray-100 ">
       <motion.div
         initial={{
@@ -319,5 +324,6 @@ export default function Home({ children }: { children: ReactNode }) {
         </div>
       </div>
     </div>
+    </Provider>
   );
 }

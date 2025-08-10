@@ -5,9 +5,11 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import {DialogCloseButton} from "@/components/ui/deletePermently";
 export default function Home(){
     const { data: session } = useSession();
     return <div className="px-15 py-10 bg-white rounded-2xl">
+    
         <div className="flex justify-between items-center gap-4">
             <div className="flex items-center gap-3">
      <Image src={User} height={200} width={70} className="rounded-full" alt="Profile"/>
@@ -38,8 +40,8 @@ export default function Home(){
       
 
         </div>
-        <div className="text-start">
-        <Button className=" bg-destructive/70 mt-5 text-end hover:bg-destructive/90 hover:cursor-pointer">Delect my account</Button>
+        <div className="text-start mt-5">
+       <DialogCloseButton/>
         </div>
     </div>
 }
