@@ -21,12 +21,13 @@ model User {
 }
 
 model Revisions {
-  id             Int      @id @unique @default(autoincrement())
-  email          String
-  topic          String
-  session        String
-  time           DateTime
-  createdSession DateTime @default(now())
-  endSession     DateTime
-  user           User     @relation(fields: [email], references: [email])
+  id               Int      @id @unique @default(autoincrement())
+  email            String
+  topic            String
+  sessionsintervel Int[]
+  sessions         Int[]
+  time             DateTime
+  createdSession   DateTime @default(now())
+  endSession       DateTime
+  user             User     @relation(fields: [email], references: [email])
 }

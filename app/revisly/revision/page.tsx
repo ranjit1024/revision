@@ -12,8 +12,8 @@ import { revisionSchemaType } from "@/app/api/revision/route";
 import { AppDispatch, RootState } from "@/store/store";
 export default function Home() {
   const dispatch = useDispatch();
-  const sessionDate = useSelector((state:RootState)=>{
-    return  state.revision.session
+  const sessionData = useSelector((state:RootState)=>{
+    return  state.revision.topic
   })
   const [data, setData] = useState<revisionSchemaType>({
     sessionTopic: "",
@@ -70,9 +70,9 @@ export default function Home() {
             
             onClick={() => {
               dispatch(actions.addSession({
-                session:data.sessionTopic
+                  topic:data.sessionTopic
               }))
-              console.log(sessionDate)
+              console.log(sessionData)
             }}
             className="mt-8 bg-secondary -z-10 hover:cursor-pointer"
           >
