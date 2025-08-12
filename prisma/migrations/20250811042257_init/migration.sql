@@ -17,10 +17,11 @@ CREATE TABLE "Revisions" (
     "email" TEXT NOT NULL,
     "topic" TEXT NOT NULL,
     "sessionsintervel" INTEGER[],
-    "sessions" INTEGER[],
+    "sessions" INTEGER NOT NULL,
     "time" TIMESTAMP(3) NOT NULL,
     "createdSession" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "endSession" TIMESTAMP(3) NOT NULL,
+    "totalDays" INTEGER NOT NULL,
 
     CONSTRAINT "Revisions_pkey" PRIMARY KEY ("id")
 );

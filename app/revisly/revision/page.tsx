@@ -7,14 +7,15 @@ import { useSelector, UseSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
 import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { AppDispatch, RootState } from "@/store/store";
+import React from "react";
+import {  RootState } from "@/store/store";
+import axios from "axios"
 export default function Home() {
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
     const data = {
       topic: state.revision.topic,
-      sessionInteve: state.revision.sessionIntervel,
+      sessionIntervel: state.revision.sessionIntervel,
       sessions: state.revision.sessions,
       time: state.revision.time
     };
@@ -62,6 +63,9 @@ export default function Home() {
           <Button
             onClick={() => {
               console.log(sessionData);
+              axios.post('http://localhost:3000/api/revision',
+                sessionData
+              )
             }}
             className="mt-8 bg-secondary -z-10 hover:cursor-pointer"
           >

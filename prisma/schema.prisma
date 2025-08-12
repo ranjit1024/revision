@@ -25,9 +25,10 @@ model Revisions {
   email            String
   topic            String
   sessionsintervel Int[]
-  sessions         Int[]
+  sessions         Int
   time             DateTime
   createdSession   DateTime @default(now())
   endSession       DateTime
+  totalDays        Int
   user             User     @relation(fields: [email], references: [email])
 }

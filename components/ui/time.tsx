@@ -135,7 +135,7 @@ export default function TimePicker() {
                   setTimezone(e.currentTarget.value);
                   dispatch(
                     actions.addTime({
-                      time: `${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`,
+                      time: `${selectedHours}:${selectedMinutes}${e.currentTarget.value}`
                     })
                   );
                 }}
@@ -152,7 +152,7 @@ export default function TimePicker() {
                   setTimezone(e.currentTarget.value);
                   dispatch(
                     actions.addTime({
-                      time: `${selectedHours} : ${selectedMinutes} ${e.currentTarget.value}`,
+                      time: `${selectedHours}:${selectedMinutes}${e.currentTarget.value}`,
                     })
                   );
                 }}
