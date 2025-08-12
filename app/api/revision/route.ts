@@ -6,6 +6,9 @@ import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 
 const intervel = [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
+ const alllowdTotalDays:number[] = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875] as  const;
+
+//function to get user selected time into date type
 function getSelectedDateAndTime(time:string):Date{
   const today = new Date().toISOString().split('T')[0]
   const [year,month,day] = today.split('-').map(Number);
@@ -20,6 +23,13 @@ function getSelectedDateAndTime(time:string):Date{
     const  convertedDate = new Date(year,(month - 1),day, hours24,minute,0,0);
     return convertedDate
 }
+//function for calculating endsesionDate
+function calculatingEndDate(value:number):Date{
+  const date = new Date();
+  date.setDate(date.getDate() + value);
+  return date;
+}
+// all zod schemas
 const validation = z.object({
   topic: z.string(),
   sessionIntervel: z.array(z.number().refine((num) => intervel.includes(num))),
@@ -34,6 +44,10 @@ const validation = z.object({
       const [hours, minutes] = timepart.split(":").map(Number);
       return hours >= 1 && hours <= 12 && minutes >= 0 && minutes <= 59;
     }),
+    totaldays: z.number()
+    .refine((val) => alllowdTotalDays.includes(val),{
+      message:'enter correct number'
+    })
 });
 
 export async function POST(req: NextRequest, res: NextResponse) {
@@ -53,7 +67,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 
   console.log(sessionSchema.data.time);
-  console.log(getSelectedDateAndTime(sessionSchema.data.time).toLocaleString())
+  console.log(getSelectedDateAndTime(sessionSchema.data.time).toLocaleString());
+  console.log('end session',calculatingEndDate(sessionSchema.data.totaldays).toLocaleDateString())
   
   
   const createUser = await prisma.revisions.create({
@@ -62,8 +77,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       topic: String(sessionSchema.data.topic),
       sessionsintervel: sessionSchema.data.sessionIntervel,
       time: getSelectedDateAndTime(sessionSchema.data.time),
-      endSession: new Date(),
-      totalDays: 12,
+      endSession: calculatingEndDate(sessionSchema.data.totaldays),
+      totalDays: sessionSchema.data.totaldays,
       sessions: sessionSchema.data.sessionIntervel.length,
     },
   });

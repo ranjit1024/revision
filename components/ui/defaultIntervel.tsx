@@ -11,7 +11,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { actions } from "@/store/slices/revison";
-
+interface intervelType{
+revision: number;
+    days: number;
+    totalDays: number;
+}
 export function SelectScrollable() {
   const dispatch = useDispatch();
   const intervel = [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
@@ -21,19 +25,24 @@ export function SelectScrollable() {
     number[] | undefined
   >([]);
   const [selectdSession, setSelectedSession] = React.useState<number[] | null>([]);
-  const [value, setValue] = React.useState<{
-    revision: number;
-    days: number;
-    totalDays: number;
-  } | null>(null);
+  const [value, setValue] = React.useState< intervelType | null>(null);
 
   return (
     <Select
       onValueChange={(e) => {
         setShowdetails(true);
-        const item : {
-          days:number
-        } = JSON.parse(e);
+        const item :intervelType  = JSON.parse(e);
+        
+        setValue(prev =>  {
+          return {
+
+            ...prev,
+            revision:item.revision,
+            days:item.days,
+            totalDays:item.totalDays
+          }
+        });
+        console.log(item.totalDays)
         
         dispatch(actions.addSessionInterl({
           sessionIntervel : intervel.filter(data =>  data < item.days),
@@ -41,6 +50,10 @@ export function SelectScrollable() {
         }))
         dispatch(actions.addSessions({
           sessions:intervel.filter(data =>  data < item.days).length
+        }))
+
+        dispatch(actions.addTotalDays({
+          totalDays:item.totalDays
         }))
       }}
     >

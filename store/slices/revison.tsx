@@ -3,29 +3,29 @@ interface sessionType {
   topic?: string;
   sessions?: number;
   time?: string;
-  sessionIntervel ?: number[],
+  sessionIntervel?: number[];
   totalDays?: number;
-
 }
-
-
 
 export const sessionSlice = createSlice({
   name: "revision",
-  initialState : {} as sessionType,
+  initialState: {} as sessionType,
   reducers: {
     addTopic(state, action: PayloadAction<sessionType>) {
-      state.topic = action.payload.topic
+      state.topic = action.payload.topic;
     },
-    addSessionInterl(state, action: PayloadAction<sessionType>){
-      state.sessionIntervel  = action.payload.sessionIntervel
+    addSessionInterl(state, action: PayloadAction<sessionType>) {
+      state.sessionIntervel = action.payload.sessionIntervel;
     },
-    addSessions(state, action: PayloadAction<sessionType>){
-      state.sessions = action.payload.sessions
+    addSessions(state, action: PayloadAction<sessionType>) {
+      state.sessions = action.payload.sessions;
     },
-    addTime(state,action:PayloadAction<sessionType>){
+    addTime(state, action: PayloadAction<sessionType>) {
       state.time = action.payload.time;
-    }
+    },
+    addTotalDays(state, action: PayloadAction<sessionType>) {
+      state.totalDays = action.payload.totalDays;
+    },
   },
 });
 

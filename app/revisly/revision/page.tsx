@@ -3,14 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SelectScrollable } from "@/components/ui/defaultIntervel";
 import { Button } from "@/components/ui/button";
-import { useSelector, UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
 import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
 import React from "react";
 import {  RootState } from "@/store/store";
 import axios from "axios"
-import { Progress } from "@/components/ui/progress"
 export default function Home() {
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {

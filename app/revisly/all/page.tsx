@@ -1,6 +1,4 @@
 'use client'
-import Card from "@/components/ui/revisionCard"
-import RevisionCard from "@/components/ui/score";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import RevisionSessionCard from "@/components/ui/revisionCard";
@@ -52,10 +50,5 @@ export default function Home(){
   progress={65}
    tags={["math","integration","practice"]}
   />
-  
-       
-      
-  
-        
     </motion.div>
 }
