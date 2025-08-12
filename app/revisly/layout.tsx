@@ -179,7 +179,7 @@ export default function Home({ children }: { children: ReactNode }) {
             className=" bg-white    h-[100vh] w-[20%]   left-0 fixed z-2  border-r-1  border-gray-200/90   "
           >
             <div
-              className=" p-4  pt-15 space-y-2  
+              className=" p-4  pt-15 space-y-1  
         
         "
             >
@@ -198,9 +198,12 @@ export default function Home({ children }: { children: ReactNode }) {
                 onClick={() => {
                   router.push("/revisly/home");
                 }}
-                className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+                className="flex  items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
               >
+                <div className="">
                 <LayoutDashboardIcon className="size-4 text-gray-900" />
+
+                </div>
                 <p className="text-sm text-neutral-800 font-medium ">
                   Dashboard
                 </p>
@@ -224,7 +227,9 @@ export default function Home({ children }: { children: ReactNode }) {
                 }}
                 className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
               >
+                
                 <NotebookIcon className="size-4 text-gray-900" />
+           
                 <p className="text-sm text-neutral-800 font-medium">
                   All Revision Notes
                 </p>

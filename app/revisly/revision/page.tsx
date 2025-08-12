@@ -10,6 +10,7 @@ import { actions } from "@/store/slices/revison";
 import React from "react";
 import {  RootState } from "@/store/store";
 import axios from "axios"
+import { Progress } from "@/components/ui/progress"
 export default function Home() {
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
@@ -17,7 +18,8 @@ export default function Home() {
       topic: state.revision.topic,
       sessionIntervel: state.revision.sessionIntervel,
       sessions: state.revision.sessions,
-      time: state.revision.time
+      time: state.revision.time,
+      totaldays:state.revision.totalDays
     };
     return data;
   });
@@ -57,9 +59,9 @@ export default function Home() {
           </div>
 
           <div>
-            {/* <Lottie animationData={animaiton} loop={true} className="size-10"  /> */}
+            {/* <Progress value={33} /> */}
           </div>
-
+            
           <Button
             onClick={() => {
               console.log(sessionData);
