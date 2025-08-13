@@ -10,6 +10,7 @@ import { actions } from "@/store/slices/revison";
 import React from "react";
 import {  RootState } from "@/store/store";
 import axios from "axios"
+import Lottie from "lottie-react";
 export default function Home() {
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {

@@ -231,7 +231,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 <NotebookIcon className="size-4 text-gray-900" />
            
                 <p className="text-sm text-neutral-800 font-medium">
-                  All Revision Notes
+                  All Revision sessions
                 </p>
               </motion.div>
               <motion.div
