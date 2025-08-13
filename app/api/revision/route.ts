@@ -4,9 +4,19 @@ import z, { number } from "zod";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
-
+import {Redis} from "@upstash/redis";
+import { redirect } from "next/dist/server/api-utils";
+import { json } from "stream/consumers";
+// {
+//     "topic":"maths",
+//     "sessionIntervel": [1,2,4],
+//     "sessions":2,
+//     "time":"5:30PM",
+//     "totaldays":7
+// }
 const intervel = [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
  const alllowdTotalDays:number[] = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875] as  const;
+const redis = Redis.fromEnv();
 
 //function to get user selected time into date type
 function getSelectedDateAndTime(time:string):Date{
@@ -40,7 +50,7 @@ const validation = z.object({
     .max(7)
     .regex(/^\d{1,2}:\d{2}[AP]M$/, "Invalid time format")
     .refine((time) => {
-      const timepart = time.slice(0, -2); // Remove AM/PM
+      const timepart = time.slice(0, -2); 
       const [hours, minutes] = timepart.split(":").map(Number);
       return hours >= 1 && hours <= 12 && minutes >= 0 && minutes <= 59;
     }),
@@ -70,7 +80,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   console.log(getSelectedDateAndTime(sessionSchema.data.time).toLocaleString());
   console.log('end session',calculatingEndDate(sessionSchema.data.totaldays).toLocaleDateString())
   
-  
   const createUser = await prisma.revisions.create({
     data: {
       email: String(session?.user?.email),
@@ -83,6 +92,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     },
   });
   console.log(createUser);
+  const sendToWorker = await redis.lpush('revision', sessionSchema.data.topic);
+  console.log(sendToWorker)
   return NextResponse.json({
     msg: "this is working",
   });
