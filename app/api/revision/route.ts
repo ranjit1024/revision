@@ -6,7 +6,8 @@ import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import {Redis} from "@upstash/redis";
 import { redirect } from "next/dist/server/api-utils";
-import { json } from "stream/consumers";
+import axios from "axios";
+
 // {
 //     "topic":"maths",
 //     "sessionIntervel": [1,2,4],
@@ -91,9 +92,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
       sessions: sessionSchema.data.sessionIntervel.length,
     },
   });
+ 
   console.log(createUser);
   const sendToWorker = await redis.lpush('revision', sessionSchema.data.topic);
-  console.log(sendToWorker)
+  console.log(sendToWorker);
+  axios.get('http://localhost:3002/revision');
   return NextResponse.json({
     msg: "this is working",
   });

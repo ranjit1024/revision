@@ -2,14 +2,14 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import { Redis } from "@upstash/redis";
 import { Groq } from "groq-sdk";
-import { get } from "http";
+import { aw } from "@upstash/redis/zmscore-CgRD7oFR";
+
 dotenv.config();
 
 const groq = new Groq({
     apiKey:process.env.GROQ_API_KEY
 });
-const app: Express = express();
-const port = 3002;
+
 // app.use(express.json());
 const redis = Redis.fromEnv();
 
@@ -27,25 +27,26 @@ async function getAiGeneratedNotes(params:string) {
 }
 
 
-app.get("/revision", async (req, res) => {
-  while(true){
+async function generateNotes() {
+
+  
+  setInterval(async ()=>{
     try{
-      const revisionTopic = await redis.rpop("revision");
-      console.log(revisionTopic);
-      if(revisionTopic === null){
-        const notes =  getAiGeneratedNotes(String(revisionTopic))
-        console.log(notes);
-        break
-      }
-    }
-    catch(err){
-      console.log(err)
-    }
 
+    
+    const revisionTopic = await redis.rpop("revision");
+
+    if(revisionTopic !== null && revisionTopic.trim() !== ''){
+      console.log(`Processing: ${revisionTopic}`);
+      const notes = await getAiGeneratedNotes(`generate notes for ${revisionTopic}`);
+      console.log('Notes Generated for ', notes)
+    }
   }
+  catch(err){
+    console.log('Queue processing error', err);
+  }
+  },5000)
+}
+generateNotes();
 
-});
 
-app.listen(port, () => {
-  console.log("Server listing on port number 3001");
-});

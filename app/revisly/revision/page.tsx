@@ -7,10 +7,10 @@ import { useSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
 import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
-import React from "react";
+import React, { useState } from "react";
 import {  RootState } from "@/store/store";
 import axios from "axios"
-import Lottie from "lottie-react";
+import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 export default function Home() {
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
@@ -23,9 +23,14 @@ export default function Home() {
     };
     return data;
   });
+  const [sendData, setSendData] = useState<boolean>(false);
 
   return (
     <div className="h-[10vh] ">
+      {
+        
+        sendData ? <NotesgeneratorLoader/>:null
+      }
       <div className="bg-white shadow p-5 rounded-md ">
         <p className="font-bold text-2xl text-neutral-800">
           Set Revision Reminder
@@ -63,11 +68,18 @@ export default function Home() {
           </div>
             
           <Button
-            onClick={() => {
+            onClick={async () => {
               console.log(sessionData);
-              axios.post('http://localhost:3000/api/revision',
+              setSendData(prev => true);
+
+              const response = await axios.post('http://localhost:3000/api/revision',
                 sessionData
-              )
+              );
+              console.log(response);
+              setSendData(prev =>  false);
+              
+
+              
             }}
             className="mt-8 bg-secondary -z-10 hover:cursor-pointer"
           >
