@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc -b  && node dist/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,8 +16,10 @@
     "@types/pdfkit": "^0.17.2",
     "@upstash/redis": "^1.35.3",
     "aws-sdk": "^2.1692.0",
+    "axios": "^1.11.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "form-data": "^4.0.4",
     "groq-sdk": "^0.30.0",
     "multer": "^2.0.2",
     "pdfkit": "^0.17.1",
