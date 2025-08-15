@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import {DialogCloseButton} from "@/components/ui/deletePermently";
+import {AlertDialogDemo} from "@/components/ui/deletePermently";
 export default function Home(){
     const { data: session } = useSession();
     return <div className="px-15 py-10 bg-white rounded-2xl">
@@ -41,7 +41,7 @@ export default function Home(){
 
         </div>
         <div className="text-start mt-5">
-       <DialogCloseButton/>
+       <AlertDialogDemo/>
         </div>
     </div>
 }

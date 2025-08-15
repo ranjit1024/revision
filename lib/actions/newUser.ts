@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import  prisma  from "../prisma";
 
 import { authOption } from "@/lib/auth";
-interface userType {
+export interface userType {
     user:{
         name:string,
         email:string,

@@ -21,9 +21,9 @@ export default function RevisionSessionCard({
   endDate = new Date(),
   brief = "Short summary about what to revise in this session.",
   progress = 0,
-  tags = [""]
+
 }:{
-  tags:string[],
+ 
   title:string,
   startDate: Date,
   endDate: Date,
@@ -57,7 +57,7 @@ export default function RevisionSessionCard({
         </div>
 
         <div className="text-right">
-          <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2 justify-end">
+          <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center  justify-end" >
             <Calendar className="w-4 h-4" />
             <span>{formatDate(startDate)}</span>
             <span className="mx-1">—</span>
@@ -70,7 +70,7 @@ export default function RevisionSessionCard({
         </div>
       </header>
 
-      <main className="mt-4">
+      <main className="mt-7 ">
         <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">{brief}</p>
 
         <div className="mt-4">
@@ -86,18 +86,7 @@ export default function RevisionSessionCard({
           </div>
         </div>
 
-        {tags && tags.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {tags.map((t) => (
-              <span
-                key={t}
-                className="text-xs px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        )}
+        
       </main>
 
       <footer className="mt-5 flex items-center justify-end">

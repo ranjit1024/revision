@@ -5,9 +5,15 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import {Redis} from "@upstash/redis";
-import { redirect } from "next/dist/server/api-utils";
-import axios from "axios";
 
+import axios from "axios";
+import { Groq } from "groq-sdk";
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY
+});
+console.log(process.env.NEXTAUTH_URL);
+console.log(process.env.GROQ_API_KEY);
+ 
 // {
 //     "topic":"maths",
 //     "sessionIntervel": [1,2,4],
@@ -15,6 +21,20 @@ import axios from "axios";
 //     "time":"5:30PM",
 //     "totaldays":7
 // }
+
+async function gerateBrif(sub: string) {
+  const chatCompletion = await groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: `Give me a 10-word brief about the ${sub}`,
+      },
+    ],
+    model: "openai/gpt-oss-120b",
+  });
+  return chatCompletion.choices[0].message.content;
+}
+
 const intervel = [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
  const alllowdTotalDays:number[] = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875] as  const;
 const redis = Redis.fromEnv();
@@ -80,6 +100,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
   console.log(sessionSchema.data.time);
   console.log(getSelectedDateAndTime(sessionSchema.data.time).toLocaleString());
   console.log('end session',calculatingEndDate(sessionSchema.data.totaldays).toLocaleDateString())
+  const brief = await gerateBrif(sessionSchema.data.topic);
+  
   
   const createUser = await prisma.revisions.create({
     data: {
@@ -90,13 +112,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
       endSession: calculatingEndDate(sessionSchema.data.totaldays),
       totalDays: sessionSchema.data.totaldays,
       sessions: sessionSchema.data.sessionIntervel.length,
+      brif:String(brief)
     },
   });
  
   console.log(createUser);
   const sendToWorker = await redis.lpush('revision', sessionSchema.data.topic);
   console.log(sendToWorker);
-  axios.get('http://localhost:3002/revision');
+ 
   return NextResponse.json({
     msg: "this is working",
   });

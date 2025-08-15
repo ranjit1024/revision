@@ -31,4 +31,5 @@ model Revisions {
   endSession       DateTime
   totalDays        Int
   user             User     @relation(fields: [email], references: [email])
+  brif             String
 }

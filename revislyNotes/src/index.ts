@@ -9,7 +9,6 @@ import { v4 as uuidv4 } from "uuid"
 import pdf, { note } from "pdfkit"
 import fs from "fs"
 import path from "path"
-import { error } from "console";
 dotenv.config();
 const app = express();
 app.use(express.json())
