@@ -1,41 +1,104 @@
 "use client"
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
-import 'react-circular-progressbar/dist/styles.css';
-import { motion } from "framer-motion"
+import React from "react";
+import clsx from "clsx";
 
-type Props = {
-  revision: string
-  date: string
-  progress: number
+type Status = "Completed" | "In Progress" | "Pending" | "Failed";
+
+interface RevisionCardProps {
+  title?: string;            // e.g., "Revision 1/10"
+  status?: Status;           // e.g., "Completed"
+  date?: string;             // ISO or human string, e.g., "2025-08-15"
+  progressText?: string;     // e.g., "1/10"
+  onViewReport?: () => void;
+  className?: string;
 }
 
-export default function RevisionCard({ revision, date, progress }: Props) {
-  return (
-    <div
-       
-    className="bg-white rounded-2xl shadow-md p-5 w-full max-w-xs hover:shadow transition-shadow">
-      <div className="text-sm text-blue-600 font-semibold">{revision}</div>
-      <div className="text-green-500 text-sm font-medium mt-1">Completed</div>
-      <div className="text-xs text-gray-500">{date}</div>
+const statusStyles: Record<Status, string> = {
+  Completed: "text-emerald-600 bg-emerald-50 ring-1 ring-emerald-100",
+  "In Progress": "text-amber-600 bg-amber-50 ring-1 ring-amber-100",
+  Pending: "text-slate-600 bg-slate-50 ring-1 ring-slate-100",
+  Failed: "text-rose-600 bg-rose-50 ring-1 ring-rose-100",
+};
 
-      <div className="my-4 flex justify-center">
-        <div className="w-20 h-20">
-          <CircularProgressbar
-            value={progress}
-            text={`${progress}%`}
-            styles={buildStyles({
-              textSize: '16px',
-              pathColor: '#6366f1',
-              textColor: '#111',
-              trailColor: '#e5e7eb',
-            })}
-          />
-        </div>
+export function RevisionCard({
+  title = "Revision 1/10",
+  status = "Completed",
+  date = "2025-08-15",
+  progressText = "1/10",
+  onViewReport,
+  className,
+}: RevisionCardProps) {
+  // Format date safely for display
+  const displayDate = (() => {
+    try {
+      const d = new Date(date);
+      if (isNaN(d.getTime())) return date;
+      return d.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+    } catch {
+      return date;
+    }
+  })();
+
+  return (
+    <section
+      className={clsx(
+        "group relative w-full max-w-sm overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition",
+        "hover:shadow-md focus-within:ring-2 focus-within:ring-indigo-500",
+        "dark:border-slate-800 dark:bg-slate-900",
+        className
+      )}
+      aria-label={title}
+    >
+      {/* Header */}
+      <header className="mb-4 flex items-start justify-between gap-3">
+        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+          {title}
+        </h3>
+        <span
+          className={clsx(
+            "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium",
+            statusStyles[status]
+          )}
+        >
+          {status}
+        </span>
+      </header>
+
+      {/* Meta */}
+      <div className="mb-5 space-y-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400">
+          {displayDate}
+        </p>
+        <p className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
+          {progressText}
+        </p>
       </div>
 
-      <button className="bg-[#021526] hover:cursor-pointer hover:bg-[#021526]/90 text-white w-full py-2 rounded-md text-sm font-medium transition-colors">
-        View Report
-      </button>
-    </div>
-  )
+      {/* Actions */}
+      <div className="mt-auto">
+        <button
+          type="button"
+          onClick={onViewReport}
+          className={clsx(
+            "inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition",
+            "hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
+            "dark:bg-indigo-600 dark:hover:bg-indigo-500"
+          )}
+          aria-label="View report"
+        >
+          View Report
+        </button>
+      </div>
+
+      {/* Subtle accent */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      />
+    </section>
+  );
 }

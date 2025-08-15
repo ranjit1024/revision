@@ -1,4 +1,5 @@
-import RevisionCard from "@/components/ui/score";
+"use client"
+import {RevisionCard} from "@/components/ui/score";
 export default function Page() {
   const date = new Date();
   return (
@@ -13,31 +14,27 @@ export default function Page() {
       <p className="text-sm text-gray-400 mt-6">Revision / Upcoming revision</p>
 
       <div className="mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+     
         <RevisionCard
-          revision="Revision 1/10"
-          date={date.toLocaleDateString()}
-          progress={12}
-        />
-        <RevisionCard
-          revision="Revision 1/10"
-          date={date.toLocaleDateString()}
-          progress={12}
-        />
-        <RevisionCard
-          revision="Revision 1/10"
-          date={date.toLocaleDateString()}
-          progress={12}
-        />
-        <RevisionCard
-          revision="Revision 1/10"
-          date={date.toLocaleDateString()}
-          progress={12}
-        />
-        <RevisionCard
-          revision="Revision 1/10"
-          date={date.toLocaleDateString()}
-          progress={12}
-        />
+  title="Revision 1/10"
+  status="Completed"
+  date="2025-08-15"
+  progressText="1/10"
+  onViewReport={() => console.log("View Report clicked")}
+/>
+   <RevisionCard
+  title="Revision 1/10"
+  status="Completed"
+  date="2025-08-15"
+  progressText="1/10"
+  onViewReport={() => console.log("View Report clicked")}
+/>   <RevisionCard
+  title="Revision 1/10"
+  status="Completed"
+  date="2025-08-15"
+  progressText="1/10"
+  onViewReport={() => console.log("View Report clicked")}
+/>
       </div>
     </div>
   );

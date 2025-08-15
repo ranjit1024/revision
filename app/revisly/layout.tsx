@@ -258,29 +258,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 </p>
               </motion.div>
 
-              <motion.div
-                initial={{
-                  x: -25,
-                  opacity: 0,
-                }}
-                animate={{
-                  x: 0,
-                  opacity: 1,
-                }}
-                transition={{
-                  duration: 0.4,
-                  delay: 1,
-                }}
-                onClick={() => {
-                  router.push("/revisly/report");
-                }}
-                className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
-              >
-                <ChartColumnStacked className="size-4 text-gray-900" />
-                <p className="text-sm text-neutral-800 font-medium">
-                  Revsion report
-                </p>
-              </motion.div>
+            
               <div
                 className={`flex items-end hover:cursor-pointer relative   `}
               >
