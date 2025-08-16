@@ -5,7 +5,7 @@ import { authOption } from "../auth"
 import type { userType } from "./newUser"
 import { TypeOf } from "zod"
 type RevisionSession = {
-  id: number;
+  id: string;
   email: string;
   topic: string;
   sessionsintervel: number[];
@@ -19,7 +19,7 @@ type RevisionSession = {
 export async function getUserSession(){
     const session : userType | null  = await getServerSession(authOption);
     
-    const revisionsSession : RevisionSession[] = await prisma.revisions.findMany({
+    const revisionsSession : RevisionSession[] = await prisma.revision.findMany({
         where:{
             email:session?.user.email
         },

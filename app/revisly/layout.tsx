@@ -3,12 +3,18 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import newUser from "@/lib/actions/newUser";
+
+
 import {
-  LayoutDashboardIcon,
-  ChartColumnStacked,
-  GoalIcon,
-  CirclePlus,
-  NotebookIcon,
+  Bell,
+  BookOpen,
+  CalendarCheck,
+
+  Gauge,
+  HelpCircle,
+  LayoutDashboard,
+  PlusCircle,
+ 
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Profile from "@/components/ui/Profile";
@@ -97,23 +103,31 @@ export default function Home({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className=" flex px-3 justify-between items-center">
-          <div>
-            <p className="text-md font-normal">
-              👋 Hello {session?.user?.name}
-            </p>
+            <div className="flex items-center gap-3">
+            <div className="grid h-9 w-9 place-items-center rounded-full bg-emerald-600 text-white shadow-sm">
+              <BookOpen size={18} />
+            </div>
+            <div className="leading-tight">
+              <p className="text-sm text-zinc-500">Hello</p>
+              <p className="font-semibold">{session.user?.name}</p>
+            </div>
           </div>
 
           <div className="flex gap-3 items-center  ">
             <div className="inline-flex ">
-              <Button
+              <button 
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-700 shadow-xm hover:bg-zinc-50 active:shadow-none"
                 onClick={() => {
                   router.push("/revisly/revision");
                 }}
-                className="inline-flex items-center gap-2 bg-primary  hover:cursor-pointer"
+                
               >
-                <CirclePlus className="size-4 text-gray-50" />
-                <p>Set Revision</p>
-              </Button>
+          
+              
+              <PlusCircle size={16} />
+              Set Revision
+            </button>
+              
             </div>
 
             <div className="bg-gradient-to-r to-purple-50 from-fuchsia-100 border-1 border-pink-50  hover:border-pink-100  px-3 py-[5px] flex rounded-lg gap-3 hover:cursor-pointer ">
@@ -148,22 +162,16 @@ export default function Home({ children }: { children: ReactNode }) {
                 setNotification((prev) => !prev);
               }}
             >
-              <div className="  relative  p-1 w-fit rounded-full  bg-white border border-gray-100 hover:bg-accent/10 ">
-                <div className="absolute bg-white rounded-2xl p-[2.5px] right-[0.5rem] top-[0.2rem] border-[0.13rem] border-gray-500"></div>
-                <img
-                  width="24"
-                  height="50"
-                  src="https://img.icons8.com/pulsar-line/50/appointment-reminders.png"
-                  alt="appointment-reminders"
-                />
-              </div>
+                <button className="grid h-9 w-9 place-items-center rounded-full border border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-zinc-50">
+              <Bell size={16} />
+            </button>
             </div>
           </div>
         </div>
       </motion.div>
 
       <div className="h-[100%] w-[100%] relative   grid grid-cols-[20%_80%]">
-        <div className="">
+        <div className="mt-2">
           <motion.div
             initial={{
               x: -20,
@@ -184,6 +192,7 @@ export default function Home({ children }: { children: ReactNode }) {
         "
             >
               <motion.div
+              className="mb-3"
                 initial={{
                   x: -25,
                   opacity: 0,
@@ -198,18 +207,18 @@ export default function Home({ children }: { children: ReactNode }) {
                 onClick={() => {
                   router.push("/revisly/home");
                 }}
-                className="flex  items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+                
               >
                 <div className="">
-                <LayoutDashboardIcon className="size-4 text-gray-900" />
+                
 
                 </div>
-                <p className="text-sm text-neutral-800 font-medium ">
-                  Dashboard
-                </p>
+               <NavItem icon={<LayoutDashboard size={16} />} label="Dashboard" active />
+            
               </motion.div>
 
               <motion.div
+               className="mb-1"
                 initial={{
                   x: -25,
                   opacity: 0,
@@ -225,14 +234,13 @@ export default function Home({ children }: { children: ReactNode }) {
                 onClick={() => {
                   router.push("/revisly/all");
                 }}
-                className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+               
               >
                 
-                <NotebookIcon className="size-4 text-gray-900" />
+                 <NavItem icon={<CalendarCheck size={16} />} label="All Revision sessions" />
+                           
            
-                <p className="text-sm text-neutral-800 font-medium">
-                  All Revision sessions
-                </p>
+              
               </motion.div>
               <motion.div
                 initial={{
@@ -250,13 +258,15 @@ export default function Home({ children }: { children: ReactNode }) {
                 onClick={() => {
                   router.push("/revisly/custom");
                 }}
-                className="flex items-center gap-3 hover:bg-primary/10 rounded-md hover:cursor-pointer py-2 px-1"
+                className=""
               >
-                <GoalIcon className="size-4 text-gray-900" />
-                <p className="text-sm text-neutral-800 font-medium">
-                  Set custom Revision
-                </p>
+                
+                            <NavItem icon={<Gauge size={16} />} label="Set custom Revision" />
               </motion.div>
+
+              <div className="my-2 border-t border-zinc-100" />
+                          
+                          <NavItem icon={<HelpCircle size={16} />} label="Help" />
 
             
               <div
@@ -308,5 +318,30 @@ export default function Home({ children }: { children: ReactNode }) {
       </div>
     </div>
     </Provider>
+  );
+}
+
+function NavItem({
+  icon,
+  label,
+  active = false,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  active?: boolean;
+}) {
+  return (
+    <button
+      className={[
+        "w-full rounded-xl px-3 py-2 text-left text-sm font-medium",
+        "flex items-center gap-2 transition",
+        active
+          ? "bg-zinc-900 text-white shadow-sm"
+          : "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900",
+      ].join(" ")}
+    >
+      <span className={active ? "text-white" : "text-zinc-500"}>{icon}</span>
+      {label}
+    </button>
   );
 }

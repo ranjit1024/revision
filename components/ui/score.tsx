@@ -70,7 +70,7 @@ export function RevisionCard({
 
       {/* Meta */}
       <div className="mb-5 space-y-1">
-        <p className="text-xs text-slate-500 dark:text-slate-400">
+        <p className="text-xs text-slate-500 mb-1  dark:text-slate-400">
           {displayDate}
         </p>
         <p className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
@@ -86,7 +86,7 @@ export function RevisionCard({
           className={clsx(
             "inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition",
             "hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
-            "dark:bg-indigo-600 dark:hover:bg-indigo-500"
+            "dark:bg-indigo-600 dark:hover:bg-indigo-500 hover:cursor-pointer"
           )}
           aria-label="View report"
         >

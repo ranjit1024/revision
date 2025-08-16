@@ -1,7 +1,12 @@
 "use client";
 import { ChartBarLabelCustom } from "@/components/ui/last5";
 import {Retation} from "@/components/ui/retation";
-
+import {
+  
+  CalendarCheck,
+  ChevronRight,
+ 
+} from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import {  useState } from "react";
 import { motion } from "framer-motion";
@@ -12,69 +17,55 @@ export default function Home() {
   return (
     <div>
       <div className="w-[100%] ">
-        <div className="grid grid-cols-2 gap-3 ">
-          <div className="first">
-            <motion.div
-              initial={{
-                y: -40,
-                opacity: 0,
-              }}
-              animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.6,
-              }}
-              className=" bg-white max-md:mb-5 rounded-xl shadow-sm w-[100%] max-md:m-2 h-fit"
-            >
-              <div className="p-5">
-                <p className="font-normal text-lg text-black mb-1">
-                  Current Revision Topic
-                </p>
-                <p className="text-md">topic name</p>
-                <div className="my-8 bg-green-200 h-2 rounded-2xl z-0">
-                  <div className="bg-green-500 w-[10%] relative rounded-2xl h-full">
-                    <div className="bg-green-500 border-3 border-gray-100 -top-1 absolute left-10 w-4 h-4  rounded-full "></div>
-                  </div>
+      
+   
+             <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <Card>
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-sm font-medium text-zinc-500">Current Revision Topic</p>
+                  <h3 className="mt-1 text-xl font-semibold tracking-tight">topic name</h3>
                 </div>
-                <p className="mt-4 text-[1.1rem] text-gray-600">
-                  You’re{" "}
-                  <span className="text-green-600 font-semibold">
-                    ahead of pace
-                  </span>{" "}
-                  and should reach your goal{" "}
-                  <span className="font-medium text-gray-900">
-                    {" "}
-                    ahead of schedule.
-                  </span>
+                <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-100">
+                  Active
+                </span>
+              </div>
+
+              {/* Progress */}
+              <div className="mt-4">
+                <div className="relative h-2 w-full overflow-hidden rounded-full bg-zinc-100">
+                  <div className="absolute inset-y-0 left-0 w-[86%] rounded-r-full bg-emerald-500" />
+                </div>
+                <p className="mt-3 text-sm text-zinc-600">
+                  You’re <span className="font-semibold text-emerald-700">ahead of pace</span> and
+                  should reach your goal <span className="font-semibold">ahead</span> of schedule.
                 </p>
               </div>
-            </motion.div>
-          </div>
-          <motion.div
-            initial={{
-              y: -20,
-              opacity: 0,
-            }}
-            animate={{
-              y: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-            }}
-            className="p-5 bg-white rounded-2xl mb-3 h-[100%] shadow"
-          >
-            <p className="font-normal text-lg text-black mb-1">
-              Upcomming Revison
-            </p>
-            <p className="text-md">topic name</p>
 
-            <p className="pt-10 text-[1.1rem] text-gray-600">Topic info</p>
-          </motion.div>
-        </div>
+              <div className="mt-4">
+                <button className="inline-flex items-center gap-1 text-sm font-medium text-emerald-700 hover:text-emerald-800">
+                  View plan
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </Card>
+
+            <Card>
+              <p className="text-sm font-medium text-zinc-500">Upcoming Revision</p>
+              <h3 className="mt-1 text-xl font-semibold tracking-tight">topic name</h3>
+              <p className="mt-3 text-sm text-zinc-600">Topic info</p>
+
+              <div className="mt-4 flex items-center gap-2">
+                <div className="grid h-7 w-7 place-items-center rounded-full bg-amber-100 text-amber-700">
+                  <CalendarCheck size={16} />
+                </div>
+                <p className="text-sm text-zinc-700">Tomorrow • 5:00 AM</p>
+              </div>
+            </Card>
+          </section>
+        
+      
+        
 
         <motion.div 
           initial={{
@@ -143,6 +134,13 @@ export default function Home() {
         </div>
     
       </div>
+    </div>
+  );
+}
+function Card({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="rounded-2xl border border-zinc-100 bg-white/70 p-5 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      {children}
     </div>
   );
 }

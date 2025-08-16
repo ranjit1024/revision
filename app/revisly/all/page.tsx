@@ -15,7 +15,7 @@ const containerVariant = {
 };
 
 type RevisionSession = {
-  id: number;
+  id: string;
   email: string;
   topic: string;
   sessionsintervel: number[];
@@ -74,6 +74,7 @@ export default function Home() {
           endDate={item.endSession}
           brief={item.brif}
           progress={65}
+          id={item.id}
           
         />)
     }

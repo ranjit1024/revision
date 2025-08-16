@@ -1,7 +1,7 @@
 'use client'
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Calendar, Clock, Hash } from "lucide-react";
+import { Calendar, Clock, Hash, Router } from "lucide-react";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
@@ -10,6 +10,7 @@ const cardVariant = {
 };
 
 function formatDate(d:any) {
+  const router = useRouter()
   const dt = d instanceof Date ? d : new Date(d);
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(dt);
 }
@@ -21,7 +22,7 @@ export default function RevisionSessionCard({
   endDate = new Date(),
   brief = "Short summary about what to revise in this session.",
   progress = 0,
-
+  id=""
 }:{
  
   title:string,
@@ -30,11 +31,13 @@ export default function RevisionSessionCard({
   brief:string,
   sessionNumber:number,
   progress:number
+  id:string
 }) {
   const pct = Math.max(0, Math.min(100, progress));
-
+  const router = useRouter()
   return (
     <motion.article
+    
        variants={cardVariant}
       transition={{
         
@@ -93,8 +96,10 @@ export default function RevisionSessionCard({
        
         <div className="flex items-center gap-3">
           <button className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-sm hover:brightness-95 hover:cursor-pointer">View Notes</button>
-          <button className="px-3 py-1.5 rounded-lg bg-linear-150 from-white to-indigo-100  text-gray-900 border text-sm hover:brightness-95 hover:cursor-pointer">View all session</button>
-          
+          <button className="px-3 py-1.5 rounded-lg bg-linear-150 from-white to-indigo-100  text-gray-900 border text-sm hover:brightness-95 hover:cursor-pointer" onClick={()=>{
+              router.push(`/revisly/revision/${id}`)
+          }}>View all session</button>
+        
         </div>
       </footer>
     </motion.article>

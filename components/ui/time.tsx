@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
 import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
-
+import { Clock } from "lucide-react";
 export default function TimePicker() {
   const dispatch = useDispatch();
   const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -62,14 +62,29 @@ export default function TimePicker() {
   }, [setTime]);
   return (
     <div className="relative z-10" ref={dropdownRef}>
-      <Input
-        readOnly
+   
+      <div className="mt-5">
+            <label className="block text-sm font-medium ml-2 text-zinc-700" htmlFor="time">
+              Select Revision Time
+            </label>
+            <div className="mt-2">
+              <div className="relative max-w-xs">
+                <input
+                  id="time"
+                  
+                    readOnly
         placeholder="select A time when you want to revise "
         value={`${selectedHours}:${selectedMinutes} ${timeZone}`}
         onClick={() => {
           setSetTime((prev) => !prev);
         }}
-      ></Input>
+             
+                  className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 pr-10 text-zinc-900 shadow-sm outline-none transition focus:border-emerald-300 focus:ring-4 focus:ring-emerald-100"
+                />
+                <Clock className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400" size={16} />
+              </div>
+            </div>
+          </div>
       {setTime ? (
         <div className="absolute p-4 h-[30vh]  top-10   bg-white shadow w-100 mt-1 border rounded-md ">
           <div className="grid grid-cols-[40%_40%_20%] justify-center items-center-safe">
@@ -146,6 +161,9 @@ export default function TimePicker() {
               >
                 AM
               </button>
+              
+                
+
               <button
                 onClick={(e) => {
                   setSetTime(false);

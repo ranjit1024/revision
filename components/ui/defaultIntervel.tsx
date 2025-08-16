@@ -45,11 +45,11 @@ export function SelectScrollable() {
         console.log(item.totalDays)
         
         dispatch(actions.addSessionInterl({
-          sessionIntervel : intervel.filter(data =>  data < item.days),
+          sessionIntervel : intervel.filter(data =>  data <= item.days),
           
         }))
         dispatch(actions.addSessions({
-          sessions:intervel.filter(data =>  data < item.days).length
+          sessions:intervel.filter(data =>  data <= item.days).length
         }))
 
         dispatch(actions.addTotalDays({
@@ -57,17 +57,21 @@ export function SelectScrollable() {
         }))
       }}
     >
-      <p className="text-sm font-medium mb-1">Selet Revison Intervel</p>
-      <SelectTrigger className="w-full flex">
-        <SelectValue placeholder="Select a Intervel" />
+      
+              <label className="block text-sm font-medium text-zinc-700 text-start ml-2 mb-1" htmlFor="topic">
+                Selct intervel
+              </label>
+      <SelectTrigger className="w-full  rounded-xl border border-zinc-200 bg-white px-4 py-5 text-zinc-900 shadow-sm outline-none transition placeholder:text-zinc-400 focus:border-emerald-300 focus:ring-4 focus:ring-emerald-100 ">
+        <SelectValue  placeholder="Select a Intervel" />
       </SelectTrigger>
       <SelectContent
+      
         onChange={() => {
           
           console.log("done");
         }}
       >
-        <SelectGroup>
+        <SelectGroup   >
           <SelectLabel className="">
             <div className="flex justify-between w-[100%]">
               <div className="w-100 flex justify-center  font-medium">
