@@ -86,7 +86,7 @@ export default function TimePicker() {
             </div>
           </div>
       {setTime ? (
-        <div className="absolute p-4 h-[30vh]  top-10   bg-white shadow w-100 mt-1 border rounded-md ">
+        <div className="absolute p-4 h-[30vh]  top-18   bg-white shadow w-100 mt-1 border rounded-md ">
           <div className="grid grid-cols-[40%_40%_20%] justify-center items-center-safe">
             <div className="h-[25vh]   overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <p className="text-center text-xs mb-3 font-medium text-muted">

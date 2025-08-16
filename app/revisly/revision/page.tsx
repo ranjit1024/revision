@@ -12,6 +12,7 @@ import { RootState } from "@/store/store";
 import axios from "axios"
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
+import { Preview } from "@/components/ui/Preview";
 export default function Home() {
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
@@ -39,7 +40,7 @@ export default function Home() {
               Set Revision Reminder
             </h1>
             <p className="mt-1 text-sm text-zinc-600 flex">
-              We use <span className="font-medium text-emerald-700">spaced repetition</span> to help you retain more with less time.
+              We use<span className="font-medium text-emerald-700">&nbsp;spaced repetition</span> &nbsp; to help you retain more with less time.
               <button className="ml-2 inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800">
                 <Info size={14} />
                 <span className="text-xs font-medium">How it works</span>
@@ -119,9 +120,8 @@ export default function Home() {
               Set Revision Reminder
             </button>
 
-            <button className="text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-900 hover:underline">
-              Preview schedule
-            </button>
+            {/* */}
+            <Preview/>
           </div>
 
 

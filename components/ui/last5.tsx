@@ -78,7 +78,7 @@ export function ChartBarLabelCustom() {
             <Bar
               dataKey="desktop"
               layout="vertical"
-              fill="#0060ff"
+              fill="#4E4FEB"
               radius={4}
             >
               <LabelList

@@ -253,7 +253,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 }}
                 transition={{
                   duration: 1,
-                  delay: 0.6,
+                  delay: 1,
                 }}
                 onClick={() => {
                   router.push("/revisly/custom");
@@ -264,9 +264,24 @@ export default function Home({ children }: { children: ReactNode }) {
                             <NavItem icon={<Gauge size={16} />} label="Set custom Revision" />
               </motion.div>
 
-              <div className="my-2 border-t border-zinc-100" />
+              <motion.div
+                initial={{
+                  x: -25,
+                  opacity: 0,
+                }}
+                animate={{
+                  x: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  duration: 1,
+                  delay: 1.25,
+                }} className="my-4 border-t border-zinc-100"  onClick={()=>{
+                  router.push('/contact')
+                }}>
                           
                           <NavItem icon={<HelpCircle size={16} />} label="Help" />
+                          </motion.div>
 
             
               <div

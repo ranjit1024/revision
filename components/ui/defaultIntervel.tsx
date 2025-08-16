@@ -75,10 +75,10 @@ export function SelectScrollable() {
           <SelectLabel className="">
             <div className="flex justify-between w-[100%]">
               <div className="w-100 flex justify-center  font-medium">
-                Revision
+                Session
               </div>
               <div className="w-100 flex justify-center font-medium">
-                Days After Last Revision
+                Days After Last Session
               </div>
               <div className="w-100 flex justify-center font-medium">
                 Total Days
@@ -86,7 +86,7 @@ export function SelectScrollable() {
             </div>
           </SelectLabel>
 
-          {intervel.map((item, index) => {
+          {intervel.map((item , index) => {
             return (
               <SelectItem
                 value={JSON.stringify({
@@ -103,7 +103,7 @@ export function SelectScrollable() {
                   }}
                   className=" w-100 flex justify-center"
                 >
-                  {index}
+                  {index+1}
                 </div>
                 <div className="  flex justify-center w-100">{item}</div>
                 <div className="  w-100 flex  justify-center ">
@@ -116,10 +116,39 @@ export function SelectScrollable() {
       </SelectContent>
       {showDetails ? (
         <p className="text-sm font-medium mt-2 text-muted">
-          you have shedule for {value ? value.revision + 1 : null} Revision
+          you have shedule for {value ? value.revision + 1 : null}&nbsp;
           session which will take {value?.totalDays} days to complete
         </p>
       ) : null}
     </Select>
+  );
+}
+
+function SpacedRepetitionTable() {
+  const schedule = [
+    { day: "Day 1", activity: "Learn it" },
+    { day: "Day 2", activity: "First Review" },
+    { day: "Day 4", activity: "Second Review" },
+    { day: "Day 7", activity: "Third Review" },
+    { day: "Day 14", activity: "Final Review" },
+  ];
+
+  return (
+    <div className="max-w-md mx-auto mt-6 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+      <div className="bg-gray-50 p-4 border-b text-center text-lg font-semibold text-gray-800">
+        Spaced Repetition Schedule
+      </div>
+      <div className="divide-y divide-gray-200">
+        {schedule.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex justify-between items-center px-6 py-4 text-sm text-gray-700 hover:bg-gray-50 "
+          >
+            <span className="font-medium text-gray-900">{item.day}</span>
+            <span>{item.activity}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
