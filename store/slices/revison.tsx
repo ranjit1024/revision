@@ -2,14 +2,16 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface sessionType {
   topic?: string;
   sessions?: number;
-  time?: string;
+  time?: string ;
   sessionIntervel?: number[];
   totalDays?: number;
+  id?:string
 }
 
 export const sessionSlice = createSlice({
   name: "revision",
   initialState: {} as sessionType,
+  
   reducers: {
     addTopic(state, action: PayloadAction<sessionType>) {
       state.topic = action.payload.topic;
@@ -26,6 +28,9 @@ export const sessionSlice = createSlice({
     addTotalDays(state, action: PayloadAction<sessionType>) {
       state.totalDays = action.payload.totalDays;
     },
+    addsessionId(state, action:PayloadAction<sessionType>){
+      state.id = action.payload.id;
+    }
   },
 });
 

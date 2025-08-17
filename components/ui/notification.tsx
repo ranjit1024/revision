@@ -2,7 +2,7 @@ import { Mail } from "lucide-react";
 
 export default function Notification() {
   return (
-    <div className=" bg-white relative hover:bg-gray-100/100   p-6  flex items-start gap-4 border border-gray-100 rounded-sm">
+    <div className=" bg-white relative hover:bg-gray-100/100   p-6  flex items-start gap-4  border-b-1 border-gray-100 hover:shadow hover:cursor-pointer ">
       <div className="bg-blue-500/10 text-blue-600 p-3 rounded-xl">
         <Mail className="w-6 h-6" />
       </div>

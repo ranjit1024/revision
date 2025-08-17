@@ -19,7 +19,20 @@ export default function Home() {
       <div className="w-[100%] ">
       
    
-             <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+             <motion.section 
+             initial={{
+              opacity:0,
+              scale:0.9
+             }}
+             animate={{
+              opacity:1,
+              scale:1
+             }}
+              transition={{
+              duration: 0.6,
+             
+            }}
+             className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <Card>
               <div className="flex items-start justify-between">
                 <div>
@@ -50,6 +63,7 @@ export default function Home() {
               </div>
             </Card>
 
+            
             <Card>
               <p className="text-sm font-medium text-zinc-500">Upcoming Revision</p>
               <h3 className="mt-1 text-xl font-semibold tracking-tight">topic name</h3>
@@ -62,7 +76,8 @@ export default function Home() {
                 <p className="text-sm text-zinc-700">Tomorrow • 5:00 AM</p>
               </div>
             </Card>
-          </section>
+            
+          </motion.section>
         
       
         

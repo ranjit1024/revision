@@ -75,6 +75,7 @@ export default function Home() {
           brief={item.brif}
           progress={65}
           id={item.id}
+          cratedDate={item.createdSession}
           
         />)
     }

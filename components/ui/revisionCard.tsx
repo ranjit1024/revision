@@ -2,7 +2,8 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Hash, Router } from "lucide-react";
-
+import { useDispatch, UseDispatch } from "react-redux";
+import { actions } from "@/store/slices/revison";
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
@@ -20,9 +21,10 @@ export default function RevisionSessionCard({
   title = "Revision Session",
   startDate = new Date(),
   endDate = new Date(),
+  cratedDate= new Date(),
   brief = "Short summary about what to revise in this session.",
   progress = 0,
-  id=""
+  id="",
 }:{
  
   title:string,
@@ -32,9 +34,13 @@ export default function RevisionSessionCard({
   sessionNumber:number,
   progress:number
   id:string
+  cratedDate:Date
 }) {
   const pct = Math.max(0, Math.min(100, progress));
-  const router = useRouter()
+  const router = useRouter();
+  const dispatch = useDispatch()
+
+  
   return (
     <motion.article
     
@@ -46,9 +52,18 @@ export default function RevisionSessionCard({
       whileHover={{ border:'1px solid lightgray',
         boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 12px'
        }}
-      className=" w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md shadow-sm p-6 transition-colors hover:cursor-pointer"
+      className=" w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md shadow-sm p-6 relative transition-colors hover:cursor-pointer"
     >
-      <header className="flex items-center justify-between gap-4">
+      <div className="py-3">
+
+    
+      <div className="text-sm mb-5 absolute right-1  top-1 flex justify-end items-end w-full rounded-2xl   ">
+        <div className="px-3 py-1 bg-yellow-50 rounded-lg font-normal text-amber-500">
+        <p>{formatDate(cratedDate)}</p>
+        </div>
+      </div>
+      </div>
+      <header className="flex relative items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white font-semibold">
             <Hash className="w-5 h-5" />
@@ -97,7 +112,11 @@ export default function RevisionSessionCard({
         <div className="flex items-center gap-3">
           <button className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-sm hover:brightness-95 hover:cursor-pointer">View Notes</button>
           <button className="px-3 py-1.5 rounded-lg bg-linear-150 from-white to-indigo-100  text-gray-900 border text-sm hover:brightness-95 hover:cursor-pointer" onClick={()=>{
-              router.push(`/revisly/revision/${id}`)
+              dispatch(actions.addsessionId({
+                id:id
+              }))
+              router.push(`/revisly/revision/${id}`);
+
           }}>View all session</button>
         
         </div>

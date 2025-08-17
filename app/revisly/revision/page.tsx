@@ -1,8 +1,6 @@
 "use client";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
 import { SelectScrollable } from "@/components/ui/defaultIntervel";
-import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
 import { useDispatch } from "react-redux";
@@ -14,6 +12,7 @@ import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
 export default function Home() {
+  const rounter = useRouter()
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
     const data = {
@@ -42,8 +41,8 @@ export default function Home() {
             <p className="mt-1 text-sm text-zinc-600 flex">
               We use<span className="font-medium text-emerald-700">&nbsp;spaced repetition</span> &nbsp; to help you retain more with less time.
               <button className="ml-2 inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800">
-                <Info size={14} />
-                <span className="text-xs font-medium">How it works</span>
+
+
               </button>
             </p>
           </div>
@@ -88,7 +87,7 @@ export default function Home() {
           </div>
 
           <div className="w-100 mt-7 hover:cursor-pointer  ">
-           
+
             <TimePicker />
           </div>
 
@@ -107,10 +106,9 @@ export default function Home() {
                 const response = await axios.post('http://localhost:3000/api/revision',
                   sessionData
                 );
+                rounter.push("/revisly/all");
                 console.log(response);
                 setSendData(prev => false);
-
-
 
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
@@ -121,7 +119,7 @@ export default function Home() {
             </button>
 
             {/* */}
-            <Preview/>
+            <Preview />
           </div>
 
 

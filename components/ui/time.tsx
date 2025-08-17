@@ -60,9 +60,16 @@ export default function TimePicker() {
     document.addEventListener("click", hide);
     return () => document.removeEventListener("click", hide);
   }, [setTime]);
+
+  useEffect(()=>{
+
+    dispatch((actions.addTime({
+      time:"5:04 AM"
+    })));
+  },[])
   return (
     <div className="relative z-10" ref={dropdownRef}>
-   
+      
       <div className="mt-5">
             <label className="block text-sm font-medium ml-2 text-zinc-700" htmlFor="time">
               Select Revision Time

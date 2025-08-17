@@ -10,19 +10,34 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { UseSelector } from "react-redux"
+import { actions } from "@/store/slices/revison"
+import { RootState } from "@/store/store"
+import { Item } from "@radix-ui/react-accordion"
+import { useSelector,  } from "react-redux"
 
 export function Preview() {
+    const date = new Date();
+    const sessionData = useSelector((state: RootState) => {
+        const data = {
+          topic: state.revision.topic,
+          sessionIntervel: state.revision.sessionIntervel,
+          sessions: state.revision.sessions,
+          time: state.revision.time,
+          totaldays: state.revision.totalDays
+        };
+        return data;
+      });
+      
     return (
-        <Dialog>
+        <Dialog >
             <DialogTrigger asChild>
                 <button className="text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-900 hover:underline">
                     Preview schedule
                 </button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-xl">
                 <DialogHeader>
-                    <DialogTitle># Rust</DialogTitle>
+                    <DialogTitle># {sessionData.topic}</DialogTitle>
                     <DialogDescription className="mb-2">
                         Notes will be generated with AI. Your practice test will be curated
               from these notes and upcoming sessions.
@@ -30,12 +45,24 @@ export function Preview() {
                 </DialogHeader>
                <div className="grid grid-cols-2">
                 <div className="border ">
-                    <h1 className="border-b-1 text-center font-medium p-1 ">#session</h1>
-                    <p className="p-1 text-center">1</p>
+                    <h1 className="border-b-1 text-center font-medium p-1 ">sessions</h1>
+                    {
+                   
+                        sessionData.sessionIntervel?.map((item,index) => <p className="p-1 border-b text-center font-normal text-slate-900" key={index}>{item}</p>)
+                    }
+                   
                 </div>
                 <div className="border ">
                     <h1 className="border-b-1 text-center font-medium p-1">Date</h1>
-                     <p className="p-1 text-center ">12 nov 2025</p>
+                    {
+
+                      sessionData.sessionIntervel?.map((item,index)=>{
+                        date.setDate(new Date().getDate() + item);
+                        return <p key={index} className="p-1 border-b text-md text-center w-full font-normal text-zinc-800"> {`${date.toDateString()} - ${sessionData.time} `}</p>
+                      })
+                    }
+                        
+                    
                 </div>
                </div>
                  

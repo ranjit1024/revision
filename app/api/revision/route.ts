@@ -124,6 +124,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const createRevisons = await prisma.revisionSession.createMany({
         data: {
           email: String(session?.user?.email),
+         
           sessionNumber:Number(createRevison.sessionsintervel[i]) ,
           score: 0,
           topic: createRevison.topic,

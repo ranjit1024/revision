@@ -2,7 +2,7 @@
 import React from "react";
 import clsx from "clsx";
 
-type Status = "Completed" | "In Progress" | "Pending" | "Failed";
+type Status = 'COMPLETED' | 'PENDING' ;
 
 interface RevisionCardProps {
   title?: string;            // e.g., "Revision 1/10"
@@ -14,15 +14,15 @@ interface RevisionCardProps {
 }
 
 const statusStyles: Record<Status, string> = {
-  Completed: "text-emerald-600 bg-emerald-50 ring-1 ring-emerald-100",
-  "In Progress": "text-amber-600 bg-amber-50 ring-1 ring-amber-100",
-  Pending: "text-slate-600 bg-slate-50 ring-1 ring-slate-100",
-  Failed: "text-rose-600 bg-rose-50 ring-1 ring-rose-100",
+  COMPLETED: "text-emerald-600 bg-emerald-50 ring-1 ring-emerald-100",
+
+  PENDING: "text-slate-600 bg-slate-50 ring-1 ring-slate-100",
+
 };
 
 export function RevisionCard({
   title = "Revision 1/10",
-  status = "Completed",
+  status = "COMPLETED",
   date = "2025-08-15",
   progressText = "1/10",
   onViewReport,
@@ -70,7 +70,7 @@ export function RevisionCard({
 
       {/* Meta */}
       <div className="mb-5 space-y-1">
-        <p className="text-xs text-slate-500 mb-1  dark:text-slate-400">
+        <p className="text-xs text-slate-500 mb-4  dark:text-slate-400">
           {displayDate}
         </p>
         <p className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
