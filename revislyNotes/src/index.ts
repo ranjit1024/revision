@@ -1,4 +1,4 @@
-import express, { Express, Response, Request } from "express";
+import express, { Express, Response, Request, raw } from "express";
 import dotenv from "dotenv";
 import { Redis } from "@upstash/redis";
 import { Groq } from "groq-sdk";
@@ -8,10 +8,12 @@ import AWS from "aws-sdk"
 
 import pdfDoc from "pdfkit"
 import fs from "fs"
+import cors from "cors"
 
 dotenv.config();
 const app = express();
 app.use(express.json())
+app.use(cors());
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
@@ -48,12 +50,6 @@ const upload = multer({
   }
 });
 
-
-
-
-
-
-
 const redis = Redis.fromEnv();
 
 async function getAiGeneratedNotes(params: string) {
@@ -84,27 +80,46 @@ async function generateNotes() {
 
   setInterval(async () => {
     try {
-
-
-      const revisionTopic = await redis.rpop("revision");
-
-      if (revisionTopic !== null && revisionTopic.trim() !== '') {
-        console.log(`Processing: ${revisionTopic}`);
-        const notes = await getAiGeneratedNotes(`generate notes for ${revisionTopic} in clean string format `);
+      const revisionData  = await redis.rpop("revision") as {
+        topic:string
+        id:string
+       }  | null;
+      // const revisionTopic = rawValue ? JSON.parse(rawValue) as {
+      //   topic: string ,
+      //   id: string 
+      // }  : null;
+      
+      
+      if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
+        console.log(`Processing: ${revisionData}`);
+        const notes = await getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
         
         const notesPdf = GenerateNotesPdf(String(`${notes}`));
-        console.log(notesPdf)
-
+        const fileContent = fs.createReadStream('./notes/notes2.pdf')
+        const params = {
+          Bucket: String(process.env.S3_BUCKET),
+          Key:`${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
+          Body: fileContent,
+          ContentType:'application/pdf',
+          ACL:'private'
+        }
+        const result = await s3.upload(params).promise()
+        console.log('Notes uploaded successfully')
+        return "done with creating notes"
+      
       }
+      return "done with creating notes"
     }
     catch (err) {
       console.log('Queue processing error', err);
-
+      return "error"
     }
-  }, 5000)
+  }, 5000);
+
 }
-generateNotes()
-//generaing pedf from notes
+const status =  generateNotes().then(data => data)
+
+
 
 app.listen(3002, () => {
   console.log(`listing on port number 3002`)

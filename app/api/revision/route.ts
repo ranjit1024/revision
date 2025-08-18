@@ -124,7 +124,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const createRevisons = await prisma.revisionSession.createMany({
         data: {
           email: String(session?.user?.email),
-         
           sessionNumber:Number(createRevison.sessionsintervel[i]) ,
           score: 0,
           topic: createRevison.topic,
@@ -136,7 +135,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       })
       console.log(createRevisons)
     }
-    const sendToWorker = await redis.lpush('revision', sessionSchema.data.topic);
+    const sendToWorker = await redis.lpush('revision', JSON.stringify({topic:sessionSchema.data.topic, id:createRevison.id}));
     console.log(sendToWorker);
 
     return NextResponse.json({

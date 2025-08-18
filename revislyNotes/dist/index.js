@@ -20,9 +20,11 @@ const multer_1 = __importDefault(require("multer"));
 const aws_sdk_1 = __importDefault(require("aws-sdk"));
 const pdfkit_1 = __importDefault(require("pdfkit"));
 const fs_1 = __importDefault(require("fs"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 const groq = new groq_sdk_1.Groq({
     apiKey: process.env.GROQ_API_KEY
 });
@@ -74,22 +76,37 @@ function generateNotes() {
     return __awaiter(this, void 0, void 0, function* () {
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
             try {
-                const revisionTopic = yield redis.rpop("revision");
-                if (revisionTopic !== null && revisionTopic.trim() !== '') {
-                    console.log(`Processing: ${revisionTopic}`);
-                    const notes = yield getAiGeneratedNotes(`generate notes for ${revisionTopic} in clean string format `);
+                const revisionData = yield redis.rpop("revision");
+                // const revisionTopic = rawValue ? JSON.parse(rawValue) as {
+                //   topic: string ,
+                //   id: string 
+                // }  : null;
+                if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
+                    console.log(`Processing: ${revisionData}`);
+                    const notes = yield getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
                     const notesPdf = GenerateNotesPdf(String(`${notes}`));
-                    console.log(notesPdf);
+                    const fileContent = fs_1.default.createReadStream('./notes/notes2.pdf');
+                    const params = {
+                        Bucket: String(process.env.S3_BUCKET),
+                        Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
+                        Body: fileContent,
+                        ContentType: 'application/pdf',
+                        ACL: 'private'
+                    };
+                    const result = yield s3.upload(params).promise();
+                    console.log('Notes uploaded successfully');
+                    return "done with creating notes";
                 }
+                return "done with creating notes";
             }
             catch (err) {
                 console.log('Queue processing error', err);
+                return "error";
             }
         }), 5000);
     });
 }
-generateNotes();
-//generaing pedf from notes
+const status = generateNotes().then(data => data);
 app.listen(3002, () => {
     console.log(`listing on port number 3002`);
 });
