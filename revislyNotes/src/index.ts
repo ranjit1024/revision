@@ -89,7 +89,7 @@ async function generateNotes() {
       if (revisionTopic !== null && revisionTopic.trim() !== '') {
         console.log(`Processing: ${revisionTopic}`);
         const notes = await getAiGeneratedNotes(`generate notes for ${revisionTopic}`);
-        // await generateNotes()
+         GenerateNotesPdf()
         console.log('Notes Generated for ', notes)
       }
     }

@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import { Redis } from "@upstash/redis";
 
-import axios from "axios";
+
 import { Groq } from "groq-sdk";
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
@@ -136,8 +136,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       })
       console.log(createRevisons)
     }
-    // const sendToWorker = await redis.lpush('revision', sessionSchema.data.topic);
-    // console.log(sendToWorker);
+    const sendToWorker = await redis.lpush('revision', sessionSchema.data.topic);
+    console.log(sendToWorker);
 
     return NextResponse.json({
       msg: "this is working",

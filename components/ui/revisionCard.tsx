@@ -1,9 +1,10 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Calendar, Clock, Hash, Router } from "lucide-react";
-import { useDispatch, UseDispatch } from "react-redux";
-import { actions } from "@/store/slices/revison";
+import { Calendar, Clock, Hash,  } from "lucide-react";
+import { useEffect,useState } from "react";
+import { ViewNotes } from "./notesPdf";
+import { getSessionBrif } from "@/lib/actions/getDetailsSession";
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
@@ -38,9 +39,21 @@ export default function RevisionSessionCard({
 }) {
   const pct = Math.max(0, Math.min(100, progress));
   const router = useRouter();
-  const dispatch = useDispatch()
-
-  
+   const [brif, setBrif] = useState<string | undefined >(undefined);
+    const [topic, setTopic] = useState<string | undefined>(undefined);
+    const [revisionId,setRevisionId] = useState<String | undefined >(undefined)
+  useEffect(()=>{
+    
+      async function getBrif() {
+        const details  = await getSessionBrif(String(revisionId));
+        const brif :string  | undefined= details?.revision.brif ;
+        const topic : string | undefined  = details?.revision.topic;
+        setTopic(topic)
+        setBrif(brif)
+      }
+      getBrif()
+    
+    },[revisionId])
   return (
     <motion.article
     
@@ -110,11 +123,14 @@ export default function RevisionSessionCard({
       <footer className="mt-5 flex items-center justify-end">
        
         <div className="flex items-center gap-3">
-          <button className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-sm hover:brightness-95 hover:cursor-pointer">View Notes</button>
+          <div onClick={()=>{
+            setRevisionId(id)
+          }}>
+          <ViewNotes topic={topic} brief={brief} />
+
+          </div>
           <button className="px-3 py-1.5 rounded-lg bg-linear-150 from-white to-indigo-100  text-gray-900 border text-sm hover:brightness-95 hover:cursor-pointer" onClick={()=>{
-              dispatch(actions.addsessionId({
-                id:id
-              }))
+             
               router.push(`/revisly/revision/${id}`);
 
           }}>View all session</button>
