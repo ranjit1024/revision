@@ -106,9 +106,9 @@ export default function Home() {
                 const response = await axios.post('http://localhost:3000/api/revision',
                   sessionData
                 );
+                setSendData(prev => false);
                 rounter.push("/revisly/all");
                 console.log(response);
-                setSendData(prev => false);
 
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
