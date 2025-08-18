@@ -5,10 +5,10 @@ import { Groq } from "groq-sdk";
 
 import multer from "multer"
 import AWS from "aws-sdk"
-import { v4 as uuidv4 } from "uuid"
-import pdf, { note } from "pdfkit"
+
+import pdfDoc from "pdfkit"
 import fs from "fs"
-import path from "path"
+
 dotenv.config();
 const app = express();
 app.use(express.json())
@@ -49,17 +49,10 @@ const upload = multer({
 });
 
 
-function uploadpdf() {
 
-}
 
-function GenerateNotesPdf() {
-  const notes = new pdf();
-  notes.pipe(fs.createWriteStream('./notes/notes.pdf'))
 
-  notes.fontSize(20).text('done', 100, 100);
-  notes.end()
-}
+
 
 const redis = Redis.fromEnv();
 
@@ -76,7 +69,16 @@ async function getAiGeneratedNotes(params: string) {
   return chatCompletion.choices[0].message.content;
 }
 
-
+function GenerateNotesPdf(text: string) {
+  const doc = new pdfDoc();
+  doc.pipe(fs.createWriteStream('./notes/notes2.pdf'))
+  doc.fontSize(12)
+    .text(text, 10, 10, {
+      width: 1000,
+      align: 'justify'
+    });
+  doc.end()
+}
 async function generateNotes() {
 
 
@@ -88,14 +90,16 @@ async function generateNotes() {
 
       if (revisionTopic !== null && revisionTopic.trim() !== '') {
         console.log(`Processing: ${revisionTopic}`);
-        const notes = await getAiGeneratedNotes(`generate notes for ${revisionTopic}`);
-         GenerateNotesPdf()
-        console.log('Notes Generated for ', notes)
+        const notes = await getAiGeneratedNotes(`generate notes for ${revisionTopic} in clean string format `);
+        
+        const notesPdf = GenerateNotesPdf(String(`${notes}`));
+        console.log(notesPdf)
+
       }
     }
     catch (err) {
       console.log('Queue processing error', err);
-      
+
     }
   }, 5000)
 }

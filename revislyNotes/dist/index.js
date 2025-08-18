@@ -45,14 +45,6 @@ const upload = (0, multer_1.default)({
         }
     }
 });
-function uploadpdf() {
-}
-function GenerateNotesPdf() {
-    const notes = new pdfkit_1.default();
-    notes.pipe(fs_1.default.createWriteStream('./notes/notes.pdf'));
-    notes.fontSize(20).text('done', 100, 100);
-    notes.end();
-}
 const redis = redis_1.Redis.fromEnv();
 function getAiGeneratedNotes(params) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -68,6 +60,16 @@ function getAiGeneratedNotes(params) {
         return chatCompletion.choices[0].message.content;
     });
 }
+function GenerateNotesPdf(text) {
+    const doc = new pdfkit_1.default();
+    doc.pipe(fs_1.default.createWriteStream('./notes/notes2.pdf'));
+    doc.fontSize(12)
+        .text(text, 10, 10, {
+        width: 1000,
+        align: 'justify'
+    });
+    doc.end();
+}
 function generateNotes() {
     return __awaiter(this, void 0, void 0, function* () {
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
@@ -75,9 +77,9 @@ function generateNotes() {
                 const revisionTopic = yield redis.rpop("revision");
                 if (revisionTopic !== null && revisionTopic.trim() !== '') {
                     console.log(`Processing: ${revisionTopic}`);
-                    const notes = yield getAiGeneratedNotes(`generate notes for ${revisionTopic}`);
-                    // await generateNotes()
-                    console.log('Notes Generated for ', notes);
+                    const notes = yield getAiGeneratedNotes(`generate notes for ${revisionTopic} in clean string format `);
+                    const notesPdf = GenerateNotesPdf(String(`${notes}`));
+                    console.log(notesPdf);
                 }
             }
             catch (err) {

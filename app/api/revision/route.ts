@@ -27,7 +27,7 @@ async function gerateBrif(sub: string) {
     messages: [
       {
         role: "user",
-        content: `Give me a 10-word brief about the ${sub}`,
+        content: `Give me a 10-word brief about the ${sub} `,
       },
     ],
     model: "openai/gpt-oss-120b",
