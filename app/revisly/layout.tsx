@@ -354,7 +354,7 @@ function NavItem({
    
       className={[
         "w-full rounded-xl px-3 py-2 text-left text-sm font-medium",
-        "flex items-center gap-2 transition-discrete duration-600 ease-linear ",
+        "flex items-center gap-2 transition-discrete duration-300  ease-out ",
         active
           ? "bg-zinc-900 text-white shadow-sm"
           : "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900",

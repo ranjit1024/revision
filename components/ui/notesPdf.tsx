@@ -14,10 +14,11 @@ import {
 import { id } from "date-fns/locale"
 import { useEffect } from "react"
 
-export function ViewNotes({topic,brief}:{
+export function ViewNotes({topic,brief, notesLink}:{
 topic:string | undefined,
 brief:string | undefined,
-id:string | undefined
+id:string | undefined,
+notesLink:string | undefined
 }) {
     
   return (
@@ -30,8 +31,10 @@ id:string | undefined
           <DialogTitle className="text-2xl">{topic === undefined ? <div className="h-10 bg-gray-100 rounded-md w-40"></div>:<div>{topic}</div>}</DialogTitle>
           <DialogDescription>
             {brief}
+            
           </DialogDescription>
         </DialogHeader>
+        {notesLink}
      
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>

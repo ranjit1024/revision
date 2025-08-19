@@ -13,7 +13,6 @@ const cardVariant = {
 };
 
 function formatDate(d:any) {
-  const router = useRouter()
   const dt = d instanceof Date ? d : new Date(d);
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(dt);
 }
@@ -27,6 +26,7 @@ export default function RevisionSessionCard({
   brief = "Short summary about what to revise in this session.",
   progress = 0,
   id="",
+  
 }:{
  
   title:string,
@@ -37,24 +37,12 @@ export default function RevisionSessionCard({
   progress:number
   id:string
   cratedDate:Date
+  
 }) {
   const pct = Math.max(0, Math.min(100, progress));
   const router = useRouter();
-   const [brif, setBrif] = useState<string | undefined >(undefined);
-    const [topic, setTopic] = useState<string | undefined>(undefined);
-    const [revisionId,setRevisionId] = useState<String | undefined >(undefined)
-  useEffect(()=>{
-    
-      async function getBrif() {
-        const details  = await getSessionBrif(String(revisionId));
-        const brif :string  | undefined= details?.revision.brif ;
-        const topic : string | undefined  = details?.revision.topic;
-        setTopic(topic)
-        setBrif(brif)
-      }
-      getBrif()
-    
-    },[revisionId])
+   
+ 
   return (
     <motion.article
     
@@ -124,14 +112,16 @@ export default function RevisionSessionCard({
       <footer className="mt-5 flex items-center justify-end">
        
         <div className="flex items-center gap-3">
-          <div onClick={async()=>{
-            setRevisionId(id);
-            const userNotes = await getNotes({folderKey:`${id} ${topic}/notes/notes.pdf`});
-            console.log(userNotes)
-          }}>
-          <ViewNotes topic={topic} brief={brief} id={String(id)} />
+         
+         <button onClick={async ()=>{
+          const userNotes = await getNotes({folderKey:`${id} ${title}/notes/notes.pdf`});
+          if(userNotes){
 
-          </div>
+            window.open(userNotes)
+          }
+         }} className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-sm hover:brightness-95 hover:cursor-pointer">View Notes</button>
+
+          
           <button className="px-3 py-1.5 rounded-lg bg-linear-150 from-white to-indigo-100  text-gray-900 border text-sm hover:brightness-95 hover:cursor-pointer" onClick={()=>{
              
               router.push(`/revisly/revision/${id}`);

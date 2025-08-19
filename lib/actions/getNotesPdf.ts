@@ -1,5 +1,7 @@
 "use server"
-import {S3Client, ListObjectsV2Command} from "@aws-sdk/client-s3"
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
 const s3 = new S3Client({
   region: String(process.env.AWS_REGION),
   credentials: {
@@ -15,14 +17,12 @@ export async function getNotes({ folderKey}:{
     folderKey:string
 }) {
     try{
-            const command = new ListObjectsV2Command({
+            const command = new GetObjectCommand({
             Bucket: process.env.S3_BUCKET,
-            Prefix: folderKey,
-            Delimiter: '/', // This prevents listing subfolder contents
-            MaxKeys: 1000
+            Key: folderKey,
+            
         });
-        const response  = await s3.send(command);
-        return response.Contents;
+        return getSignedUrl(s3, command, { expiresIn: 300 });
     }
     catch(err){
         console.log(err)
