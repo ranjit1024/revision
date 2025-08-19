@@ -5,7 +5,7 @@ import { Calendar, Clock, Hash,  } from "lucide-react";
 import { useEffect,useState } from "react";
 import { ViewNotes } from "./notesPdf";
 import { getSessionBrif } from "@/lib/actions/getDetailsSession";
-import { listUserPDFs } from "@/lib/actions/getNotesPdf";
+import { getNotes } from "@/lib/actions/getNotesPdf";
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
@@ -124,8 +124,10 @@ export default function RevisionSessionCard({
       <footer className="mt-5 flex items-center justify-end">
        
         <div className="flex items-center gap-3">
-          <div onClick={()=>{
-            setRevisionId(id)
+          <div onClick={async()=>{
+            setRevisionId(id);
+            const userNotes = await getNotes({folderKey:`${id} ${topic}/notes/notes.pdf`});
+            console.log(userNotes)
           }}>
           <ViewNotes topic={topic} brief={brief} id={String(id)} />
 

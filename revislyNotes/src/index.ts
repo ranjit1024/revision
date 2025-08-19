@@ -1,4 +1,4 @@
-import express, { Express, Response, Request, raw } from "express";
+import express, { Express, Request, } from "express";
 import dotenv from "dotenv";
 import { Redis } from "@upstash/redis";
 import { Groq } from "groq-sdk";
@@ -11,7 +11,7 @@ import fs from "fs"
 import cors from "cors"
 
 dotenv.config();
-const app = express();
+const app:Express = express();
 app.use(express.json())
 app.use(cors());
 
