@@ -5,6 +5,7 @@ import { Calendar, Clock, Hash,  } from "lucide-react";
 import { useEffect,useState } from "react";
 import { ViewNotes } from "./notesPdf";
 import { getSessionBrif } from "@/lib/actions/getDetailsSession";
+import { listUserPDFs } from "@/lib/actions/getNotesPdf";
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
@@ -126,7 +127,7 @@ export default function RevisionSessionCard({
           <div onClick={()=>{
             setRevisionId(id)
           }}>
-          <ViewNotes topic={topic} brief={brief} />
+          <ViewNotes topic={topic} brief={brief} id={String(id)} />
 
           </div>
           <button className="px-3 py-1.5 rounded-lg bg-linear-150 from-white to-indigo-100  text-gray-900 border text-sm hover:brightness-95 hover:cursor-pointer" onClick={()=>{

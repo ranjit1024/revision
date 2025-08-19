@@ -17,7 +17,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const redis_1 = require("@upstash/redis");
 const groq_sdk_1 = require("groq-sdk");
 const multer_1 = __importDefault(require("multer"));
-const aws_sdk_1 = __importDefault(require("aws-sdk"));
+const client_s3_1 = require("@aws-sdk/client-s3");
 const pdfkit_1 = __importDefault(require("pdfkit"));
 const fs_1 = __importDefault(require("fs"));
 const cors_1 = __importDefault(require("cors"));
@@ -29,11 +29,14 @@ const groq = new groq_sdk_1.Groq({
     apiKey: process.env.GROQ_API_KEY
 });
 console.log(process.env.GROQ_API_KEY);
-const s3 = new aws_sdk_1.default.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION,
-    endpoint: process.env.AWS_ENDPOINT
+const s3 = new client_s3_1.S3Client({
+    region: String(process.env.AWS_REGION),
+    credentials: {
+        accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
+        secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY),
+    },
+    maxAttempts: 5,
+    retryMode: 'adaptive'
 });
 const storage = multer_1.default.memoryStorage();
 const upload = (0, multer_1.default)({
@@ -82,18 +85,19 @@ function generateNotes() {
                 //   id: string 
                 // }  : null;
                 if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
-                    console.log(`Processing: ${revisionData}`);
+                    console.log(`Processing: ${revisionData.id}`);
                     const notes = yield getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
                     const notesPdf = GenerateNotesPdf(String(`${notes}`));
-                    const fileContent = fs_1.default.createReadStream('./notes/notes2.pdf');
+                    const fileContent = fs_1.default.promises.readFile('./notes/notes2.pdf');
                     const params = {
                         Bucket: String(process.env.S3_BUCKET),
                         Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
-                        Body: fileContent,
+                        Body: yield fileContent,
+                        ContentLength: Number((yield fileContent).length),
                         ContentType: 'application/pdf',
-                        ACL: 'private'
                     };
-                    const result = yield s3.upload(params).promise();
+                    const command = new client_s3_1.PutObjectCommand(params);
+                    const result = yield s3.send(command);
                     console.log('Notes uploaded successfully');
                     return "done with creating notes";
                 }

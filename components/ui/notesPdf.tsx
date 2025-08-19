@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -9,12 +10,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
+// import { listUserPDFs } from "@/lib/actions/getNotesPdf"
+import { id } from "date-fns/locale"
+import { useEffect } from "react"
 
 export function ViewNotes({topic,brief}:{
 topic:string | undefined,
-brief:string | undefined
+brief:string | undefined,
+id:string | undefined
 }) {
+    
   return (
     <Dialog>
       <DialogTrigger asChild>

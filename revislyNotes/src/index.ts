@@ -4,7 +4,7 @@ import { Redis } from "@upstash/redis";
 import { Groq } from "groq-sdk";
 
 import multer from "multer"
-import AWS from "aws-sdk"
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 
 import pdfDoc from "pdfkit"
 import fs from "fs"
@@ -19,12 +19,16 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
 });
 console.log(process.env.GROQ_API_KEY)
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
-  endpoint: process.env.AWS_ENDPOINT
-});
+const s3 = new S3Client({
+  region: String(process.env.AWS_REGION),
+  credentials: {
+    accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
+    secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY),
+  },
+  maxAttempts:5,
+  retryMode:'adaptive'
+
+})
 
 interface MulterRequest extends Request {
   file: Express.Multer.File;
@@ -80,33 +84,35 @@ async function generateNotes() {
 
   setInterval(async () => {
     try {
-      const revisionData  = await redis.rpop("revision") as {
-        topic:string
-        id:string
-       }  | null;
+      const revisionData = await redis.rpop("revision") as {
+        topic: string
+        id: string
+      } | null;
       // const revisionTopic = rawValue ? JSON.parse(rawValue) as {
       //   topic: string ,
       //   id: string 
       // }  : null;
-      
-      
+
+
       if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
-        console.log(`Processing: ${revisionData}`);
+        console.log(`Processing: ${revisionData.id}`);
         const notes = await getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
-        
+
         const notesPdf = GenerateNotesPdf(String(`${notes}`));
-        const fileContent = fs.createReadStream('./notes/notes2.pdf')
+        const fileContent = fs.promises.readFile('./notes/notes2.pdf')
         const params = {
           Bucket: String(process.env.S3_BUCKET),
-          Key:`${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
-          Body: fileContent,
-          ContentType:'application/pdf',
-          ACL:'private'
+          Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
+          Body: await fileContent,
+          ContentLength:Number((await fileContent).length),
+          ContentType: 'application/pdf',
+          
         }
-        const result = await s3.upload(params).promise()
+        const command = new PutObjectCommand(params)
+        const result = await s3.send(command)
         console.log('Notes uploaded successfully')
         return "done with creating notes"
-      
+
       }
       return "done with creating notes"
     }
@@ -117,7 +123,7 @@ async function generateNotes() {
   }, 5000);
 
 }
-const status =  generateNotes().then(data => data)
+const status = generateNotes().then(data => data)
 
 
 
