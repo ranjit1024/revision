@@ -2,7 +2,7 @@
 import { RevisionCard } from "@/components/ui/score";
 import GetdetailSession from "@/lib/actions/getDetailsSession";
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Skeleton from "@/components/ui/cardSkeleton";
 import { getSessionBrif } from "@/lib/actions/getDetailsSession";
 type Status = 'COMPLETED' | 'PENDING' ;

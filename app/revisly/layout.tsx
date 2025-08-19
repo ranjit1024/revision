@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import newUser from "@/lib/actions/newUser";
-
+import { usePathname } from "next/navigation";
 
 import {
   Bell,
@@ -25,7 +25,9 @@ import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import Image from "next/image";
 import Notification from "@/components/ui/notification";
 import Loader from "@/components/ui/loader";
+import { opacity } from "pdfkit";
 export default function Home({ children }: { children: ReactNode }) {
+  let pathname = usePathname(); 
   const { data: session, status } = useSession();
   const router = useRouter();
   const [profile, setProfile] = useState<boolean>(false);
@@ -213,7 +215,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 
 
                 </div>
-               <NavItem icon={<LayoutDashboard size={16} />} label="Dashboard" active />
+               <NavItem icon={<LayoutDashboard size={16} />} label="Dashboard"     active={pathname.includes('home')?true:false} />
             
               </motion.div>
 
@@ -237,7 +239,9 @@ export default function Home({ children }: { children: ReactNode }) {
                
               >
                 
-                 <NavItem icon={<CalendarCheck size={16} />} label="All Revision sessions" />
+                 <NavItem icon={<CalendarCheck size={16} />} label="All Revision sessions"  
+                 active={pathname.includes('all')?true:false}
+               />
                            
            
               
@@ -261,7 +265,7 @@ export default function Home({ children }: { children: ReactNode }) {
                 className=""
               >
                 
-                            <NavItem icon={<Gauge size={16} />} label="Set custom Revision" />
+                            <NavItem icon={<Gauge size={16} />} label="Set custom Revision"  active={pathname.includes('custom')?true:false} />
               </motion.div>
 
               <motion.div
@@ -346,10 +350,11 @@ function NavItem({
   active?: boolean;
 }) {
   return (
-    <button
+    <motion.button
+   
       className={[
         "w-full rounded-xl px-3 py-2 text-left text-sm font-medium",
-        "flex items-center gap-2 transition",
+        "flex items-center gap-2 transition-discrete duration-600 ease-linear ",
         active
           ? "bg-zinc-900 text-white shadow-sm"
           : "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900",
@@ -357,6 +362,6 @@ function NavItem({
     >
       <span className={active ? "text-white" : "text-zinc-500"}>{icon}</span>
       {label}
-    </button>
+    </motion.button>
   );
 }
