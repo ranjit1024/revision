@@ -22,6 +22,7 @@ export async function getNotes({ folderKey}:{
             Key: folderKey,
             
         });
+        
         return getSignedUrl(s3, command, { expiresIn: 300 });
     }
     catch(err){

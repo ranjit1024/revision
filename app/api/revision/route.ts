@@ -55,9 +55,9 @@ function getSelectedDateAndTime(time: string): Date {
   return convertedDate
 }
 //function for calculating endsesionDate
-function calculateAfterDays(value: number): Date {
+function calculateAfterDays(value: number, createDate:Date): Date {
   const date = new Date();
-  date.setDate(date.getDate() + value);
+  date.setDate(createDate.getDate() + value);
   return date;
 }
 // all zod schemas
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         topic: String(sessionSchema.data.topic),
         sessionsintervel: sessionSchema.data.sessionIntervel,
         time: getSelectedDateAndTime(sessionSchema.data.time),
-        endSession: calculateAfterDays(sessionSchema.data.totaldays),
+        endSession: calculateAfterDays(Number(sessionSchema.data.totaldays), getSelectedDateAndTime(sessionSchema.data.time)),
         totalDays: sessionSchema.data.totaldays,
         sessions: sessionSchema.data.sessionIntervel.length,
         brif:String(brief)
@@ -128,7 +128,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
           score: 0,
           topic: createRevison.topic,
           revisionid:createRevison.id,
-          reminderDate:calculateAfterDays(Number(createRevison.sessionsintervel[i])),
+          reminderDate: calculateAfterDays(Number(createRevison.sessionsintervel[i]), getSelectedDateAndTime(sessionSchema.data.time)),
+          // reminderDate:calculateAfterDays(Number(createRevison.sessionsintervel[i])),
           status:'PENDING'
          
         }
