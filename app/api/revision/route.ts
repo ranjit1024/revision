@@ -120,24 +120,24 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 
     console.log(createRevison);
-    for (let i = 0; i <= sessionSchema.data.sessionIntervel.length; i++) {
-      const createRevisons = await prisma.revisionSession.createMany({
-        data: {
-          email: String(session?.user?.email),
-          sessionNumber:Number(createRevison.sessionsintervel[i]) ,
-          score: 0,
-          topic: createRevison.topic,
-          revisionid:createRevison.id,
-          reminderDate: calculateAfterDays(Number(createRevison.sessionsintervel[i]), getSelectedDateAndTime(sessionSchema.data.time)),
+    // for (let i = 0; i <= sessionSchema.data.sessionIntervel.length; i++) {
+    //   const createRevisons = await prisma.revisionSession.createMany({
+    //     data: {
+    //       email: String(session?.user?.email),
+    //       sessionNumber:Number(createRevison.sessionsintervel[i]) ,
+    //       score: 0,
+    //       topic: createRevison.topic,
+    //       revisionid:createRevison.id,
+    //       reminderDate: calculateAfterDays(Number(createRevison.sessionsintervel[i]), getSelectedDateAndTime(sessionSchema.data.time)),
  
-          status:'PENDING'
+    //       status:'PENDING'
          
-        }
-      })
-      console.log(createRevisons)
-    }
-    const sendToWorker = await redis.lpush('revision', JSON.stringify({topic:sessionSchema.data.topic, id:createRevison.id}));
-    console.log(sendToWorker);
+    //     }
+    //   })
+    //   console.log(createRevisons)
+    // }
+    // const sendToWorker = await redis.lpush('revision', JSON.stringify({topic:sessionSchema.data.topic, id:createRevison.id}));
+    // console.log(sendToWorker);
 
     return NextResponse.json({
       msg: "this is working",

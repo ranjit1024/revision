@@ -10,10 +10,12 @@ import axios from "axios"
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
-import { DateRangePicker } from "@/components/ui/range";
+import { MaxRangeDatePicker} from "@/components/ui/range";
 import Chip from "@/components/ui/diff";
+import { DateRange } from "react-day-picker";
 
 export default function Home() {
+   const [dateRange, setDateRange] = React.useState<DateRange | undefined>()
   const rounter = useRouter()
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
@@ -34,7 +36,7 @@ export default function Home() {
 
         sendData ? <NotesgeneratorLoader /> : null
       }
-      <div className="bg-white shadow p-5 rounded-md h-[110vh] ">
+      <div className="bg-white shadow p-5 rounded-md h-[120vh] ">
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">
@@ -84,11 +86,15 @@ export default function Home() {
             </div>
 
           </div>
-          <div className="mt-8 ">
-            <DateRangePicker/>
+          <div className="mt-8  ">
+             <MaxRangeDatePicker
+      value={dateRange}
+      onChange={setDateRange}
+      maxRangeDays={30} // Limit to 30 days
+    />
           </div>
 
-          <div className="w-100 mt-7 hover:cursor-pointer  ">
+          <div className="w-100 mt-8 hover:cursor-pointer  ">
 
             <TimePicker />
           </div>

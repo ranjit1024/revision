@@ -18,7 +18,7 @@ model User {
   createdAt     DateTime          @default(now())
   updatedAt     DateTime?         @updatedAt
   revision      Revision[]
-  revisions     RevisionSession[]
+  // revisions     RevisionSession[]
 }
 
 model Revision {
@@ -33,21 +33,21 @@ model Revision {
   totalDays        Int
   user             User              @relation(fields: [email], references: [email])
   brif             String
-  revisions        RevisionSession[]
+  // revisions        RevisionSession[]
 }
 
-model RevisionSession {
-  id            String   @id @unique @default(cuid())
-  email         String
-  sessionNumber Int
-  score         Int
-  topic         String
-  revisionid    String
-  reminderDate  DateTime
-  status        Status
-  revision      Revision @relation(fields: [revisionid], references: [id])
-  user          User     @relation(fields: [email], references: [email])
-}
+// model RevisionSession {
+//   id            String   @id @unique @default(cuid())
+//   email         String
+//   sessionNumber Int
+//   score         Int
+//   topic         String
+//   revisionid    String
+//   reminderDate  DateTime
+//   status        Status
+//   revision      Revision @relation(fields: [revisionid], references: [id])
+//   user          User     @relation(fields: [email], references: [email])
+// }
 
 enum Status {
   COMPLETED
