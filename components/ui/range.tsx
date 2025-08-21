@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { CalendarIcon } from "lucide-react"
-
+import { useDispatch, UseDispatch } from "react-redux"
+import { actions } from "@/store/slices/revison"
 interface MaxRangeDatePickerProps {
   value?: DateRange
   onChange?: (range: DateRange | undefined) => void
@@ -24,8 +25,9 @@ export function MaxRangeDatePicker({
 }: MaxRangeDatePickerProps) {
   const [open, setOpen] = React.useState(false)
   const [range, setRange] = React.useState<DateRange | undefined>(value)
+  const dispatch = useDispatch()
+  const today = startOfToday();
 
-  const today = startOfToday()
 
   function handleSelect(selectedRange: DateRange | undefined) {
     if (!selectedRange) {
@@ -137,7 +139,17 @@ export function MaxRangeDatePicker({
         <div className="p-3 border-t text-xs text-muted-foreground flex items-center justify-between">
           • Past dates disabled • Maximum range: {maxRangeDays} days
         <Button className="bg-green-700 text-end" onClick={()=>{
-          setOpen(false)
+          console.log(range?.from);
+          console.log(range?.to)
+          setOpen(false);
+          dispatch(actions.addStartTime({
+            startDate:range?.from?.toISOString()
+          }))
+          dispatch(actions.addEndTime({
+            endDate:range?.to?.toISOString()
+          }))
+
+      
         }} >ok</Button>
         </div>
       </PopoverContent>

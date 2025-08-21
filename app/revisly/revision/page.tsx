@@ -22,9 +22,10 @@ export default function Home() {
     const data = {
       topic: state.revision.topic,
       sessionIntervel: state.revision.sessionIntervel,
-      sessions: state.revision.sessions,
       time: state.revision.time,
-      totaldays: state.revision.totalDays
+      totaldays: state.revision.totalDays,
+      startSession:state.revision.startDate,
+      endSession:state.revision.endDate
     };
     return data;
   });
@@ -69,7 +70,7 @@ export default function Home() {
                     onBlur={(e) => {
                       console.log(e.currentTarget.value);
                       dispatch(actions.addTopic({
-                        topic: e.currentTarget.value
+                        topic:e.currentTarget.value
                       }))
                     }}
                     id="topic"
@@ -119,16 +120,9 @@ export default function Home() {
           <div className="mt-9 flex items-center gap-3">
             <button
               onClick={async () => {
-                
-                console.log(sessionData);
-                setSendData(prev => true);
 
-                // const response = await axios.post('http://localhost:3000/api/revision',
-                //   sessionData
-                // );
-                // setSendData(prev => false);
-                // rounter.push("/revisly/all");
-                // console.log(response);
+                console.log(sessionData);
+               
 
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"

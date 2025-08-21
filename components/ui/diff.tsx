@@ -1,6 +1,8 @@
 // Chip.ts\\\
 "use client"
+import { bool } from "aws-sdk/clients/signer";
 import { CalendarDays } from "lucide-react";
+import { useState } from "react";
 
 type ChipProps = {
   level?: "Easy" | "Medium" | "Hard";
@@ -19,8 +21,13 @@ export default function Chip({
   cadence = "once a week",
   className = "",
 }: ChipProps) {
+  const [isClicked,setIsclicked] = useState<boolean>(false);
   return (
     <span
+      onClick={()=>{
+        console.log({level});
+        setIsclicked(true)
+      }}
       role="status"
       aria-label={`${level}, ${cadence}`}
       className={[

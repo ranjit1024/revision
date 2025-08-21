@@ -79,7 +79,8 @@ const validation = z.object({
   totaldays: z.number()
     .refine((val) => alllowdTotalDays.includes(val), {
       message: 'enter correct number'
-    })
+    }),
+    difficulty:z.enum(['easy', 'medium', 'hard'])
 });
 
 

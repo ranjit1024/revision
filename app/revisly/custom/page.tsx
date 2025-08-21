@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DrawerDemo } from "@/components/ui/intervel";
 import { Label } from "@/components/ui/label";
-import { DateRangePicker } from "@/components/ui/range";
+import { MaxRangeDatePicker } from "@/components/ui/range";
+
 
 import { Sparkles } from "lucide-react";
 export default function Home() {
@@ -67,7 +68,7 @@ export default function Home() {
 
         <div>
           <Label className="mt-8 mb-2">Selct Date Range</Label>
-          <DateRangePicker className="w-full" />
+          <MaxRangeDatePicker  />
         </div>
         <div className="w-100 mt-7 hover:cursor-pointer  ">
           <Label className="pb-2">Select Time</Label>
