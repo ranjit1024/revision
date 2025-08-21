@@ -331,7 +331,7 @@ export default function Home({ children }: { children: ReactNode }) {
           </motion.div>
         </div>
 
-        <div className="p-3 w-[99%]   overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]  pt-15 h-[100vh] ">
+        <div className="p-3 w-[99%]    pt-15 h-[100vh] ">
           {children}
         </div>
       </div>

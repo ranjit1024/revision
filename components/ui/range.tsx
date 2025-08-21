@@ -19,14 +19,18 @@ export function DateRangePicker({
 
   const [open,setOpen] = React.useState(false)
   return (
-    <div className={cn("grid gap-2", className)}>
+    <div className={cn("grid   top-10", className)}>
+       <label className="block text-sm font-medium ml-2 mb-2 text-zinc-700" htmlFor="time">
+              Select how long you want to revise 
+            </label>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             id="date"
             variant={"outline"}
             className={cn(
-              "w-full justify-start text-left font-normal",
+              "w-fit justify-start text-left font-normal h-10  rounded-xl border border-zinc-200 bg-white px-4 py-2.5 pr-10 text-zinc-900 shadow-sm outline-none transition focus:border-emerald-300 focus:ring-4 focus:ring-emerald-100"
+              ,
               !date && "text-blue-400"
             )}
           >
@@ -46,7 +50,7 @@ export function DateRangePicker({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="w-auto p-0 ">
+        <PopoverContent className="w-fit p-3 absolute left-0">
           <Calendar
             disabled={{before:new Date()}}
             mode="range"

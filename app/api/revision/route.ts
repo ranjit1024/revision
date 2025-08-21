@@ -120,7 +120,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 
     console.log(createRevison);
-    for (let i = 0; i < sessionSchema.data.sessionIntervel.length; i++) {
+    for (let i = 0; i <= sessionSchema.data.sessionIntervel.length; i++) {
       const createRevisons = await prisma.revisionSession.createMany({
         data: {
           email: String(session?.user?.email),
@@ -129,7 +129,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
           topic: createRevison.topic,
           revisionid:createRevison.id,
           reminderDate: calculateAfterDays(Number(createRevison.sessionsintervel[i]), getSelectedDateAndTime(sessionSchema.data.time)),
-          // reminderDate:calculateAfterDays(Number(createRevison.sessionsintervel[i])),
+ 
           status:'PENDING'
          
         }

@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { SelectScrollable } from "@/components/ui/defaultIntervel";
 import { useSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
 import { useDispatch } from "react-redux";
@@ -11,6 +10,9 @@ import axios from "axios"
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
+import { DateRangePicker } from "@/components/ui/range";
+import Chip from "@/components/ui/diff";
+
 export default function Home() {
   const rounter = useRouter()
   const dispatch = useDispatch();
@@ -27,12 +29,12 @@ export default function Home() {
   const [sendData, setSendData] = useState<boolean>(false);
 
   return (
-    <div className="h-[10vh] ">
+    <div className=" ">
       {
 
         sendData ? <NotesgeneratorLoader /> : null
       }
-      <div className="bg-white shadow p-5 rounded-md ">
+      <div className="bg-white shadow p-5 rounded-md h-[110vh] ">
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">
@@ -82,8 +84,8 @@ export default function Home() {
             </div>
 
           </div>
-          <div className="mt-6">
-            <SelectScrollable />
+          <div className="mt-8 ">
+            <DateRangePicker/>
           </div>
 
           <div className="w-100 mt-7 hover:cursor-pointer  ">
@@ -94,10 +96,21 @@ export default function Home() {
           <div>
             {/* <Progress value={33} /> */}
           </div>
+                      <div className="flex flex-col mt-2">
+                         <label className="block mt-7 ml-2 mb-3 text-sm font-medium text-zinc-700 text-start " htmlFor="topic">
+                Select The diffeculty level
+              </label>
+              <div className="flex ml-1 gap-2">
 
+                      <Chip level="Easy" cadence="Weekly" />
+                        <Chip level="Medium" cadence="every 3 days" />
+                          <Chip level="Hard" cadence="review daily" />
 
+              </div>
+                
+                      </div>
 
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-9 flex items-center gap-3">
             <button
               onClick={async () => {
                 console.log(sessionData);
