@@ -119,15 +119,16 @@ export default function Home() {
           <div className="mt-9 flex items-center gap-3">
             <button
               onClick={async () => {
+                
                 console.log(sessionData);
                 setSendData(prev => true);
 
-                const response = await axios.post('http://localhost:3000/api/revision',
-                  sessionData
-                );
-                setSendData(prev => false);
-                rounter.push("/revisly/all");
-                console.log(response);
+                // const response = await axios.post('http://localhost:3000/api/revision',
+                //   sessionData
+                // );
+                // setSendData(prev => false);
+                // rounter.push("/revisly/all");
+                // console.log(response);
 
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
