@@ -1,7 +1,7 @@
 "use client"
 
-import { GoalIcon, LucideTarget, ScrollText, TargetIcon, TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from "recharts"
+import { TrendingUp } from "lucide-react"
+import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
 
 import {
   Card,
@@ -18,80 +18,62 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-export const description = "A bar chart with a custom label"
+export const description = "A bar chart with a label"
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-
+  { month: "January", desktop: 90 },
+  { month: "February", desktop: 100 },
+  { month: "March", desktop: 27 },
+  { month: "April", desktop: 77 },
+  { month: "May", desktop: 70 },
+ 
 ]
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "red",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "red",
-  },
-  label: {
-    color: "var(--background)",
+    color: "var(--chart-5)",
   },
 } satisfies ChartConfig
 
-export function ChartBarLabelCustom() {
+export function ChartBarLabel() {
   return (
-    <Card className="h-fit">
+    <Card className="w-full">
       <CardHeader>
-        <CardTitle>Last 5 revision score</CardTitle>
-        <CardDescription>Total score of last 5 revision</CardDescription>
+        <CardTitle>Last 5 session scores</CardTitle>
+        <CardDescription>How much you score in last 5 sessions</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
             data={chartData}
-            layout="vertical"
             margin={{
-              right: 16,
+              top: 40,
+              
             }}
+            barCategoryGap={14}
+           
           >
-            <CartesianGrid horizontal={false} />
-            <YAxis
+            <CartesianGrid vertical={false} />
+            <XAxis
+
               dataKey="month"
-              type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+            
+            
               tickFormatter={(value) => value.slice(0, 3)}
-              hide
             />
-            <XAxis dataKey="desktop" type="number" hide />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
+              content={<ChartTooltipContent hideLabel />}
             />
-            <Bar
-              dataKey="desktop"
-              layout="vertical"
-              fill="#4E4FEB"
-              radius={4}
-            >
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={10}>
               <LabelList
-                dataKey="month"
-                position="insideLeft"
-                offset={8}
-                className="fill-(--color-label)"
-                fontSize={12}
-              />
-              <LabelList
-                dataKey="desktop"
-                position="right"
-                offset={8}
+                position="top"
+                offset={12}
                 className="fill-foreground"
                 fontSize={12}
               />
@@ -100,11 +82,11 @@ export function ChartBarLabelCustom() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium items-center">
-          last 5 revison score <GoalIcon className="size-5"/>
+        <div className="flex gap-2 leading-none font-medium">
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="text-muted-foreground leading-none">
-          Showing total score in last 5 revison
+          Showing total visitors for the last 6 months
         </div>
       </CardFooter>
     </Card>

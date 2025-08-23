@@ -46,13 +46,16 @@ export default function Home() {
     getRevisionSession()
   }, [])
   console.log(revisionSessionInfo)
-  return <motion.div
+  return <div className=" ">
+
+ 
+  <motion.div
 
     ref={ref}
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show" : "hidden"}
-    className="grid  justify-center gap-4  w-[100%] grid-cols-2   ">
+    className="grid  justify-center gap-4  w-[100%]  grid-cols-2   ">
 
     {
       revisionSessionInfo === null ? <motion.div
@@ -82,4 +85,5 @@ export default function Home() {
 
 
   </motion.div>
+  </div>
 }

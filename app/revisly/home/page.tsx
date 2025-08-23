@@ -1,5 +1,5 @@
 "use client";
-import { ChartBarLabelCustom } from "@/components/ui/last5";
+import { ChartBarLabel } from "@/components/ui/last5";
 import {Retation} from "@/components/ui/retation";
 import {
   
@@ -10,13 +10,14 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import {  useState } from "react";
 import { motion } from "framer-motion";
+import { Subjects } from "@/components/ui/subjects";
 
 export default function Home() {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
-    <div>
-      <div className="w-[100%] ">
+    <div className="">
+      <div className="w-[100%] h-full ">
       
    
              <motion.section 
@@ -99,33 +100,7 @@ export default function Home() {
           <Retation />
         </motion.div>
         <div className="grid grid-cols-2 w-[100%] mt-3 gap-3 h-100">
-          <motion.div 
-            initial={{
-              y: -20,
-              opacity: 0,
-            }}
-            whileInView={{
-              y: 0,
-              opacity: 1,
-            }}
-            viewport={
-              {
-                once:true
-              }
-            }
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-            }}
           
-          className="w-[100%] bg-gray-50  ">
-             <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              className="rounded-lg border w-[100%] mb-2"
-            />
-          </motion.div>
           <motion.div
             initial={{
               x: -50,
@@ -143,8 +118,9 @@ export default function Home() {
               delay: 0.3,
             }}
           className="w-[100%]  ">
-            <ChartBarLabelCustom  />
+            <ChartBarLabel  />
           </motion.div>
+          <Subjects/>
 
         </div>
     

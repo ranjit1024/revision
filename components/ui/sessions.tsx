@@ -1,8 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart, Sector } from "recharts"
-import { PieSectorDataItem } from "recharts/types/polar/Pie"
+import { Pie, PieChart } from "recharts"
 
 import {
   Card,
@@ -19,7 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-export const description = "A donut chart with an active sector"
+export const description = "A pie chart with a custom label"
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -55,37 +54,42 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Subjects() {
+export function SessoionsScore() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut Active</CardTitle>
+        <CardTitle>Pie Chart - Custom Label</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px] "
+          className="mx-auto aspect-square max-h-[250px] px-0"
         >
           <PieChart>
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent nameKey="visitors" hideLabel />}
             />
             <Pie
               data={chartData}
               dataKey="visitors"
+              labelLine={false}
+              label={({ payload, ...props }) => {
+                return (
+                  <text
+                    cx={props.cx}
+                    cy={props.cy}
+                    x={props.x}
+                    y={props.y}
+                    textAnchor={props.textAnchor}
+                    dominantBaseline={props.dominantBaseline}
+                    fill="hsla(var(--foreground))"
+                  >
+                    {payload.visitors}
+                  </text>
+                )
+              }}
               nameKey="browser"
-              innerRadius={60}
-              strokeWidth={5}
-              activeIndex={0}
-              
-              activeShape={({
-                outerRadius = 0,
-                ...props
-              }: PieSectorDataItem) => (
-                <Sector {...props} outerRadius={outerRadius + 10} />
-              )}
             />
           </PieChart>
         </ChartContainer>
