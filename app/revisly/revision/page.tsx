@@ -11,7 +11,7 @@ import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
 import { MaxRangeDatePicker} from "@/components/ui/range";
-import Chip from "@/components/ui/diff";
+import Chip from "@/components/ui/level";
 import { DateRange } from "react-day-picker";
 
 export default function Home() {
@@ -107,9 +107,9 @@ export default function Home() {
               </label>
               <div className="flex ml-1 gap-2">
 
-                      <Chip level="Easy" cadence="Weekly" />
-                        <Chip level="Medium" cadence="every 3 days" />
-                          <Chip level="Hard" cadence="review daily" />
+                      <Chip></Chip>
+                      
+                      
 
               </div>
                 
