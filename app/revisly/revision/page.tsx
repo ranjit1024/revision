@@ -89,9 +89,7 @@ export default function Home() {
           </div>
           <div className="mt-8  ">
              <MaxRangeDatePicker
-      value={dateRange}
-      onChange={setDateRange}
-      maxRangeDays={30} // Limit to 30 days
+      // Limit to 30 days
     />
           </div>
 

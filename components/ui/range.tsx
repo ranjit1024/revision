@@ -1,160 +1,106 @@
 "use client"
 
-import * as React from "react"
-import { addDays, differenceInDays, isBefore, startOfDay, startOfToday, format } from "date-fns"
+import { useState } from "react"
+import { format, addDays, differenceInDays } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { CalendarIcon } from "lucide-react"
-import { useDispatch, UseDispatch } from "react-redux"
-import { actions } from "@/store/slices/revison"
-interface MaxRangeDatePickerProps {
-  value?: DateRange
-  onChange?: (range: DateRange | undefined) => void
-  maxRangeDays?: number // e.g. 30 or 31
-  placeholder?: string
-}
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
-export function MaxRangeDatePicker({
-  value,
-  onChange,
-  maxRangeDays = 31,
-  placeholder = "Pick a date range (max 1 month)",
-}: MaxRangeDatePickerProps) {
-  const [open, setOpen] = React.useState(false)
-  const [range, setRange] = React.useState<DateRange | undefined>(value)
-  const dispatch = useDispatch()
-  const today = startOfToday();
+export function MaxRangeDatePicker() {
+  const today = new Date()
+  const maxDate = addDays(today, 30)
 
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: today,
+    to: undefined,
+  })
 
-  function handleSelect(selectedRange: DateRange | undefined) {
-    if (!selectedRange) {
-      setRange(undefined)
-      onChange?.(undefined)
+  const handleDateSelect = (selectedDate: DateRange | undefined) => {
+    if (!selectedDate) {
+      setDate(selectedDate)
       return
     }
 
-    let { from, to } = selectedRange
+    // If both from and to are selected, check if the range exceeds 30 days
+    if (selectedDate.from && selectedDate.to) {
+      const daysDifference = differenceInDays(selectedDate.to, selectedDate.from)
 
-    // Normalize 'from' to not be in the past
-    if (from && isBefore(startOfDay(from), today)) {
-      from = today
-    }
-
-    // If only from is selected, accept it
-    if (from && !to) {
-      const next = { from, to: undefined }
-      setRange(next)
-      onChange?.(next)
-      return
-    }
-
-    if (from && to) {
-      // Prevent end before start and clamp to max range
-      if (isBefore(to, from)) {
-        to = from
+      if (daysDifference > 30) {
+        // If range exceeds 30 days, set 'to' to 30 days from 'from'
+        setDate({
+          from: selectedDate.from,
+          to: addDays(selectedDate.from, 30)
+        })
+      } else {
+        setDate(selectedDate)
       }
-      const diff = differenceInDays(to, from)
-      if (diff > maxRangeDays) {
-        to = addDays(from, maxRangeDays)
-      }
-
-      // Ensure neither is in the past
-      if (isBefore(from, today)) {
-        from = today
-        if (isBefore(to, from)) to = from
-      }
-
-      const next = { from, to }
-      setRange(next)
-      onChange?.(next)
+    } else {
+      setDate(selectedDate)
     }
   }
 
-  React.useEffect(() => {
-    setRange(value)
-  }, [value])
-
   return (
-    
-    <Popover open={open} onOpenChange={setOpen}>
-          <label className="block text-sm mb-2  font-medium text-zinc-700 text-start ml-1" htmlFor="topic">
+
+    <div className="grid gap-2">
+      <Popover>
+            <label className="block text-sm font-medium text-zinc-700 text-start ml-1" htmlFor="topic">
                 Select Date
               </label>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn(
-            "w-80 justify-start text-left font-normal h-11 rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-zinc-900 shadow-sm outline-none transition placeholder:text-zinc-400 focus:border-emerald-300 focus:ring-4 focus:ring-emerald-100",
-            !range?.from && "text-muted-foreground"
-          )}
-        >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {range?.from ? (
-            range.to ? (
-              <>
-                {format(range.from, "MMM dd, yyyy")} - {format(range.to, "MMM dd, yyyy")}
-                <span className="ml-2 text-xs text-muted-foreground">
-                  ({differenceInDays(range.to, range.from) + 1} days)
-                </span>
-              </>
+        <PopoverTrigger asChild>
+          
+          <Button
+            id="date"
+            variant="outline"
+            className={cn(
+              "w-[300px] justify-start text-left font-normal h-12 rounded-2xl",
+              !date && "text-white"
+            )}
+            >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {date?.from ? (
+              date.to ? (
+                <>
+                  {format(date.from, "LLL dd, y")} -{" "}
+                  {format(date.to, "LLL dd, y")}
+                </>
+              ) : (
+                format(date.from, "LLL dd, y")
+              )
             ) : (
-              format(range.from, "MMM dd, yyyy")
-            )
-          ) : (
-            placeholder
-          )}
-        </Button>
-      </PopoverTrigger>
-      
+              <span>Pick a date</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <div className="absolute top-0">
 
-      
-      <PopoverContent className="w-auto p-0 absolute" align="start">
-        <Calendar
-          initialFocus
-          mode="range"
-          defaultMonth={range?.from ?? today}
-          selected={range}
-          onSelect={handleSelect}
-          numberOfMonths={2}
-          // Disable:
-          // 1) Past dates
-          // 2) When 'from' is set, any date before 'from' or beyond maxRangeDays from 'from'
-          disabled={(date) => {
-            // Block all past dates
-            if (isBefore(startOfDay(date), today)) return true
 
-            // If selecting end date, restrict window
-            if (range?.from && !range.to) {
-              const diff = differenceInDays(date, range.from)
-              if (diff < 0) return true
-              if (diff > maxRangeDays) return true
-            }
 
-            return false
-          }}
-        />
-        <div className="p-3 border-t text-xs text-muted-foreground flex items-center justify-between">
-          • Past dates disabled • Maximum range: {maxRangeDays} days
-        <Button className="bg-green-700 text-end" onClick={()=>{
-          console.log(range?.from);
-          console.log(range?.to)
-          setOpen(false);
-          dispatch(actions.addStartTime({
-            startDate:range?.from?.toISOString()
-          }))
-          dispatch(actions.addEndTime({
-            endDate:range?.to?.toISOString()
-          }))
-
-      
-        }} >ok</Button>
+          <PopoverContent className="w-fit p-0" align="start">
+            
+           
+            <Calendar
+              disabled={(date) => date < today || date > maxDate}
+              mode="range"
+              
+              defaultMonth={date?.from}
+              selected={date}
+              onSelect={handleDateSelect}
+              numberOfMonths={2}
+              showOutsideDays={false}
+              
+              />
+          </PopoverContent>
         </div>
-      </PopoverContent>
-    
+      </Popover>
+    </div>
 
-    </Popover>
   )
 }
