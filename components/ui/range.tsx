@@ -51,11 +51,11 @@ export function MaxRangeDatePicker() {
 
     <div className="grid gap-2">
       <Popover>
-            <label className="block text-sm font-medium text-zinc-700 text-start ml-1" htmlFor="topic">
-                Select Date
-              </label>
+        <label className="block text-sm font-medium text-zinc-700 text-start ml-1" htmlFor="topic">
+          Select Date
+        </label>
         <PopoverTrigger asChild>
-          
+
           <Button
             id="date"
             variant="outline"
@@ -63,7 +63,7 @@ export function MaxRangeDatePicker() {
               "w-[300px] justify-start text-left font-normal h-12 rounded-2xl",
               !date && "text-white"
             )}
-            >
+          >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date?.from ? (
               date.to ? (
@@ -80,23 +80,21 @@ export function MaxRangeDatePicker() {
           </Button>
         </PopoverTrigger>
         <div className="absolute top-0">
-
-
-
+          <Button>fsdf</Button>
           <PopoverContent className="w-fit p-0" align="start">
-            
-           
+
+
             <Calendar
               disabled={(date) => date < today || date > maxDate}
               mode="range"
-              
+
               defaultMonth={date?.from}
               selected={date}
               onSelect={handleDateSelect}
               numberOfMonths={2}
               showOutsideDays={false}
-              
-              />
+
+            />
           </PopoverContent>
         </div>
       </Popover>

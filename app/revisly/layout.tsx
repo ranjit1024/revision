@@ -18,9 +18,8 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Profile from "@/components/ui/Profile";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 import Notification from "@/components/ui/notification";
@@ -118,7 +117,7 @@ export default function Home({ children }: { children: ReactNode }) {
             <div className="flex gap-3 items-center  ">
               <div className="inline-flex ">
                 <button
-                  className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-700 shadow-xm hover:bg-zinc-50 active:shadow-none"
+                  className="inline-flex  hover:cursor-pointer items-center gap-2 rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-700 shadow-xm hover:bg-zinc-50 active:shadow-none"
                   onClick={() => {
                     router.push("/revisly/revision");
                   }}
