@@ -10,9 +10,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { actions } from "@/store/slices/revison"
 import { RootState } from "@/store/store"
-import { Item } from "@radix-ui/react-accordion"
 import { useSelector,  } from "react-redux"
 
 export function Preview() {
@@ -21,7 +19,6 @@ export function Preview() {
         const data = {
           topic: state.revision.topic,
           sessionIntervel: state.revision.sessionIntervel,
-          sessions: state.revision.sessions,
           time: state.revision.time,
           totaldays: state.revision.totalDays
         };
@@ -31,7 +28,7 @@ export function Preview() {
     return (
         <Dialog >
             <DialogTrigger asChild>
-                <button className="text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-900 hover:underline">
+                <button className="text-sm hover:cursor-pointer font-medium text-zinc-600 underline-offset-4 hover:text-zinc-900 hover:underline">
                     Preview schedule
                 </button>
             </DialogTrigger>

@@ -26,12 +26,12 @@ function Calendar({
   const defaultClassNames = getDefaultClassNames()
 
   return (
-  <div className="absolute bg-white shadowxlg rounded left-0">
+
     <DayPicker
     
       showOutsideDays={showOutsideDays}
       className={cn(
-        "bg-background  group/calendar shadow rounded-xl border  w-150 p-3 [--cell-size:2rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+        "bg-background  group/calendar  rounded-xl   w-150 h-85 p-3 [--cell-size:2rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
@@ -168,7 +168,9 @@ function Calendar({
       }}
       {...props}
     />
-    </div>
+
+    
+   
   )
 }
 
@@ -207,6 +209,7 @@ function CalendarDayButton({
       )}
       {...props}
     />
+
   )
   
 }

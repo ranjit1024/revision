@@ -36,8 +36,6 @@ export default function Chip() {
         }))
       }}
     >
-
-
       <span className="text-amber-800 font-medium text-md mr-3 ">
         Medium
       </span>

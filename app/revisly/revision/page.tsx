@@ -25,7 +25,8 @@ export default function Home() {
       time: state.revision.time,
       totaldays: state.revision.totalDays,
       startSession:state.revision.startDate,
-      endSession:state.revision.endDate
+      endSession:state.revision.endDate,
+      difficulty:state.revision.difficulty
     };
     return data;
   });
@@ -118,10 +119,8 @@ export default function Home() {
           <div className="mt-9 flex items-center gap-3">
             <button
               onClick={async () => {
-
                 console.log(sessionData);
                
-
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
 

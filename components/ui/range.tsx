@@ -15,7 +15,8 @@ import {
 
 export function MaxRangeDatePicker() {
   const today = new Date()
-  const maxDate = addDays(today, 30)
+  const maxDate = addDays(today, 30);
+  const [open, setOpen] = useState(false)
 
   const [date, setDate] = useState<DateRange | undefined>({
     from: today,
@@ -49,7 +50,7 @@ export function MaxRangeDatePicker() {
   return (
 
     <div className="grid gap-2">
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <label className="block text-sm font-medium text-zinc-700 text-start ml-1" htmlFor="topic">
           Select Date
         </label>
@@ -59,7 +60,7 @@ export function MaxRangeDatePicker() {
             id="date"
             variant="outline"
             className={cn(
-              "w-[300px] justify-start text-left font-normal h-12 rounded-2xl",
+              "w-[300px] justify-start text-left font-normal h-11 rounded-2xl",
               !date && "text-white"
             )}
           >
@@ -78,12 +79,15 @@ export function MaxRangeDatePicker() {
             )}
           </Button>
         </PopoverTrigger>
-        <div className="absolute top-0">
-          <Button>fsdf</Button>
+        <div >
+          
           <PopoverContent className="w-fit p-0" align="start">
+          
 
-
+            
+            
             <Calendar
+              className=""
               disabled={(date) => date < today || date > maxDate}
               mode="range"
 
@@ -93,7 +97,15 @@ export function MaxRangeDatePicker() {
               numberOfMonths={2}
               showOutsideDays={false}
 
-            />
+            >
+              
+            </Calendar>
+          
+           <div className="text-end m-2 ">
+         <Button className="bg-linear-120 hover:shadow-2xl hover:cursor-pointer from-indigo-600 to-indigo-500" onClick={()=>{
+         setOpen(prev  => !prev)
+         }}>OK</Button>
+           </div>
           </PopoverContent>
         </div>
       </Popover>
