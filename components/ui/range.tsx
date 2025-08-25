@@ -1,8 +1,8 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { format, addDays, differenceInDays } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-import { DateRange } from "react-day-picker"
+import { DateRange, useDayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -12,11 +12,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useDispatch } from "react-redux"
+import { actions } from "@/store/slices/revison"
 
 export function MaxRangeDatePicker() {
   const today = new Date()
   const maxDate = addDays(today, 30);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch()
 
   const [date, setDate] = useState<DateRange | undefined>({
     from: today,
@@ -46,23 +49,35 @@ export function MaxRangeDatePicker() {
       setDate(selectedDate)
     }
   }
+  useEffect(()=>{
+     dispatch(actions.addStartTime({
+      startDate:String(date?.from)
+     }));
+     dispatch(actions.addEndTime({
+      endDate:String(date?.to)
+     }))
+     console.log(date)
+  },[open])
 
   return (
 
     <div className="grid gap-2">
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} >
         <label className="block text-sm font-medium text-zinc-700 text-start ml-1" htmlFor="topic">
           Select Date
         </label>
         <PopoverTrigger asChild>
 
           <Button
+            
+            
             id="date"
             variant="outline"
             className={cn(
               "w-[300px] justify-start text-left font-normal h-11 rounded-2xl",
               !date && "text-white"
             )}
+          
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date?.from ? (
@@ -79,12 +94,14 @@ export function MaxRangeDatePicker() {
             )}
           </Button>
         </PopoverTrigger>
-        <div >
+        <div className="absolute top-0" >
           
-          <PopoverContent className="w-fit p-0" align="start">
+          <PopoverContent  className="w-fit p-0" align="start">
           
 
             
+            <div className="">
+
             
             <Calendar
               className=""
@@ -92,18 +109,20 @@ export function MaxRangeDatePicker() {
               mode="range"
 
               defaultMonth={date?.from}
+              
               selected={date}
               onSelect={handleDateSelect}
               numberOfMonths={2}
               showOutsideDays={false}
-
             >
               
             </Calendar>
+            </div>
           
            <div className="text-end m-2 ">
          <Button className="bg-linear-120 hover:shadow-2xl hover:cursor-pointer from-indigo-600 to-indigo-500" onClick={()=>{
-         setOpen(prev  => !prev)
+         setOpen(prev  => !prev);
+         
          }}>OK</Button>
            </div>
           </PopoverContent>

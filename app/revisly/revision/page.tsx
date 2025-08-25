@@ -10,12 +10,13 @@ import axios from "axios"
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
-import { MaxRangeDatePicker} from "@/components/ui/range";
+import { MaxRangeDatePicker } from "@/components/ui/range";
 import Chip from "@/components/ui/level";
 import { DateRange } from "react-day-picker";
+import { SelectDay } from "@/components/ui/days";
 
 export default function Home() {
-   const [dateRange, setDateRange] = React.useState<DateRange | undefined>()
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>()
   const rounter = useRouter()
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
@@ -24,9 +25,9 @@ export default function Home() {
       sessionIntervel: state.revision.sessionIntervel,
       time: state.revision.time,
       totaldays: state.revision.totalDays,
-      startSession:state.revision.startDate,
-      endSession:state.revision.endDate,
-      difficulty:state.revision.difficulty
+      startSession: state.revision.startDate,
+      endSession: state.revision.endDate,
+      difficulty: state.revision.difficulty
     };
     return data;
   });
@@ -71,7 +72,7 @@ export default function Home() {
                     onBlur={(e) => {
                       console.log(e.currentTarget.value);
                       dispatch(actions.addTopic({
-                        topic:e.currentTarget.value
+                        topic: e.currentTarget.value
                       }))
                     }}
                     id="topic"
@@ -89,9 +90,9 @@ export default function Home() {
 
           </div>
           <div className="mt-8  ">
-             <MaxRangeDatePicker
-      // Limit to 30 days
-    />
+            <MaxRangeDatePicker
+            // Limit to 30 days
+            />
           </div>
 
           <div className="w-100 mt-8 hover:cursor-pointer  ">
@@ -102,25 +103,31 @@ export default function Home() {
           <div>
             {/* <Progress value={33} /> */}
           </div>
-                      <div className="flex flex-col mt-2">
-                         <label className="block mt-7 ml-2 mb-3 text-sm font-medium text-zinc-700 text-start " htmlFor="topic">
-                Select The diffeculty level
+          <div className="flex flex-col mt-2">
+            <label className="block mt-7 ml-2 mb-3 text-sm font-medium text-zinc-700 text-start " htmlFor="topic">
+              Select The diffeculty level
+            </label>
+            <div className="flex ml-1 gap-2">
+
+              <Chip></Chip>
+
+
+
+            </div>
+            <div className="mt-9 ml-2">
+               <label className="block mb-3 text-sm font-medium text-zinc-700 text-start " htmlFor="topic">
+                Which day of week you want to shedule your revision
               </label>
-              <div className="flex ml-1 gap-2">
+              <SelectDay Limit={3}/>
+            </div>
 
-                      <Chip></Chip>
-                      
-                      
-
-              </div>
-                
-                      </div>
+          </div>
 
           <div className="mt-9 flex items-center gap-3">
             <button
               onClick={async () => {
                 console.log(sessionData);
-               
+
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
 
@@ -132,6 +139,8 @@ export default function Home() {
             {/* */}
             <Preview />
           </div>
+
+
 
 
 
