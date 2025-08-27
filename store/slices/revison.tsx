@@ -8,7 +8,8 @@ interface sessionType {
   id?:string;
   startDate?:String;
   endDate?:String;
-  difficulty?:"easy" | "medium" | 'hard'
+  difficulty?:"easy" | "medium" | 'hard';
+  days?:string[] | null;
 }
 
 export const sessionSlice = createSlice({
@@ -39,6 +40,9 @@ export const sessionSlice = createSlice({
     },
     addEndTime(state, action:PayloadAction<sessionType>){
       state.endDate = action.payload.endDate
+    },
+    addDays(state, action:PayloadAction<sessionType>){
+      state.days = action.payload.days
     }
     
   },

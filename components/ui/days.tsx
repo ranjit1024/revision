@@ -1,33 +1,34 @@
 "use client";
-
-
+import { actions } from "@/store/slices/revison";
 import { useEffect, useState } from "react";
-
-
+import { useDispatch, UseDispatch } from "react-redux";
 export function SelectDay({ Limit }: {
     Limit: 1 | 3
 }) {
+    const dispatch = useDispatch();
     const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const [selectedDay, setSelectdDay] = useState<string[] | null>(null)
     const [chosseDays, setChossDay] = useState<string | null>(null);
-    const [limit, setLimit] = useState<boolean | null>(null)
     useEffect(() => {
-   
-        console.log(selectedDay);
-    }, [chosseDays])
+
+        dispatch((actions.addDays({
+            days:selectedDay
+        })))
+    }, [selectedDay])
 
     return (
         <div className="flex  gap-3 ">
-            {week 
-            .map (day => <button
+            {week
+                .map(day => <button
                     key={day}
                     onClick={() => {
                         setChossDay(day)
 
                         setSelectdDay(prev => {
                             const current = prev ?? [];
-                            return current.includes(day) ?   current.slice(0,Limit) : [...current, day].slice(0,Limit)
-                        })
+                            return current.includes(day) ? current.slice(0, Limit) : [...current, day].slice(0, Limit)
+                        });
+
 
                     }
                     }
@@ -40,7 +41,7 @@ export function SelectDay({ Limit }: {
                 >
                     {day}
                 </button>
-            )}
+                )}
         </div>
     );
 }

@@ -27,7 +27,8 @@ export default function Home() {
       totaldays: state.revision.totalDays,
       startSession: state.revision.startDate,
       endSession: state.revision.endDate,
-      difficulty: state.revision.difficulty
+      difficulty: state.revision.difficulty,
+      days:state.revision.days
     };
     return data;
   });
