@@ -46,7 +46,10 @@ export default function Chip() {
       onClick={() => {
         setisHard(true);
         setisEasy(false);
-        setisMedium(false)
+        setisMedium(false);
+          dispatch(actions.addDifficulty({
+          difficulty:"hard"
+        }))
       }}
     >
       <span className="text-rose-800 font-medium text-md mr-3 ">

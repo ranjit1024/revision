@@ -109,17 +109,20 @@ export default function Home() {
             </label>
             <div className="flex ml-1 gap-2">
 
-              <Chip></Chip>
+              <Chip ></Chip>
 
 
 
             </div>
-            <div className="mt-9 ml-2">
+            {
+              sessionData.difficulty  ? sessionData.difficulty === 'hard' ? null: <div className="mt-9 ml-2 transition">
                <label className="block mb-3 text-sm font-medium text-zinc-700 text-start " htmlFor="topic">
                 Which day of week you want to shedule your revision
               </label>
-              <SelectDay Limit={3}/>
-            </div>
+              <SelectDay Limit={sessionData.difficulty === "medium" ? 3 : 1}/>
+            </div>:null
+            }
+           
 
           </div>
 
