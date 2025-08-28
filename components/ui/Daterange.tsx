@@ -56,7 +56,7 @@ export function MaxRangeDatePicker() {
      dispatch(actions.addEndTime({
       endDate:String(date?.to)
      }))
-     console.log(date)
+     
   },[open])
 
   return (

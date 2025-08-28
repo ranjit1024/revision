@@ -27,6 +27,7 @@ model Revision {
   topic            String
   sessionsintervel DateTime[]
   sessions         Int
+  days             String[]
   time             DateTime
   createdSession   DateTime          @default(now())
   startSesion      DateTime

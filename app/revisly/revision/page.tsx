@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios"
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
@@ -9,7 +10,7 @@ import { RootState } from "@/store/store";
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
-import { MaxRangeDatePicker } from "@/components/ui/range";
+import { MaxRangeDatePicker } from "@/components/ui/Daterange";
 import Chip from "@/components/ui/level";
 import { DateRange } from "react-day-picker";
 import { SelectDay } from "@/components/ui/days";
@@ -22,11 +23,11 @@ export default function Home() {
       topic: state.revision.topic,
       sessionIntervel: state.revision.sessionIntervel,
       time: state.revision.time,
-      totaldays: state.revision.totalDays,
-      startSession: state.revision.startDate,
-      endSession: state.revision.endDate,
+      sessionStart: state.revision.startDate,
+      sessionEnd: state.revision.endDate,
       difficulty: state.revision.difficulty,
-      days:state.revision.days
+      days:state.revision.days,
+    
     };
     return data;
   });
@@ -129,7 +130,7 @@ export default function Home() {
             <button
               onClick={async () => {
                 console.log(sessionData);
-
+                const serRevision = await axios.post('http://localhost:3000/api/revision',sessionData)
 
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"

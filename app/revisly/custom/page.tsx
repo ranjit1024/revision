@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DrawerDemo } from "@/components/ui/intervel";
 import { Label } from "@/components/ui/label";
-import { MaxRangeDatePicker } from "@/components/ui/range";
+import { MaxRangeDatePicker } from "@/components/ui/Daterange";
 
 
 import { Sparkles } from "lucide-react";

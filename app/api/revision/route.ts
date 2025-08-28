@@ -1,6 +1,7 @@
+"use server"
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import z, { number, string } from "zod";
+import z, { bigint, number, string } from "zod";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
@@ -8,19 +9,14 @@ import { Redis } from "@upstash/redis";
 
 
 import { Groq } from "groq-sdk";
+import { Ruthie } from "next/font/google";
+
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
 });
 console.log(process.env.NEXTAUTH_URL);
 console.log(process.env.GROQ_API_KEY);
 
-// {
-//     "topic":"maths",
-//     "sessionIntervel": [1,2,4],
-//     "sessions":2,
-//     "time":"5:30PM",
-//     "totaldays":7
-// }
 
 async function gerateBrif(sub: string) {
   const chatCompletion = await groq.chat.completions.create({
@@ -35,8 +31,6 @@ async function gerateBrif(sub: string) {
   return chatCompletion.choices[0].message.content;
 }
 
-const intervel = [1, 2, 4, 7, 16, 30, 60, 90, 120, 180, 365];
-const alllowdTotalDays: number[] = [1, 3, 7, 14, 30, 60, 120, 210, 330, 510, 875] as const;
 const redis = Redis.fromEnv();
 
 //function to get user selected time into date type
@@ -54,6 +48,7 @@ function getSelectedDateAndTime(time: string): Date {
   const convertedDate = new Date(year, (month - 1), day, hours24, minute, 0, 0);
   return convertedDate
 }
+
 //function for calculating endsesionDate
 function calculateAfterDays(value: number, createDate:Date): Date {
   const date = new Date();
@@ -61,11 +56,11 @@ function calculateAfterDays(value: number, createDate:Date): Date {
   return date;
 }
 // all zod schemas
+ const week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as const;
 
 const validation = z.object({
   topic: z.string(),
-  sessionIntervel: z.array(z.number().refine((num) => intervel.includes(num))),
-  sessions: z.number(),
+  sessionIntervel: z.array(z.string()),
   time: z
     .string()
     .min(6)
@@ -76,11 +71,45 @@ const validation = z.object({
       const [hours, minutes] = timepart.split(":").map(Number);
       return hours >= 1 && hours <= 12 && minutes >= 0 && minutes <= 59;
     }),
-  totaldays: z.number()
-    .refine((val) => alllowdTotalDays.includes(val), {
-      message: 'enter correct number'
-    }),
-    difficulty:z.enum(['easy', 'medium', 'hard'])
+  days:z.array(z.enum(week)),
+    difficulty:z.enum(['easy', 'medium', 'hard']),
+  sessionStart:z.string(),
+  sessionEnd:z.string()
 });
+function getCorrectDate(date:string){
+  const newDate = new Date(date)
+  return newDate.toISOString()
+}
+export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOption)
+  const body = await req.json();
+  const zodValidation = validation.safeParse(body);
+  
+  const sessionIntervels = zodValidation.data?.sessionIntervel.map(date => new Date(date).toISOString());
 
 
+  console.log("fsdf",sessionIntervels)
+  console.log(body)
+  console.log(zodValidation.data);
+  console.log(zodValidation.success);
+  if(!zodValidation.success){
+    return
+  }
+  
+  const revision = await prisma.revision.create({
+    data:{
+      email:String(session?.user?.email),
+      topic:zodValidation.data.topic,
+      time:getSelectedDateAndTime(zodValidation.data.time)?.toISOString(),
+      startSesion:getCorrectDate(zodValidation?.data?.sessionStart),
+      endSession:new Date(zodValidation.data.sessionEnd),
+      totalDays:12,
+      days:zodValidation.data.days,
+      sessionsintervel:[new Date(), new Date('2025-12-31T10:00:00Z')],
+      brif:'fsadf',
+      sessions:Number(sessionIntervels?.length)
+    }
+  })
+  console.log(revision)
+  return NextResponse.json({ message: 'ok' }, { status: 200 });
+}

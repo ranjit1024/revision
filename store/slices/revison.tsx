@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface sessionType {
   topic?: string;
   time?: string ;
-  sessionIntervel?: string[];
+  sessionIntervel?: String[];
   totalDays?: number;
   id?:string;
   startDate?:String;

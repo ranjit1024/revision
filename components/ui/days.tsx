@@ -23,7 +23,7 @@ function findSpecificWeekdaysWithDateFns(
 
     return allDays
         .filter((date: Date) => targetDays.includes(date.getDay()))
-        .map((date: Date) => format(date, 'yyyy-MM-dd'));
+        .map((date: Date) => date.toDateString());
 }
 
 
