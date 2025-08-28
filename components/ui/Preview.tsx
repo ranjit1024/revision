@@ -43,20 +43,14 @@ export function Preview() {
                <div className="grid grid-cols-2">
                 <div className="border ">
                     <h1 className="border-b-1 text-center font-medium p-1 ">sessions</h1>
-                    {
                    
-                        sessionData.sessionIntervel?.map((item,index) => <p className="p-1 border-b text-center font-normal text-slate-900" key={index}>{item}</p>)
-                    }
                    
                 </div>
                 <div className="border ">
                     <h1 className="border-b-1 text-center font-medium p-1">Date</h1>
                     {
 
-                      sessionData.sessionIntervel?.map((item,index)=>{
-                        date.setDate(new Date().getDate() + item);
-                        return <p key={index} className="p-1 border-b text-md text-center w-full font-normal text-zinc-800"> {`${date.toDateString()} - ${sessionData.time} `}</p>
-                      })
+                      
                     }
                         
                     

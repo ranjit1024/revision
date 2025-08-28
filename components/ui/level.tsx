@@ -14,7 +14,7 @@ export default function Chip() {
         setisHard(false)
         setisEasy(true);
         dispatch(actions.addDifficulty({
-          difficulty:'easy'
+          difficulty: 'easy'
         }))
       }}
     >
@@ -31,8 +31,8 @@ export default function Chip() {
         setisMedium(true);
         setisEasy(false);
         setisHard(false);
-          dispatch(actions.addDifficulty({
-          difficulty:"medium"
+        dispatch(actions.addDifficulty({
+          difficulty: "medium"
         }))
       }}
     >
@@ -47,8 +47,8 @@ export default function Chip() {
         setisHard(true);
         setisEasy(false);
         setisMedium(false);
-          dispatch(actions.addDifficulty({
-          difficulty:"hard"
+        dispatch(actions.addDifficulty({
+          difficulty: "hard"
         }))
       }}
     >

@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
 import React, { useState } from "react";
 import { RootState } from "@/store/store";
-import axios from "axios"
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
@@ -14,7 +13,6 @@ import { MaxRangeDatePicker } from "@/components/ui/range";
 import Chip from "@/components/ui/level";
 import { DateRange } from "react-day-picker";
 import { SelectDay } from "@/components/ui/days";
-
 export default function Home() {
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>()
   const rounter = useRouter()
@@ -131,6 +129,7 @@ export default function Home() {
             <button
               onClick={async () => {
                 console.log(sessionData);
+
 
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
