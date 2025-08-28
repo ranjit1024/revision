@@ -25,10 +25,11 @@ model Revision {
   id               String            @id @unique @default(cuid())
   email            String
   topic            String
-  sessionsintervel Int[]
+  sessionsintervel DateTime[]
   sessions         Int
   time             DateTime
   createdSession   DateTime          @default(now())
+  startSesion      DateTime
   endSession       DateTime
   totalDays        Int
   user             User              @relation(fields: [email], references: [email])
