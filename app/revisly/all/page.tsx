@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import RevisionSessionCard from "@/components/ui/revisionCard";
 import { getUserSession } from "@/lib/actions/getSession";
 import Skeleton from "@/components/ui/cardSkeleton";
+import SessionCard from "@/components/ui/revisionCard";
 const containerVariant = {
   hidden: {},
   show: {
@@ -69,17 +70,15 @@ export default function Home() {
         <Skeleton className="h-full w-full" />
         <Skeleton className="h-full w-full" />
       </motion.div>
-        : revisionSessionInfo?.map((item, index) => <RevisionSessionCard
+        : revisionSessionInfo?.map((item, index) => <SessionCard
           key={index}
-          sessionNumber={3}
           title={item.topic}
           startDate={item.createdSession}
           endDate={item.endSession}
           brief={item.brif}
-          progress={65}
+          sessionNumber={1}
           id={item.id}
-          cratedDate={item.createdSession}
-          
+          progress={30}          
         />)
     }
 
