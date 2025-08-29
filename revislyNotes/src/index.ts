@@ -88,10 +88,7 @@ async function generateNotes() {
         topic: string
         id: string
       } | null;
-      // const revisionTopic = rawValue ? JSON.parse(rawValue) as {
-      //   topic: string ,
-      //   id: string 
-      // }  : null;
+
 
 
       if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {

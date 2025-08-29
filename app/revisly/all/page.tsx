@@ -56,7 +56,7 @@ export default function Home() {
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show" : "hidden"}
-    className="grid  justify-center gap-4  w-[100%]  grid-cols-2   ">
+    className="grid  justify-center gap-8  w-[100%]  grid-cols-2   ">
 
     {
       revisionSessionInfo === null ? <motion.div
@@ -64,7 +64,7 @@ export default function Home() {
         variants={containerVariant}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        className="grid h-[100vh] grid-cols-2 w-[80vw] gap-3 ">
+        className="grid h-[100vh] grid-cols-2 w-[80vw] gap-10 ">
         <Skeleton className="h-full w-full" />
         <Skeleton className="h-full w-full" />
         <Skeleton className="h-full w-full" />

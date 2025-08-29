@@ -161,7 +161,17 @@ const SessionCard = (
   
 
   return (
-    <div className="min-w-lg mx-auto bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <motion.div
+    
+       variants={cardVariant}
+      transition={{
+        
+        ease:'anticipate'
+      }}
+      whileHover={{ border:'1px solid lightgray',
+        boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 12px'
+       }}
+    className="min-w-lg mx-auto bg-white rounded-xl shadow-2xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-100">
       {/* Header with date */}
       <div className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
         <div className="flex items-center gap-2 text-gray-500 text-sm">
@@ -216,15 +226,26 @@ const SessionCard = (
 
         {/* Action buttons */}
         <div className="flex gap-3">
-          <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 hover:cursor-pointer text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <button 
+          onClick={async ()=>{
+          const userNotes = await getNotes({folderKey:`${id} ${title}/notes/notes.pdf`});
+          if(userNotes){
+
+            window.open(userNotes)
+          }}}
+          className="flex-1 bg-indigo-600 hover:bg-indigo-700 hover:cursor-pointer text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             View Notes
           </button>
-          <button className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+          <button 
+          onClick={()=>{
+
+          }}
+          className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
             View All Sessions
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

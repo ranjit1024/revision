@@ -18,8 +18,8 @@ console.log(process.env.NEXTAUTH_URL);
 console.log(process.env.GROQ_API_KEY);
 
 
-async function gerateBrif(sub: string) {
-  const chatCompletion = await groq.chat.completions.create({
+async function gerateBrif(sub: string)  {
+  const chatCompletion  = await groq.chat.completions.create({
     messages: [
       {
         role: "user",
@@ -106,10 +106,14 @@ export async function POST(req: NextRequest) {
       totalDays:12,
       days:zodValidation.data.days,
       sessionsintervel:[new Date(), new Date('2025-12-31T10:00:00Z')],
-      brif:'fsadf',
+      brif: await gerateBrif(zodValidation.data.topic) ?? "not able to generate",
       sessions:Number(sessionIntervels?.length)
     }
-  })
+  });
+  redis.lpush("revision", JSON.stringify({
+    topic:revision.topic,
+    id:revision.id
+  }))
   console.log(revision)
   return NextResponse.json({ message: 'ok' }, { status: 200 });
 }

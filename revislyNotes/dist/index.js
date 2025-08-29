@@ -80,10 +80,6 @@ function generateNotes() {
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
             try {
                 const revisionData = yield redis.rpop("revision");
-                // const revisionTopic = rawValue ? JSON.parse(rawValue) as {
-                //   topic: string ,
-                //   id: string 
-                // }  : null;
                 if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
                     console.log(`Processing: ${revisionData.id}`);
                     const notes = yield getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);

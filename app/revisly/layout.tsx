@@ -14,6 +14,7 @@ import {
   HelpCircle,
   LayoutDashboard,
   PlusCircle,
+  MessageCircle
 
 } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -279,11 +280,31 @@ export default function Home({ children }: { children: ReactNode }) {
                   transition={{
                     duration: 1,
                     delay: 1.25,
-                  }} className="my-4 border-t border-zinc-100" onClick={() => {
+                  }} className="mt-4 border-t border-zinc-100" onClick={() => {
                     router.push('/contact')
                   }}>
 
                   <NavItem icon={<HelpCircle size={16} />} label="Help" />
+
+
+                  
+                </motion.div>
+                <motion.div
+                  initial={{
+                    x: -25,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    x: 0,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.25,
+                  }} className=" border-zinc-100" onClick={() => {
+                    router.push('/contact')
+                  }}>
+                    <NavItem icon={<MessageCircle size={16} />} label="feedback and suggestions" />
                 </motion.div>
 
 
