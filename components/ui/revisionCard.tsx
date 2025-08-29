@@ -9,7 +9,7 @@ import { getNotes } from "@/lib/actions/getNotesPdf";
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
-  
+  hover: {border:'1px solid grya'}
 };
 
 function formatDate(d:any) {
@@ -164,14 +164,8 @@ const SessionCard = (
     <motion.div
     
        variants={cardVariant}
-      transition={{
-        
-        ease:'anticipate'
-      }}
-      whileHover={{ border:'1px solid lightgray',
-        boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 12px'
-       }}
-    className="min-w-lg mx-auto bg-white rounded-xl shadow-2xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-100">
+   
+    className="min-w-lg mx-auto bg-white rounded-lg shadow  hover:shadow-lg shadow-amber-100 border-gray-100 overflow-hidden  ">
       {/* Header with date */}
       <div className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
         <div className="flex items-center gap-2 text-gray-500 text-sm">

@@ -302,7 +302,7 @@ export default function Home({ children }: { children: ReactNode }) {
                     duration: 1,
                     delay: 1.25,
                   }} className=" border-zinc-100" onClick={() => {
-                    router.push('/contact')
+                    router.push('/feedback')
                   }}>
                     <NavItem icon={<MessageCircle size={16} />} label="feedback and suggestions" />
                 </motion.div>
