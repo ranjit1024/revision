@@ -120,7 +120,28 @@ export default function Home() {
           className="w-[100%]  ">
             <ChartBarLabel  />
           </motion.div>
+
+           <motion.div
+            initial={{
+              x: 50,
+              opacity: 0,
+            }}
+            whileInView={{
+              x: 0,
+              opacity: 1,
+            }}
+            viewport={{
+              once:true
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.5,
+            }}>
+
           <Subjects/>
+            </motion.div>
+          
+
 
         </div>
     

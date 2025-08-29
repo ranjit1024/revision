@@ -166,7 +166,7 @@ const router = useRouter();
     
        variants={cardVariant}
    
-    className="w-full  bg-white rounded-lg shadow  hover:shadow-lg hover:shadow-indigo-100 border-gray-100 overflow-hidden   ">
+    className="w-full  bg-white rounded-lg shadow  hover:shadow-lg border border-gray-100 hover:shadow-indigo-100  overflow-hidden   ">
       {/* Header with date */}
       <div className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
         <div className="flex items-center gap-2 text-gray-500 text-sm">
@@ -205,7 +205,9 @@ const router = useRouter();
               <span className="text-sm font-medium text-gray-700">Progress</span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="bg-amber-100 text-amber-400 text-[0.7rem] font-medium rounded-2xl px-3 py1.5">{status}</span>
+              <span className=" bg-amber-100 text-amber-600 text-xs font-semibold px-3 py-1 rounded-full">
+                PENDING
+            </span>
               <span className="text-sm font-semibold text-indigo-600">{progress}%</span>
             </div>
           </div>

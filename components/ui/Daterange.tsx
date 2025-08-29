@@ -94,13 +94,13 @@ export function MaxRangeDatePicker() {
             )}
           </Button>
         </PopoverTrigger>
-        <div className="absolute top-0" >
+        <div className="absolute top-0 " >
           
-          <PopoverContent  className="w-fit p-0" align="start">
+          <PopoverContent  className="w-fit absolute p-0" align="start">
           
 
             
-            <div className="">
+            <div className=" ">
 
             
             <Calendar

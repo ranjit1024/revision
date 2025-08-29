@@ -377,7 +377,7 @@ function NavItem({
         "flex items-center gap-2 transition-discrete duration-300  ease-out ",
         active
           ? "bg-zinc-900 text-white shadow-sm"
-          : "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900",
+          : "text-zinc-700 hover:bg-zinc-100 hover:cursor-pointer hover:text-zinc-950",
       ].join(" ")}
     >
       <span className={active ? "text-white" : "text-zinc-500"}>{icon}</span>
