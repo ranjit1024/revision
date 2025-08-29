@@ -47,7 +47,7 @@ export default function Home() {
     getRevisionSession()
   }, [])
   console.log(revisionSessionInfo)
-  return <div className=" ">
+  return <div className=" flex w-[100%] justify-center ">
 
  
   <motion.div
@@ -56,7 +56,7 @@ export default function Home() {
     variants={containerVariant}
     initial="hidden"
     animate={inView ? "show" : "hidden"}
-    className="grid  justify-center gap-8  w-[100%]  grid-cols-2   ">
+    className="flex flex-col gap-3  w-[98%]  ">
 
     {
       revisionSessionInfo === null ? <motion.div
@@ -64,7 +64,7 @@ export default function Home() {
         variants={containerVariant}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        className="grid h-[100vh] grid-cols-2 w-[80vw] gap-10 ">
+        className="grid h-[100vh] grid-cols-1 w-[80vw]  ">
         <Skeleton className="h-full w-full" />
         <Skeleton className="h-full w-full" />
         <Skeleton className="h-full w-full" />
@@ -78,7 +78,8 @@ export default function Home() {
           brief={item.brif}
           sessionNumber={1}
           id={item.id}
-          progress={30}          
+          progress={30}
+          status={"PENDING"}         
         />)
     }
 

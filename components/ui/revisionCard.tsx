@@ -40,7 +40,7 @@ function formatDate(d:any) {
   
 // }) {
 //   const pct = Math.max(0, Math.min(100, progress));
-//   const router = useRouter();
+//   
    
  
 //   return (
@@ -144,7 +144,8 @@ const SessionCard = (
   brief = "Short summary about what to revise in this session.",
   progress = 0,
   id="",
-  
+  status=null
+
 }:{
  
   title:string,
@@ -154,18 +155,18 @@ const SessionCard = (
   sessionNumber:number,
   progress:number
   id:string
+  status: 'PENDING' | 'COMPLETED' | null
 
-  
 }
 ) => {
   
-
+const router = useRouter();
   return (
     <motion.div
     
        variants={cardVariant}
    
-    className="min-w-lg mx-auto bg-white rounded-lg shadow  hover:shadow-lg shadow-amber-100 border-gray-100 overflow-hidden  ">
+    className="w-full  bg-white rounded-lg shadow  hover:shadow-lg hover:shadow-indigo-100 border-gray-100 overflow-hidden   ">
       {/* Header with date */}
       <div className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
         <div className="flex items-center gap-2 text-gray-500 text-sm">
@@ -181,7 +182,7 @@ const SessionCard = (
       {/* Main content */}
       <div className="p-6">
         {/* Title section */}
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-4 mb-6 ">
           <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
             <BookOpen className="text-white" size={20} />
           </div>
@@ -204,8 +205,8 @@ const SessionCard = (
               <span className="text-sm font-medium text-gray-700">Progress</span>
             </div>
             <div className="flex items-center gap-3">
+              <span className="bg-amber-100 text-amber-400 text-[0.7rem] font-medium rounded-2xl px-3 py1.5">{status}</span>
               <span className="text-sm font-semibold text-indigo-600">{progress}%</span>
-           
             </div>
           </div>
           
@@ -231,10 +232,14 @@ const SessionCard = (
             View Notes
           </button>
           <button 
+         
+          className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           onClick={()=>{
+             
+              router.push(`/revisly/revision/${id}`);
 
           }}
-          className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+          >
             View All Sessions
           </button>
         </div>
