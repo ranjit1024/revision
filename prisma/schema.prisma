@@ -39,7 +39,6 @@ model Revision {
   status           Status
   revisions        RevisionSession[]
 }
-
 model RevisionSession {
   id            String   @id @unique @default(cuid())
   email         String
