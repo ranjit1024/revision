@@ -11,7 +11,7 @@ import fs from "fs"
 import cors from "cors"
 
 dotenv.config();
-const app:Express = express();
+const app: Express = express();
 app.use(express.json())
 app.use(cors());
 
@@ -25,8 +25,8 @@ const s3 = new S3Client({
     accessKeyId: String(process.env.AWS_ACCESS_KEY_ID),
     secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY),
   },
-  maxAttempts:5,
-  retryMode:'adaptive'
+  maxAttempts: 5,
+  retryMode: 'adaptive'
 
 })
 
@@ -79,50 +79,48 @@ function GenerateNotesPdf(text: string) {
     });
   doc.end()
 }
+
+
 async function generateNotes() {
+  try {
+    const revisionData = await redis.rpop("revision") as {
+      topic: string
+      id: string
+    } | null;
+    if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
+      console.log(`Processing: ${revisionData.id}`);
+      const notes = await getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
 
-
-  setInterval(async () => {
-    try {
-      const revisionData = await redis.rpop("revision") as {
-        topic: string
-        id: string
-      } | null;
-
-
-
-      if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
-        console.log(`Processing: ${revisionData.id}`);
-        const notes = await getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
-
-        const notesPdf = GenerateNotesPdf(String(`${notes}`));
-        const fileContent = fs.promises.readFile('./notes/notes2.pdf')
-        const params = {
-          Bucket: String(process.env.S3_BUCKET),
-          Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
-          Body: await fileContent,
-          ContentLength:Number((await fileContent).length),
-          ContentType: 'application/pdf',
-          
-        }
-        const command = new PutObjectCommand(params)
-        const result = await s3.send(command)
-        console.log('Notes uploaded successfully')
-        return "done with creating notes"
+      const notesPdf = GenerateNotesPdf(String(`${notes}`));
+      const fileContent = fs.promises.readFile('./notes/notes2.pdf')
+      const params = {
+        Bucket: String(process.env.S3_BUCKET),
+        Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
+        Body: await fileContent,
+        ContentLength: Number((await fileContent).length),
+        ContentType: 'application/pdf',
 
       }
+      const command = new PutObjectCommand(params)
+      const result = await s3.send(command);
+      console.log('Notes uploaded successfully');
       return "done with creating notes"
+
     }
-    catch (err) {
-      console.log('Queue processing error', err);
-      return "error"
-    }
-  }, 5000);
+    return "done with creating notes"
+  }
+  catch (err) {
+    console.log('Queue processing error', err);
+    return "error"
+  }
+};
 
-}
-const status = generateNotes().then(data => data)
-
-
+app.get("/notesuploaded", async(req,res)=>{
+  const result = await generateNotes()
+  res.json({
+    message:result
+  })
+});
 
 app.listen(3002, () => {
   console.log(`listing on port number 3002`)

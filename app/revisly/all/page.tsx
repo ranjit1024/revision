@@ -19,12 +19,11 @@ type RevisionSession = {
   id: string;
   email: string;
   topic: string;
-  sessionsintervel: number[];
+  sessionsintervel: Date[];
   sessions: number;
   time: Date;
   createdSession: Date;
   endSession: Date;
-  totalDays: number;
   brif:string
 };
 

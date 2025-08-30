@@ -3,17 +3,15 @@ import prisma from "../prisma"
 import { getServerSession } from "next-auth"
 import { authOption } from "../auth"
 import type { userType } from "./newUser"
-import { TypeOf } from "zod"
 type RevisionSession = {
   id: string;
   email: string;
   topic: string;
-  sessionsintervel: number[];
+  sessionsintervel: Date[];
   sessions: number;
   time: Date;
   createdSession: Date;
   endSession: Date;
-  totalDays: number;
   brif:string;
 };
 export async function getUserSession(){
@@ -26,6 +24,7 @@ export async function getUserSession(){
         orderBy:{
             createdSession:"desc"
         }
-    })
+    });
+
     return revisionsSession;
 }

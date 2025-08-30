@@ -8,15 +8,15 @@ import { actions } from "@/store/slices/revison";
 import React, { useState } from "react";
 import { RootState } from "@/store/store";
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
-import { CalendarDays, Clock, Info, Layers, Send } from "lucide-react";
+import { CalendarDays, Layers, Send } from "lucide-react";
 import { Preview } from "@/components/ui/Preview";
 import { MaxRangeDatePicker } from "@/components/ui/Daterange";
 import Chip from "@/components/ui/level";
-import { DateRange } from "react-day-picker";
+
 import { SelectDay } from "@/components/ui/days";
+
 export default function Home() {
-  const [dateRange, setDateRange] = React.useState<DateRange | undefined>()
-  const rounter = useRouter()
+  const router = useRouter()
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
     const data = {
@@ -130,8 +130,10 @@ export default function Home() {
             <button
               onClick={async () => {
                 console.log(sessionData);
-                const serRevision = await axios.post('http://localhost:3000/api/revision',sessionData)
-
+                setSendData(true)
+                const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData)
+                setSendData(false);
+                router.push('/revisly/all')
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
 

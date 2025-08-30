@@ -1,7 +1,7 @@
 "use server"
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import z, { bigint, number, string } from "zod";
+import z, { bigint, date, number, string } from "zod";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
@@ -10,6 +10,7 @@ import { Redis } from "@upstash/redis";
 
 import { Groq } from "groq-sdk";
 import { Ruthie } from "next/font/google";
+import axios from "axios";
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
@@ -96,6 +97,9 @@ export async function POST(req: NextRequest) {
   }
   
   // <---- Completing on the revision donrt----->
+  try{
+
+  
   const revision = await prisma.revision.create({
     data:{
       email:session?.user?.email??"",
@@ -108,15 +112,13 @@ export async function POST(req: NextRequest) {
       sessionsintervel:sessionIntervels,
       brif: await gerateBrif(zodValidation.data.topic) ?? "not able to generate",
       sessions:Number(sessionIntervels?.length),
-      status:'PENDING'
+      status:'PENDING',
     }
   });
 //  <----- adding revisionSesions -------------------->
-  
-  revision.sessionsintervel?.forEach(async (date,index)=>{
-    console.log(date)
-      const revisionSesions = await prisma.revisionSession.create({
-      data:{
+  if(sessionIntervels!.length > 0){
+    await prisma.revisionSession.createMany({
+      data:sessionIntervels?.map((date,index)=>({
         email:String(session?.user?.email),
         score:0,
         sessionNumber:index,
@@ -124,17 +126,37 @@ export async function POST(req: NextRequest) {
         revisionid:revision.id,
         reminderDate:new Date(date).toISOString(),
         status:"PENDING",
-        
-      }})
-  })
+      })) || []
+    }) 
+  }
+  // sessionIntervels?.forEach(async (date,index)=>{
+  //   console.log("fsdf",date)
+  //     const revisionSesions = await prisma.revisionSession.create({
+  //     data:{
+  //       email:String(session?.user?.email),
+  //       score:0,
+  //       sessionNumber:index,
+  //       topic:revision.topic,
+  //       revisionid:revision.id,
+  //       reminderDate:new Date(date).toISOString(),
+  //       status:"PENDING",
+  //     }})
+  // })
  
-  
   
   redis.lpush("revision", JSON.stringify({
     topic:revision.topic,
     id:revision.id
   }));
-
   console.log(revision)
+
+
+  const result = await axios.get('http://localhost:3002/notesuploaded')
+  console.log(result.data.message)
+}
+catch(err){
+  console.log(err)
+}
   return NextResponse.json({ message: 'ok' }, { status: 200 });
 }
+
