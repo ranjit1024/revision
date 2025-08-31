@@ -129,19 +129,6 @@ export async function POST(req: NextRequest) {
       })) || []
     }) 
   }
-  // sessionIntervels?.forEach(async (date,index)=>{
-  //   console.log("fsdf",date)
-  //     const revisionSesions = await prisma.revisionSession.create({
-  //     data:{
-  //       email:String(session?.user?.email),
-  //       score:0,
-  //       sessionNumber:index,
-  //       topic:revision.topic,
-  //       revisionid:revision.id,
-  //       reminderDate:new Date(date).toISOString(),
-  //       status:"PENDING",
-  //     }})
-  // })
  
   
   redis.lpush("revision", JSON.stringify({
