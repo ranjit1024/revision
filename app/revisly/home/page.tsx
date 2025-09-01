@@ -7,19 +7,41 @@ import {
   ChevronRight,
  
 } from "lucide-react";
-import { Calendar } from "@/components/ui/calendar";
-import {  useState } from "react";
+import { getDashBaordData } from "@/lib/actions/dashBoard";
+import {  useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Subjects } from "@/components/ui/subjects";
-
+interface type {
+   id: string;
+    email: string;
+    sessinNumber: number;
+    topic: string;
+    sessionsintervel: Date[];
+    sessions: number;
+    days: string[];
+    time: Date;
+    createdSession: Date;
+    startSesion: Date;
+    endSession: Date;
+    totalDays: number;
+    brif: string;
+}
 export default function Home() {
   const [date, setDate] = useState<Date | undefined>(new Date());
-
+  const [dashBoardData, setDashBaordData] = useState<type|null>(null)
+  useEffect(()=>{
+    async function Data(){
+      const data =  await getDashBaordData();
+      setDashBaordData(data)
+    }
+    Data()
+  },[]);
+  console.log(dashBoardData)
   return (
     <div className="">
+  
+     
       <div className="w-[100%] h-full ">
-      
-   
              <motion.section 
              initial={{
               opacity:0,
@@ -38,7 +60,7 @@ export default function Home() {
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-sm font-medium text-zinc-500">Current Revision Topic</p>
-                  <h3 className="mt-1 text-xl font-semibold tracking-tight">topic name</h3>
+                  <h3 className="mt-1 text-xl font-semibold tracking-tight">{dashBoardData?.topic}</h3>
                 </div>
                 <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-100">
                   Active

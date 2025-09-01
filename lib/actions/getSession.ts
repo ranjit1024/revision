@@ -4,15 +4,20 @@ import { getServerSession } from "next-auth"
 import { authOption } from "../auth"
 import type { userType } from "./newUser"
 type RevisionSession = {
-  id: string;
-  email: string;
-  topic: string;
-  sessionsintervel: Date[];
-  sessions: number;
-  time: Date;
-  createdSession: Date;
-  endSession: Date;
-  brif:string;
+    id: string;
+    email: string;
+    sessinNumber: number;
+    topic: string;
+    sessionsintervel: Date[];
+    sessions: number;
+    days: string[];
+    time: Date;
+    createdSession: Date;
+    startSesion: Date;
+    endSession: Date;
+    totalDays: number;
+    brif: string;
+    
 };
 export async function getUserSession(){
     const session : userType | null  = await getServerSession(authOption);

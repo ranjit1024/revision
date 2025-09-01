@@ -136,10 +136,7 @@ export async function POST(req: NextRequest) {
     id:revision.id
   }));
   console.log(revision)
-
-
-  const result = await axios.get('http://localhost:3002/notesuploaded')
-  console.log(result.data.message)
+  
 }
 catch(err){
   console.log(err)

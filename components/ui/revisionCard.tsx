@@ -178,6 +178,11 @@ const router = useRouter();
           <span>10 day(s)</span>
         </div>
       </div>
+      <div className="text-end mt-1 mr-2">
+          <span className=" bg-amber-50 text-amber-500 text-xs font-semibold px-3 py-1 rounded-full">
+                PENDING
+            </span>
+            </div>
 
       {/* Main content */}
       <div className="p-6">
@@ -198,34 +203,14 @@ const router = useRouter();
         </div>
 
         {/* Progress section */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <BarChart3 size={16} className="text-gray-400" />
-              <span className="text-sm font-medium text-gray-700">Progress</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className=" bg-amber-100 text-amber-600 text-xs font-semibold px-3 py-1 rounded-full">
-                PENDING
-            </span>
-              <span className="text-sm font-semibold text-indigo-600">{progress}%</span>
-            </div>
-          </div>
-          
-          {/* Progress bar */}
-          <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
+       
 
         {/* Action buttons */}
         <div className="flex gap-3">
           <button 
           onClick={async ()=>{
           const userNotes = await getNotes({folderKey:`${id} ${title}/notes/notes.pdf`});
+          console.log(id)
           if(userNotes){
 
             window.open(userNotes)

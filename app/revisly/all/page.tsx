@@ -37,15 +37,17 @@ export default function Home() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true });
   const [revisionSessionInfo, setRevisionSessionInfo] = useState<RevisionSession[] | null>(null)
-  useEffect(() => {
-
-    async function getRevisionSession() {
+  
+  useEffect(()=>{
+    async function getRevisionSession() { 
       const getrevisionSesion = await getUserSession();
       setRevisionSessionInfo(getrevisionSesion)
+    
     }
     getRevisionSession()
-  }, [])
-  console.log(revisionSessionInfo)
+  },[])
+  
+  // console.log(g)
   return <div className=" flex w-[100%] justify-center ">
 
  

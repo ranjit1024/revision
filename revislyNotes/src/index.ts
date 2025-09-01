@@ -82,45 +82,45 @@ function GenerateNotesPdf(text: string) {
 
 
 async function generateNotes() {
-  try {
-    const revisionData = await redis.rpop("revision") as {
-      topic: string
-      id: string
-    } | null;
-    if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
-      console.log(`Processing: ${revisionData.id}`);
-      const notes = await getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
-
-      const notesPdf = GenerateNotesPdf(String(`${notes}`));
-      const fileContent = fs.promises.readFile('./notes/notes2.pdf')
-      const params = {
-        Bucket: String(process.env.S3_BUCKET),
-        Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
-        Body: await fileContent,
-        ContentLength: Number((await fileContent).length),
-        ContentType: 'application/pdf',
-
+  setInterval(async()=>{
+    try {
+      const revisionData = await redis.rpop("revision") as {
+        topic: string
+        id: string
+      } | null;
+      if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
+        console.log(`Processing: ${revisionData.id}`);
+        const notes = await getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
+  
+        const notesPdf = GenerateNotesPdf(String(`${notes}`));
+        const fileContent = fs.promises.readFile('./notes/notes2.pdf')
+        const params = {
+          Bucket: String(process.env.S3_BUCKET),
+          Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
+          Body: await fileContent,
+          ContentLength: Number((await fileContent).length),
+          ContentType: 'application/pdf',
+  
+        }
+        const command = new PutObjectCommand(params)
+        const result = await s3.send(command);
+        console.log('Notes uploaded successfully');
+        redis.set("notesUpload", "done")
+        return "done with creating notes"
+  
       }
-      const command = new PutObjectCommand(params)
-      const result = await s3.send(command);
-      console.log('Notes uploaded successfully');
       return "done with creating notes"
-
     }
-    return "done with creating notes"
-  }
-  catch (err) {
-    console.log('Queue processing error', err);
-    return "error"
-  }
+    catch (err) {
+      console.log('Queue processing error', err);
+      return "error"
+    }
+    
+  }, 5000)
 };
 
-app.get("/notesuploaded", async(req,res)=>{
-  const result = await generateNotes()
-  res.json({
-    message:result
-  })
-});
+generateNotes()
+
 
 app.listen(3002, () => {
   console.log(`listing on port number 3002`)
