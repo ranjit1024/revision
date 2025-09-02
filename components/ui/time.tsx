@@ -64,7 +64,7 @@ export default function TimePicker() {
   useEffect(()=>{
 
     dispatch((actions.addTime({
-      time:"5:04 AM"
+      time:"5:04AM"
     })));
   },[])
   return (

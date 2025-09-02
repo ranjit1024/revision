@@ -50,6 +50,7 @@
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.0",
     "tailwind-scrollbar-hide": "^4.0.0",
+    "uuidv4": "^6.2.13",
     "vaul": "^1.1.2",
     "zod": "^3.25.76"
   },

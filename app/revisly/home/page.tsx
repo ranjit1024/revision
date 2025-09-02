@@ -102,9 +102,6 @@ export default function Home() {
             
           </motion.section>
         
-      
-        
-
         <motion.div 
           initial={{
               y: -20,
@@ -121,51 +118,7 @@ export default function Home() {
         className="pt-3   w-[100%]">
           <Retation />
         </motion.div>
-        <div className="grid grid-cols-2 w-[100%] mt-3 gap-3 h-100">
-          
-          <motion.div
-            initial={{
-              x: -50,
-              opacity: 0,
-            }}
-            whileInView={{
-              x: 0,
-              opacity: 1,
-            }}
-            viewport={{
-              once:true
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-            }}
-          className="w-[100%]  ">
-            <ChartBarLabel  />
-          </motion.div>
-
-           <motion.div
-            initial={{
-              x: 50,
-              opacity: 0,
-            }}
-            whileInView={{
-              x: 0,
-              opacity: 1,
-            }}
-            viewport={{
-              once:true
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.5,
-            }}>
-
-          <Subjects/>
-            </motion.div>
-          
-
-
-        </div>
+        
     
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use server"
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import z, { bigint, date, number, string } from "zod";
+import z from "zod";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
@@ -9,7 +9,7 @@ import { Redis } from "@upstash/redis";
 
 
 import { Groq } from "groq-sdk";
-import { Ruthie } from "next/font/google";
+import  {uuid} from "uuidv4"
 import axios from "axios";
 
 const groq = new Groq({
@@ -82,6 +82,8 @@ function getCorrectDate(date:string){
   return newDate.toISOString()
 }
 export async function POST(req: NextRequest) {
+  const revisionId = uuid;
+  const id = revisionId()
   const session = await getServerSession(authOption)
   const body = await req.json();
   const zodValidation = validation.safeParse(body);
@@ -99,9 +101,22 @@ export async function POST(req: NextRequest) {
   // <---- Completing on the revision donrt----->
   try{
 
+    await redis.lpush("revision", JSON.stringify({
+    topic:zodValidation.data?.topic,
+    id:id
+  }));
+
+  const result = await axios.get("http://localhost:3002/notesuploaded")
+  if(result.status === 400){
+    return NextResponse.json({
+      meg:"something went wrong"
+    })
+  }
+  
   
   const revision = await prisma.revision.create({
     data:{
+      id:id,
       email:session?.user?.email??"",
       topic:zodValidation.data.topic,
       time:getSelectedDateAndTime(zodValidation.data.time)?.toISOString(),
@@ -131,12 +146,7 @@ export async function POST(req: NextRequest) {
   }
  
   
-  redis.lpush("revision", JSON.stringify({
-    topic:revision.topic,
-    id:revision.id
-  }));
-  console.log(revision)
-  
+
 }
 catch(err){
   console.log(err)

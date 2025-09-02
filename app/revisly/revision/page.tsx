@@ -131,8 +131,8 @@ export default function Home() {
               onClick={async () => {
                 console.log(sessionData);
                 setSendData(true)
-                const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData)
-                setSendData(false);
+                const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData);
+                setRevision.status === 200 ? setSendData(false) : <div>Somethig went wrong</div>
                 router.push('/revisly/all')
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"

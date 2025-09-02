@@ -75,39 +75,39 @@ function GenerateNotesPdf(text) {
     });
     doc.end();
 }
-function generateNotes() {
-    return __awaiter(this, void 0, void 0, function* () {
-        setInterval(() => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const revisionData = yield redis.rpop("revision");
-                if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
-                    console.log(`Processing: ${revisionData.id}`);
-                    const notes = yield getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
-                    const notesPdf = GenerateNotesPdf(String(`${notes}`));
-                    const fileContent = fs_1.default.promises.readFile('./notes/notes2.pdf');
-                    const params = {
-                        Bucket: String(process.env.S3_BUCKET),
-                        Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
-                        Body: yield fileContent,
-                        ContentLength: Number((yield fileContent).length),
-                        ContentType: 'application/pdf',
-                    };
-                    const command = new client_s3_1.PutObjectCommand(params);
-                    const result = yield s3.send(command);
-                    console.log('Notes uploaded successfully');
-                    return "done with creating notes";
-                }
-                return "done with creating notes";
-            }
-            catch (err) {
-                console.log('Queue processing error', err);
-                return "error";
-            }
-        }), 5000);
-    });
-}
-;
-generateNotes();
+app.get("/notesuploaded", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const revisionData = yield redis.rpop("revision");
+        if (revisionData && revisionData.topic !== null && revisionData.topic.trim() !== '') {
+            console.log(`Processing: ${revisionData.id}`);
+            const notes = yield getAiGeneratedNotes(`generate notes for ${revisionData.topic} in clean string format `);
+            const notesPdf = GenerateNotesPdf(String(`${notes}`));
+            const fileContent = fs_1.default.promises.readFile('./notes/notes2.pdf');
+            const params = {
+                Bucket: String(process.env.S3_BUCKET),
+                Key: `${revisionData.id} ${revisionData.topic}/notes/notes.pdf`,
+                Body: yield fileContent,
+                ContentLength: Number((yield fileContent).length),
+                ContentType: 'application/pdf',
+            };
+            const command = new client_s3_1.PutObjectCommand(params);
+            const result = yield s3.send(command);
+            console.log('Notes uploaded successfully');
+            res.status(200).json({
+                message: "Notes uploaded successfully"
+            });
+            return "done with creating notes";
+        }
+        return "done with creating notes";
+    }
+    catch (err) {
+        console.log('Queue processing error', err);
+        res.status(400).json({
+            message: "Queue processing error"
+        });
+        return "error";
+    }
+}));
 app.listen(3002, () => {
     console.log(`listing on port number 3002`);
 });
