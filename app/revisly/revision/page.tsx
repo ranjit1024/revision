@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import TimePicker from "@/components/ui/time";
 import { useDispatch } from "react-redux";
 import { actions } from "@/store/slices/revison";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 import NotesgeneratorLoader from "@/components/ui/notestgenratorLading";
 import { CalendarDays, Layers, Send } from "lucide-react";
@@ -14,8 +14,11 @@ import { MaxRangeDatePicker } from "@/components/ui/Daterange";
 import Chip from "@/components/ui/level";
 
 import { SelectDay } from "@/components/ui/days";
+import { tr } from "date-fns/locale";
+import ErrorToast from "@/components/ui/toast";
 
 export default function Home() {
+  const [showError, setShowError] = useState<boolean>(false);
   const router = useRouter()
   const dispatch = useDispatch();
   const sessionData = useSelector((state: RootState) => {
@@ -31,14 +34,26 @@ export default function Home() {
     };
     return data;
   });
+  useEffect(()=>{
+    setInterval(()=>{
+      setShowError(false)
+    },5000)
+  },[showError])
   const [sendData, setSendData] = useState<boolean>(false);
 
   return (
     <div className=" ">
       {
-
+        showError ? <ErrorToast/>:null
+      }
+      {
+        
         sendData ? <NotesgeneratorLoader /> : null
       }
+
+     
+
+    
       <div className="bg-white shadow p-5 rounded-md h-[120vh] ">
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
@@ -129,11 +144,19 @@ export default function Home() {
           <div className="mt-9 flex items-center gap-3">
             <button
               onClick={async () => {
-                console.log(sessionData);
-                setSendData(true)
-                const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData);
-                setRevision.status === 200 ? setSendData(false) : <div>Somethig went wrong</div>
-                router.push('/revisly/all')
+             
+                try{
+                  setSendData(true)
+                  const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData);
+                  console.log(setRevision.status);
+                  router.push('/revisly/all')
+                  setSendData(false)
+
+                }
+                catch(e){
+                  setShowError(true);
+                }
+              
               }}
               className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 active:translate-y-px"
 

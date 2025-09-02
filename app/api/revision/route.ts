@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
   console.log(zodValidation.data);
   console.log(zodValidation.success);
   if(!zodValidation.success){
-    return
+    return NextResponse.json({ message: 'Invalid Input' }, { status: 400 });
   }
   
   // <---- Completing on the revision donrt----->
@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
     }) 
   }
  
-  
+    return NextResponse.json({ message: 'Notes and database updated' }, { status: 200 });
 
 }
 catch(err){
