@@ -1,5 +1,5 @@
 "use client";
-import { ChartBarLabel } from "@/components/ui/last5";
+import {  Last5 } from "@/components/ui/last5";
 import {Retation} from "@/components/ui/retation";
 import {
   
@@ -118,7 +118,7 @@ export default function Home() {
         className="pt-3   w-[100%]">
           <Retation />
         </motion.div>
-        
+       
     
       </div>
     </div>

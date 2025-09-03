@@ -37,6 +37,7 @@ model Revision {
   user             User              @relation(fields: [email], references: [email])
   brif             String
   status           Status
+  score            Int?
   revisions        RevisionSession[]
 }
 model RevisionSession {

@@ -55,7 +55,7 @@ export function SelectDay({ Limit }: {
     
     useEffect(()=>{
         dispatch(actions.addSessionInterl({
-            sessionIntervel:findSpecificWeekdaysWithDateFns(String(date.from), String(date.to), selectedDay)
+            sessionIntervel:findSpecificWeekdaysWithDateFns(String(date.from ), String(date.to), selectedDay)
         }))
     }, [selectedDay])
     return (

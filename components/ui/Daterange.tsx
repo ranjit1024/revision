@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
-import { format, addDays, differenceInDays } from "date-fns"
+import { format, addDays, differenceInDays, subDays } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange, useDayPicker } from "react-day-picker"
 
@@ -50,11 +50,13 @@ export function MaxRangeDatePicker() {
     }
   }
   useEffect(()=>{
+    const dateObj = new Date();
+   
      dispatch(actions.addStartTime({
-      startDate:String(date?.from)
+      startDate:String(date?.from )
      }));
      dispatch(actions.addEndTime({
-      endDate:String(date?.to)
+      endDate: date?.to ? String(subDays(date.to,1)): ''
      }))
      
   },[open])

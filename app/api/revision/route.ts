@@ -112,12 +112,9 @@ export async function POST(req: NextRequest) {
 
     const result = await axios.get("http://localhost:3002/notesuploaded");
     console.log("fsdfa", result)
-    if (!result) {
-      return NextResponse.json({
-        meg: "something went wrong"
-      })
+    if(result.data.message === "Queue processing error"){
+        return NextResponse.json({ message: 'Notes are not uploaded' }, { status: 400 });
     }
-
 
     const revision = await prisma.revision.create({
       data: {
@@ -133,6 +130,7 @@ export async function POST(req: NextRequest) {
         brif: await gerateBrif(zodValidation.data.topic) ?? "not able to generate",
         sessions: Number(sessionIntervels?.length),
         status: 'PENDING',
+        score:0
       }
     });
     //  <----- adding revisionSesions -------------------->

@@ -1,7 +1,7 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
+import { Activity, TrendingUp } from "lucide-react"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 
 import {
   Card,
@@ -18,75 +18,76 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-export const description = "A bar chart with a label"
+export const description = "A step area chart"
 
 const chartData = [
-  { month: "January", desktop: 90 },
-  { month: "February", desktop: 100 },
-  { month: "March", desktop: 27 },
-  { month: "April", desktop: 77 },
-  { month: "May", desktop: 70 },
- 
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 73 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
 ]
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-5)",
+    color: "var(--chart-1)",
+    icon: Activity,
   },
 } satisfies ChartConfig
 
-export function ChartBarLabel() {
+export function Last5() {
   return (
-    <Card className="w-full">
+    <Card>
       <CardHeader>
-        <CardTitle>Last 5 session scores</CardTitle>
-        <CardDescription>How much you score in last 5 sessions</CardDescription>
+        <CardTitle>Area Chart - Step</CardTitle>
+        <CardDescription>
+          Showing total visitors for the last 6 months
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart
+          <AreaChart
             accessibilityLayer
             data={chartData}
             margin={{
-              top: 40,
-              
+              left: 12,
+              right: 12,
             }}
-            barCategoryGap={14}
-           
           >
             <CartesianGrid vertical={false} />
             <XAxis
-
               dataKey="month"
               tickLine={false}
-              tickMargin={10}
               axisLine={false}
-            
-            
+              tickMargin={1}
               tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={10}>
-              <LabelList
-                position="top"
-                offset={12}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Bar>
-          </BarChart>
+            <Area
+              dataKey="desktop"
+              type="step"
+              fill="var(--color-desktop)"
+              fillOpacity={0.4}
+              stroke="var(--color-desktop)"
+            />
+          </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
+      <CardFooter>
+        <div className="flex w-full items-start gap-2 text-sm">
+          <div className="grid gap-2">
+            <div className="flex items-center gap-2 leading-none font-medium">
+              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="text-muted-foreground flex items-center gap-2 leading-none">
+              January - June 2024
+            </div>
+          </div>
         </div>
       </CardFooter>
     </Card>
