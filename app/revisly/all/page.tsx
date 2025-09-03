@@ -72,12 +72,13 @@ export default function Home() {
         <Skeleton className="h-full w-full" />
       </motion.div>
         : revisionSessionInfo?.map((item, index) => <SessionCard
+          
           key={index}
           title={item.topic}
           startDate={item.createdSession}
           endDate={item.endSession}
           brief={item.brif}
-          sessionNumber={1}
+          sessionNumber={revisionSessionInfo.length - index}
           id={item.id}
           progress={30}
           status={"PENDING"}         

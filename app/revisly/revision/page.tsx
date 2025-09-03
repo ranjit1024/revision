@@ -38,7 +38,7 @@ export default function Home() {
     setInterval(()=>{
       setShowError(false)
     },5000)
-  },[showError])
+  },[setShowError])
   const [sendData, setSendData] = useState<boolean>(false);
 
   return (
@@ -146,15 +146,21 @@ export default function Home() {
               onClick={async () => {
              
                 try{
-                  setSendData(true)
-                  const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData);
-                  console.log(setRevision.status);
+                  setSendData(true);
+                  const setRevision = await axios.post('http://localhost:3000/api/revision',sessionData, {
+                    headers:{
+                      'Content-Type': 'application/json',
+                    }
+                  }
+                   );
+                  console.log(setRevision)
+                  setSendData(false);
                   router.push('/revisly/all')
-                  setSendData(false)
 
                 }
                 catch(e){
                   setShowError(true);
+                  setSendData(false);
                 }
               
               }}
