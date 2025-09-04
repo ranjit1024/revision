@@ -11,6 +11,7 @@ import { getDashBaordData } from "@/lib/actions/dashBoard";
 import {  useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Subjects } from "@/components/ui/subjects";
+import { CompletVsFail } from "@/components/ui/completeVSfail";
 interface type {
    id: string;
     email: string;
@@ -118,6 +119,9 @@ export default function Home() {
         className="pt-3   w-[100%]">
           <Retation />
         </motion.div>
+        <div className="mt-2">
+          <CompletVsFail/>
+        </div>
        
     
       </div>

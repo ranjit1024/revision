@@ -113,7 +113,8 @@ export async function POST(req: NextRequest) {
     const result = await axios.get("http://localhost:3002/notesuploaded");
     console.log("fsdfa", result)
     if(result.data.message === "Queue processing error"){
-        return NextResponse.json({ message: 'Notes are not uploaded' }, { status: 400 });
+        redis.del("revision")
+        return NextResponse.json({ message: 'queue processing error' }, { status: 400 });
     }
 
     const revision = await prisma.revision.create({
