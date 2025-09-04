@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 
@@ -127,7 +126,7 @@ const chartConfig = {
     label: "Visitors",
   },
   desktop: {
-    label: "neglectd",
+    label: "Neglected",
     color: "var(--chart-1)",
   },
   mobile: {
@@ -157,7 +156,7 @@ export function CompletVsFail() {
     <Card className="pt-0">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
-          <CardTitle>Total attempted vs Neglectd</CardTitle>
+          <CardTitle>Total Nttempted vs Neglected</CardTitle>
           <CardDescription>
             Showing total Test for last 3 Months
           </CardDescription>

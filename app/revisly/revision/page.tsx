@@ -35,16 +35,19 @@ export default function Home() {
     return data;
   });
   useEffect(()=>{
-    setInterval(()=>{
-      setShowError(false)
-    },5000)
-  },[setShowError])
+    if(showError){
+      const timeOut = setTimeout(()=>{
+        setShowError(false)
+      },5000)
+      return () =>  clearTimeout(timeOut)
+    }
+  },[showError])
   const [sendData, setSendData] = useState<boolean>(false);
 
   return (
     <div className=" ">
       {
-        showError ? <ErrorToast/>:null
+        showError ? <ErrorToast view={showError}/>:null
       }
       {
         

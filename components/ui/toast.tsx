@@ -1,15 +1,21 @@
+"use client"
 import {ShieldAlert} from "lucide-react"
+import {motion} from "framer-motion"
 interface ErrorToastProps {
   message?: string;
   visible: boolean;
   onClose?: () => void;
   duration?: number;
 }
-const ErrorToast = () => {
+const ErrorToast = ({view}:{
+  view:boolean
+}) => {
   
 
   return (
-    <div className="fixed  top-13 z-100 min-w-md flex gap-2 bg-linear-180 from-white to-white rounded-lg flex-col  shadow shadow-neutral-300  border-b-2 border-b-rose-300 py-2 right-2 ">
+    <motion.div
+    
+    className={`fixed transition-all top-12 rounded-lg shadow z-100 min-w-[40%] flex gap-2 bg-linear-180 from-white to-white  flex-col py-2 right-2`}>
         <div className="flex gap-2 px-2  items-center-safe">
 
             <div className=" px-[5px] py-[4px] rounded-full bg-red-100/80">
@@ -19,7 +25,7 @@ const ErrorToast = () => {
 
         </div>
         <p className="pl-11 text-sm font-medium text-red-500">kindly enter correct input</p>
-   </div>
+   </motion.div>
   );
 };
 
